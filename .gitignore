@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment and local secrets
+.env
+.secret_key
+.local_secret
+
+# Uploaded media and evidence vault
+uploads/*.wav
+uploads/*.mp3
+uploads/*.ogg
+uploads/*.flac
+uploads/*.m4a
+uploads/*.webm
+uploads/evidence_vault/*
+!uploads/evidence_vault/.gitkeep
+!uploads/.gitkeep
+
+# IDE and OS files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+*.db
+*.sqlite3
+.venv/
+venv/
+.env.*

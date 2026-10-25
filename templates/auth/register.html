@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Register – VoiceShield AI{% endblock %}
+{% block body %}
+<div class="auth-wrapper">
+  <div class="auth-card fade-in">
+    <div class="auth-logo">
+      <div class="logo-circle">🛡️</div>
+      <h1>VoiceShield AI</h1>
+      <p>Create your secure analyst account</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+          <button class="alert-close">✕</button>
+        </div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input id="username" name="username" type="text" class="form-control"
+               placeholder="Choose a username" value="{{ username or '' }}" required minlength="3">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input id="email" name="email" type="email" class="form-control"
+               placeholder="you@example.com" value="{{ email or '' }}" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input id="password" name="password" type="password" class="form-control"
+               placeholder="Minimum 8 characters" required minlength="8">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="confirm_password">Confirm Password</label>
+        <input id="confirm_password" name="confirm_password" type="password" class="form-control"
+               placeholder="Repeat password" required>
+      </div>
+
+      <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:12px;margin-bottom:20px;font-size:0.78rem;color:var(--text-secondary);">
+        🔒 Passwords are hashed using Werkzeug's PBKDF2-SHA256. Your audio is permanently deleted after analysis.
+        <a href="{{ url_for('main.privacy') }}" style="color:var(--accent);">Privacy Notice →</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="{{ url_for('auth.login') }}">Sign In →</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

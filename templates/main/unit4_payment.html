@@ -1,0 +1,282 @@
+{% extends "layout.html" %}
+{% block title %}Unit IV – E-Commerce &amp; Digital Payments – VoiceShield AI{% endblock %}
+{% block page_title %}💳 Unit IV – E-Commerce &amp; Digital Payments{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>E-Commerce &amp; Digital Payment Security</h1>
+  <p>Detect digital payment fraud, understand safe practices and learn from real case studies.</p>
+</div>
+
+<!-- Digital Payment Fraud Checker -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <span class="card-title">🕵️ Digital Payment Fraud Checker</span>
+    <span class="badge badge-high">Interactive Tool</span>
+  </div>
+
+  <div class="info-box amber">
+    <strong>⚠️ Important:</strong> This is a <strong>rule-based educational checker only</strong>. It scans text you type for patterns commonly seen in payment fraud scenarios. It does NOT connect to any bank, does NOT verify any transaction and does NOT provide legal or financial advice. <strong>Never enter real OTPs, PINs, CVVs, passwords or account numbers here.</strong>
+  </div>
+
+  <div class="checker-widget">
+    <h3>Describe or paste the suspicious message / call scenario</h3>
+    <div class="disclaimer">
+      This tool checks for warning signs. It uses pattern-matching rules — similar to how spam filters work. Results are educational, not definitive. If in doubt, contact your bank on their official number.
+    </div>
+
+    <!-- Category quick-fill buttons -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Quick scenario examples:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="fillExample('Someone called claiming to be from my bank and asked me to share my OTP to update my KYC.')">Bank KYC Call</button>
+        <button class="btn btn-ghost btn-sm" onclick="fillExample('A message says my payment was received and asks me to scan a QR code to complete the refund process.')">Fake Refund QR</button>
+        <button class="btn btn-ghost btn-sm" onclick="fillExample('Received SMS: Your UPI account will be blocked. Enter your UPI PIN on this link immediately.')">UPI Block Threat</button>
+        <button class="btn btn-ghost btn-sm" onclick="fillExample('Caller says he is a police officer and I need to pay ₹5000 via Paytm to avoid arrest.')">Police Impersonation</button>
+        <button class="btn btn-ghost btn-sm" onclick="fillExample('I want to transfer money to a friend for a birthday gift.')">Normal Transaction</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="paymentMsgInput">Message or scenario text</label>
+      <textarea class="form-control" id="paymentMsgInput" rows="5"
+        placeholder="e.g. 'The caller said he is from SBI and asked me to share my OTP and CVV to prevent my account from being blocked…'"
+        maxlength="2000"></textarea>
+      <div style="text-align:right;font-size:0.75rem;color:var(--text-muted);margin-top:4px;">
+        <span id="paymentCharCount">0</span>/2000 characters
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="paymentCheckBtn" onclick="checkPaymentFraud()">
+      🔍 Check for Fraud Indicators
+    </button>
+    <button class="btn btn-ghost btn-sm" onclick="clearPaymentChecker()" style="margin-left:8px;">
+      Clear
+    </button>
+
+    <div class="checker-result" id="paymentResult">
+      <div class="result-score-row">
+        <div class="result-score-circle" id="paymentScoreCircle">0</div>
+        <div>
+          <div style="font-size:1.1rem;font-weight:700;" id="paymentLevelText">Risk Level</div>
+          <div style="color:var(--text-secondary);font-size:0.85rem;">Pattern-based fraud risk score (0–100). Higher score = more warning signs detected.</div>
+        </div>
+      </div>
+
+      <div id="paymentFlags"></div>
+
+      <div class="info-box green" id="paymentSafeMsg" style="margin-top:12px;display:none;">
+        ✅ No common fraud patterns detected. This does not guarantee a transaction is safe — always verify through official channels.
+      </div>
+
+      <div class="info-box red" id="paymentWarnMsg" style="margin-top:12px;display:none;">
+        🚨 <strong>Fraud warning signs detected.</strong> If this is a real situation: stop the transaction immediately, call 1930, and contact your bank on their official number. Do not share any credentials.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fraud Categories Explained -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <span class="card-title">📋 Common Digital Payment Fraud Types</span>
+    <span class="badge badge-warning">Know Your Risks</span>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">📞</div>
+      <h3>Suspicious Bank / Authority Calls</h3>
+      <p>Fraudsters impersonate bank staff, RBI officials, income-tax officers or police. They create fear ("your account will be frozen") or urgency. <strong>Real bank staff never ask for your OTP, PIN, CVV or password over the phone.</strong> Always hang up and call the official number printed on your card or the bank's official website.</p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--risk-medium);">🔑</div>
+      <h3>OTP &amp; CVV Requests</h3>
+      <p>OTP (One-Time Password) is your second layer of security. Banks generate OTPs for you to enter into their own app — they never need to ask you for it. Similarly, your CVV is printed on your card for you to enter on payment pages — no one should ask you to share it verbally or via message.</p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(6,182,212,0.12);color:var(--accent-3);">📱</div>
+      <h3>UPI Scams</h3>
+      <p>Common UPI scams: <strong>Collect requests</strong> — scammer sends a UPI collect request (which debits YOUR account) while telling you they are "sending" money; <strong>Fake QR codes</strong> — scanning a QR code can initiate a payment from your account; <strong>PIN sharing</strong> — you only need your UPI PIN to pay, never to receive. Receiving money requires NO PIN.</p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(168,85,247,0.12);color:var(--risk-critical);">📸</div>
+      <h3>Fake Payment Confirmations</h3>
+      <p>Fraudsters send a screenshot or edited image showing a fake payment confirmation and claim they have paid. Always verify credits in your official <strong>bank app or bank statement</strong> — never rely on screenshots or messages from the other party. This scam is common in second-hand goods transactions (OLX, Quikr).</p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">🔗</div>
+      <h3>Suspicious Payment Links</h3>
+      <p>Links sent via SMS, WhatsApp or email that appear to be payment portals but are phishing sites designed to steal credentials. Signs: unusual domain names, no HTTPS, request for OTP or PIN on an external page, not matching the official bank/payment app URL. Always go directly to the official website by typing the URL.</p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">📦</div>
+      <h3>QR Code Scams</h3>
+      <p>Scammers send QR codes claiming they are for receiving money, but scanning and entering your PIN actually sends money to the scammer. QR codes on physical surfaces (parking, restaurants) can also be replaced with malicious ones. Always verify the UPI ID before completing any transaction.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Safe Digital Payment Practices -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <span class="card-title">✅ Safe Digital Payment Practices</span>
+    <span class="badge badge-success">Best Practices</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+    <div>
+      <div class="checklist-section">
+        <h3>🏦 Banking Safety</h3>
+        <ul class="steps-list" style="list-style:disc;counter-reset:none;">
+          <li style="counter-increment:none;"><span>Enable transaction alerts (SMS + email) for all accounts.</span></li>
+          <li style="counter-increment:none;"><span>Set a daily/per-transaction limit on UPI and internet banking.</span></li>
+          <li style="counter-increment:none;"><span>Use only RBI-regulated payment apps (PhonePe, Google Pay, BHIM, Paytm).</span></li>
+          <li style="counter-increment:none;"><span>Never share your UPI PIN, card PIN, CVV or OTP with anyone.</span></li>
+          <li style="counter-increment:none;"><span>Verify IFSC and account number twice before transferring money.</span></li>
+          <li style="counter-increment:none;"><span>Immediately report unauthorised transactions to your bank (usually within 3 days for liability protection).</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="checklist-section">
+        <h3>🛒 E-Commerce Safety</h3>
+        <ul class="steps-list" style="list-style:disc;counter-reset:none;">
+          <li style="counter-increment:none;"><span>Shop only on HTTPS websites with a padlock icon.</span></li>
+          <li style="counter-increment:none;"><span>Check seller ratings and reviews on established platforms.</span></li>
+          <li style="counter-increment:none;"><span>Avoid paying by direct bank transfer to unknown sellers.</span></li>
+          <li style="counter-increment:none;"><span>Use credit cards when possible — they offer chargeback protection.</span></li>
+          <li style="counter-increment:none;"><span>Keep order confirmation emails and payment receipts as evidence.</span></li>
+          <li style="counter-increment:none;"><span>Verify the exact domain — "flipkart-sale.com" is not Flipkart.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RBI Info Box -->
+  <div class="info-box blue" style="margin-top:16px;">
+    <strong>🏦 RBI Customer Protection:</strong> RBI's circular on "Limiting Liability of Customers in Unauthorised Electronic Banking Transactions" (RBI/2017-18/15, July 2017) states that customers may have zero liability for unauthorised transactions if they are not at fault and report promptly. Contact your bank and visit <a href="https://rbi.org.in" target="_blank" rel="noopener">rbi.org.in</a> for official guidelines. For disputes, you may approach the <strong>RBI Banking Ombudsman</strong> at <a href="https://rbi.org.in/Scripts/Complaints.aspx" target="_blank" rel="noopener">rbi.org.in</a>.
+    <br><br>
+    <strong>Note:</strong> This is introductory information. For specific legal advice regarding your situation, consult your bank or a financial legal expert.
+  </div>
+</div>
+
+<!-- Cosmos Bank Case Study -->
+<div class="card fade-in">
+  <div class="card-header">
+    <span class="card-title">📖 Case Study</span>
+    <span class="badge badge-high">Real Incident</span>
+  </div>
+
+  <div class="case-study banking">
+    <div class="case-study-header">
+      <span style="font-size:2rem;">🏦</span>
+      <div>
+        <div class="case-study-badge" style="background:rgba(245,158,11,0.15);color:var(--risk-medium);border-color:rgba(245,158,11,0.3);">Banking Cyberattack</div>
+        <h3>Cosmos Cooperative Bank Cyberattack (August 2018)</h3>
+      </div>
+    </div>
+    <p><strong>What happened:</strong> In August 2018, Cosmos Cooperative Bank — one of India's oldest cooperative banks, headquartered in Pune, Maharashtra — suffered a significant cyberattack. Hackers compromised the bank's ATM server infrastructure and stole approximately <strong>₹94.42 crore</strong> (approximately USD 13.5 million). The attack took place in two phases over two weekends in August 2018.</p>
+
+    <p><strong>How it worked:</strong> Attackers installed malware on the bank's ATM switch server (the system that approves or declines ATM transactions). This malware created a parallel, fraudulent payment switch. When the fraudulent cloned debit cards were used at ATMs in 28 countries simultaneously, the legitimate switch was bypassed and the malware-controlled fraudulent switch approved all transactions regardless of actual account balances. In a separate but related incident, approximately ₹13.92 crore was transferred via SWIFT (international wire transfer) to a Hong Kong-based company account. Pune Police Cyber Cell filed an FIR and investigated the case.</p>
+
+    <ul>
+      <li>Phase 1 (11 August 2018): ~₹78 crore swiped using cloned Visa cards at 12,000 transactions across 28 countries in ~2 hours</li>
+      <li>Phase 2 (13 August 2018): ~₹2.5 crore via Rupay card transactions in India</li>
+      <li>₹13.92 crore transferred internationally via SWIFT to Hong Kong</li>
+      <li>Attack attributed to Lazarus Group (North Korea-linked) by some cybersecurity researchers, though official attribution varies by source</li>
+      <li>Highlighted vulnerabilities in India's cooperative bank infrastructure and ATM switch security</li>
+    </ul>
+
+    <div class="lesson">
+      <strong>💡 Key Lessons:</strong> This attack targeted bank infrastructure, not individual users. Banks must implement robust endpoint security on ATM servers, monitor for anomalous transaction patterns in real-time and segment payment switch networks from general IT infrastructure. For individuals: enable transaction alerts so you are immediately notified of any unauthorised activity, even small amounts. Report unknown transactions to your bank immediately — early reporting is critical. This case also demonstrates why SWIFT-based international transfers require strong authentication controls.
+    </div>
+  </div>
+</div>
+
+<script>
+const payInput = document.getElementById('paymentMsgInput');
+const payCharCount = document.getElementById('paymentCharCount');
+
+if (payInput) {
+  payInput.addEventListener('input', () => {
+    payCharCount.textContent = payInput.value.length;
+  });
+}
+
+function fillExample(text) {
+  if (payInput) {
+    payInput.value = text;
+    payCharCount.textContent = text.length;
+    payInput.focus();
+  }
+}
+
+async function checkPaymentFraud() {
+  const text = payInput ? payInput.value.trim() : '';
+  if (!text) { alert('Please describe a scenario to analyse.'); return; }
+
+  const btn = document.getElementById('paymentCheckBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Analysing…';
+
+  try {
+    const res = await fetch('{{ url_for("main.unit4_check") }}', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
+    const data = await res.json();
+    if (data.error) { alert(data.error); return; }
+
+    const result = document.getElementById('paymentResult');
+    const circle = document.getElementById('paymentScoreCircle');
+    const levelText = document.getElementById('paymentLevelText');
+    const flagsDiv = document.getElementById('paymentFlags');
+    const safeMsg = document.getElementById('paymentSafeMsg');
+    const warnMsg = document.getElementById('paymentWarnMsg');
+
+    result.classList.add('show');
+    circle.textContent = data.score;
+    const lvl = data.level.toLowerCase();
+    circle.className = `result-score-circle ${lvl}`;
+
+    const levelLabels = { low: '🟢 Low Risk', medium: '🟡 Medium Risk', high: '🔴 High Risk', critical: '🔴 Critical Risk' };
+    levelText.textContent = levelLabels[lvl] || data.level;
+
+    if (data.flags.length === 0) {
+      flagsDiv.innerHTML = '';
+      safeMsg.style.display = 'block';
+      warnMsg.style.display = 'none';
+    } else {
+      safeMsg.style.display = 'none';
+      warnMsg.style.display = ['medium','high','critical'].includes(lvl) ? 'block' : 'none';
+      flagsDiv.innerHTML = `<div style="font-size:0.85rem;font-weight:600;margin-bottom:10px;color:var(--text-secondary);">⚠️ ${data.flags.length} warning sign(s) detected:</div>` +
+        data.flags.map(f =>
+          `<div class="flag-item"><strong>🚩 ${f.category}</strong><span>${f.tip}</span></div>`
+        ).join('');
+    }
+  } catch(e) {
+    alert('Analysis failed. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🔍 Check for Fraud Indicators';
+  }
+}
+
+function clearPaymentChecker() {
+  if (payInput) payInput.value = '';
+  if (payCharCount) payCharCount.textContent = '0';
+  const result = document.getElementById('paymentResult');
+  result.classList.remove('show');
+  document.getElementById('paymentSafeMsg').style.display = 'none';
+  document.getElementById('paymentWarnMsg').style.display = 'none';
+}
+</script>
+{% endblock %}

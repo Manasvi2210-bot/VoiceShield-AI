@@ -1,0 +1,210 @@
+{% extends "layout.html" %}
+
+{% block title %}Cryptographic File Integrity Checker — VoiceShield AI{% endblock %}
+
+{% block content %}
+<div class="file-integrity-page">
+    <!-- Header -->
+    <div class="mb-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+            <div>
+                <span class="badge bg-info text-dark fw-bold me-2">Feature 6</span>
+                <span class="badge bg-secondary">Cryptographic Hash Verification</span>
+            </div>
+            <span class="text-muted small">Course: 171405A — Cyber Security &amp; Laws | Python hashlib (SHA-256)</span>
+        </div>
+        <h1 class="h2 mb-1" style="color: #60a5fa;">📦 Cryptographic File Integrity Checker</h1>
+        <p class="text-muted mb-0">
+            Defensive utility to compute streaming SHA-256 cryptographic digests, verify software downloads against publisher reference hashes, and detect file tampering or corruption.
+        </p>
+    </div>
+
+    <!-- Security & Disclaimer Banner -->
+    <div class="alert alert-info border-info border-opacity-25 bg-dark text-light mb-4 shadow-sm" role="alert">
+        <div class="d-flex align-items-start gap-3">
+            <span style="font-size: 1.5rem;">🔒</span>
+            <div>
+                <strong>Defensive Safety &amp; Integrity Principles:</strong>
+                <ul class="mb-0 ps-3 mt-1 small">
+                    <li><strong>Streaming Execution:</strong> Files are read in fixed 64 KB memory chunks using Python&rsquo;s standard library <code>hashlib</code> and immediately purged from disk upon computation. Uploaded files are <em>never</em> executed, unpacked, or opened as active content.</li>
+                    <li><strong>Integrity vs. Authenticity:</strong> A matching hash verifies bit-for-bit consistency with your reference value (proving the file has not been altered in transit). However, it does <em>not</em> guarantee that the software is benign or malware-free unless the reference hash was obtained from a verified, trusted publisher.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Upload Form -->
+        <div class="col-lg-5">
+            <div class="card bg-dark border-secondary h-100 shadow-sm">
+                <div class="card-header bg-dark border-bottom border-secondary">
+                    <h2 class="h5 text-warning mb-0">Select File &amp; Optional Reference Hash</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('main.file_integrity') }}" enctype="multipart/form-data" id="integrityUploadForm">
+                        {% if csrf_token is defined %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% endif %}
+
+                        <div class="mb-3">
+                            <label for="check_file" class="form-label text-light fw-semibold">Choose File (Max 50 MB) *</label>
+                            <input type="file" class="form-control bg-dark text-light border-secondary" id="check_file" name="check_file" required>
+                            <div class="form-text text-muted">Supports any file format (binary, text, installer, archive, document).</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reference_hash" class="form-label text-light fw-semibold">Expected Reference SHA-256 Hash <span class="text-muted small fw-normal">(Optional)</span></label>
+                            <input type="text" class="form-control bg-dark text-light border-secondary font-monospace" id="reference_hash" name="reference_hash" placeholder="e.g. 2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae" value="{{ result.reference_hash if result else '' }}">
+                            <div class="form-text text-muted">Paste publisher-provided SHA-256 checksum to compare automatically.</div>
+                        </div>
+
+                        <div class="d-grid gap-2 pt-2">
+                            <button type="submit" class="btn btn-primary fw-semibold" id="computeHashBtn">
+                                ⚡ Compute Cryptographic Hash
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-sm" id="resetFileBtn">
+                                Clear Form
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Classroom Demo Quick Reference Hashes -->
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-50">
+                        <h3 class="h6 text-info mb-2">Classroom Verification Concepts</h3>
+                        <div class="small text-muted">
+                            <p class="mb-1"><strong>The Avalanche Effect:</strong> Changing a single bit in a 10 GB file completely randomizes the computed SHA-256 output digest.</p>
+                            <p class="mb-0"><strong>Collision Resistance:</strong> SHA-256 provides 256 bits of cryptographic security; finding two different files with the same SHA-256 digest is computationally infeasible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hash Results Display -->
+        <div class="col-lg-7">
+            {% if result %}
+            <div class="card bg-dark border-secondary h-100 shadow-sm">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <h2 class="h5 text-success mb-0">Hash Computation Results</h2>
+                    <span class="badge bg-secondary font-monospace">{{ result.filename }}</span>
+                </div>
+                <div class="card-body">
+                    <!-- File Metadata -->
+                    <div class="row g-2 mb-3 pb-3 border-bottom border-secondary border-opacity-50">
+                        <div class="col-sm-6">
+                            <span class="text-muted small">Target File:</span>
+                            <div class="text-light fw-semibold text-break">{{ result.filename }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="text-muted small">File Size:</span>
+                            <div class="text-light fw-semibold">{{ (result.file_size / 1024)|round(2) }} KB ({{ result.file_size }} bytes)</div>
+                        </div>
+                    </div>
+
+                    <!-- Reference Hash Comparison Verdict -->
+                    {% if result.reference_hash %}
+                    <div class="mb-4">
+                        {% if result.match_status == "MATCH" %}
+                        <div class="alert alert-success border-success bg-dark text-success shadow-sm" role="alert">
+                            <div class="d-flex align-items-center gap-3">
+                                <span style="font-size: 2rem;">✅</span>
+                                <div>
+                                    <h3 class="h5 mb-1 text-success fw-bold">INTEGRITY VERIFIED (MATCH)</h3>
+                                    <p class="mb-0 small text-light">The computed SHA-256 digest exactly matches the reference hash provided. The file has not been altered or corrupted compared to the reference specification.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger border-danger bg-dark text-danger shadow-sm" role="alert">
+                            <div class="d-flex align-items-center gap-3">
+                                <span style="font-size: 2rem;">❌</span>
+                                <div>
+                                    <h3 class="h5 mb-1 text-danger fw-bold">INTEGRITY MISMATCH DETECTED</h3>
+                                    <p class="mb-0 small text-light">The computed SHA-256 digest does <strong>NOT</strong> match the provided reference hash. This indicates the file has been modified, tampered with, incompletely downloaded, or an incorrect reference hash was entered.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <!-- SHA-256 (Primary Recommended) -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="fw-bold text-info">SHA-256 (NIST FIPS 180-4 — Recommended Standard)</span>
+                            <button type="button" class="btn btn-sm btn-outline-info copy-hash-btn" data-hash="{{ result.sha256 }}" title="Copy SHA-256 to clipboard">
+                                📋 Copy Hash
+                            </button>
+                        </div>
+                        <div class="hash-display-box" id="sha256Box">{{ result.sha256 }}</div>
+                        <div class="text-muted small mt-1">256-bit secure cryptographic hash. Collision-resistant and standard for code signing and integrity verification.</div>
+                    </div>
+
+                    <!-- Reference Hash (if provided) -->
+                    {% if result.reference_hash %}
+                    <div class="mb-4">
+                        <span class="fw-bold text-muted">Supplied Reference Checksum</span>
+                        <div class="hash-display-box text-warning font-monospace">{{ result.reference_hash }}</div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Legacy Hashes (Educational Reference) -->
+                    <div class="p-3 bg-black bg-opacity-30 rounded border border-secondary border-opacity-25">
+                        <h3 class="h6 text-muted mb-2">Legacy Hashes (Educational / Backward Compatibility Only)</h3>
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>SHA-1:</span>
+                                <span class="badge bg-warning text-dark">Cryptographically Deprecated</span>
+                            </div>
+                            <code class="text-muted small text-break">{{ result.sha1 }}</code>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>MD5:</span>
+                                <span class="badge bg-danger">Vulnerable to Collisions</span>
+                            </div>
+                            <code class="text-muted small text-break">{{ result.md5 }}</code>
+                        </div>
+                        <div class="text-muted small mt-2 fst-italic">
+                            * Note: MD5 and SHA-1 have known collision vulnerabilities (SHAttered attack) and must never be used for security-sensitive integrity verification.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <!-- Initial Empty State -->
+            <div class="card bg-dark border-secondary h-100 shadow-sm d-flex align-items-center justify-content-center text-center p-5">
+                <div class="text-muted">
+                    <span style="font-size: 3.5rem; display: block;" class="mb-3">🔐</span>
+                    <h2 class="h5 text-light mb-2">No File Computed Yet</h2>
+                    <p class="small text-muted mb-0" style="max-width: 420px;">
+                        Select any local file using the form on the left. VoiceShield AI will compute its 256-bit SHA-256 cryptographic digest using chunked in-memory streaming.
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const copyBtns = document.querySelectorAll(".copy-hash-btn");
+
+    copyBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const hashText = this.getAttribute("data-hash");
+            if (navigator.clipboard && hashText) {
+                navigator.clipboard.writeText(hashText).then(() => {
+                    const origText = this.innerHTML;
+                    this.innerHTML = "✅ Copied!";
+                    setTimeout(() => {
+                        this.innerHTML = origText;
+                    }, 2000);
+                }).catch(err => {
+                    alert("Could not copy hash to clipboard: " + err);
+                });
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

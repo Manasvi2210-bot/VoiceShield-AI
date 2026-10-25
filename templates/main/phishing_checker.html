@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+{% block title %}Phishing &amp; Email Threat Analyzer – VoiceShield AI{% endblock %}
+{% block page_title %}🎣 Phishing &amp; Email Threat Analyzer{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+    <span class="badge badge-primary">Defensive Email Security</span>
+    <span class="badge badge-info">Rule-Based Content Inspection</span>
+    <span class="badge badge-secondary">Safe Sandbox</span>
+  </div>
+  <h1>🎣 Phishing &amp; Email Threat Analyzer</h1>
+  <p style="max-width:850px;color:var(--text-secondary);line-height:1.6;">
+    Analyze suspicious emails, SMS messages, and URLs for social-engineering indicators, artificial urgency, credential-harvesting hooks, and deceptive domain characteristics without making external server requests or executing scripts.
+  </p>
+</div>
+
+<!-- Methodology & Safety Notice -->
+<div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.25);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:0.83rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:12px;" class="fade-in">
+  <span style="font-size:1.3rem;line-height:1;">🛡️</span>
+  <div>
+    <strong style="color:var(--text-primary);display:block;margin-bottom:3px;">Defensive Analysis Notice:</strong>
+    All inspections are evaluated <strong>locally using passive heuristic rule sets</strong>. The server does <em>not</em> fetch or open submitted links, execute scripts, or download remote payloads. Heuristic risk scores indicate suspicious patterns and are not definitive proof of malicious intent.
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:24px;" class="responsive-two-col fade-in">
+  <!-- Input Form -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">📝 Input Suspicious Communication</span>
+      <span class="badge badge-secondary">Max 20,000 Chars</span>
+    </div>
+
+    <!-- Classroom Demonstration Presets -->
+    <div class="form-group mb-16">
+      <label class="form-label" for="presetSelector">
+        Load Safe Classroom Demonstration Preset:
+      </label>
+      <select id="presetSelector" class="form-control" onchange="loadPhishingPreset()">
+        <option value="">-- Choose an Educational Demonstration Sample --</option>
+        <option value="bec_wire">1. Executive Wire Transfer Urgency (Spear-Phishing / BEC)</option>
+        <option value="bank_kyc">2. Banking Account Suspension &amp; KYC Verification Hook</option>
+        <option value="courier_sms">3. Courier Package Delivery SMS with Raw IP Address</option>
+        <option value="benign_meeting">4. Benign Team Project Coordination Email</option>
+      </select>
+    </div>
+
+    <form method="POST" action="{{ url_for('main.phishing_checker') }}">
+      <div class="form-group mb-16">
+        <label class="form-label" for="threat_text">
+          Paste Message Body, Email Content, or Suspicious Text: *
+        </label>
+        <textarea id="threat_text" name="threat_text" class="form-control" rows="8"
+                  placeholder="Paste suspicious email headers, SMS text, or URLs here..." required>{{ input_text }}</textarea>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="submit" class="btn btn-primary">
+          🔍 Analyze Threat Indicators
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="clearPhishingInput()">
+          Clear Text
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Educational Info Panel -->
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🔬 Detected Indicator Categories</span>
+      </div>
+      <div style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+          <strong style="color:var(--text-primary);">⏳ Artificial Urgency &amp; Pressure</strong><br>
+          Coercive deadlines (&lt;24 hours, immediate, account suspension) engineered to provoke hasty compliance.
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+          <strong style="color:var(--text-primary);">🎭 Authority Impersonation</strong><br>
+          Mimicking executive management, IT helpdesks, law enforcement, or national postal services.
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+          <strong style="color:var(--text-primary);">🔑 Credential &amp; OTP Solicitation</strong><br>
+          Direct lures requesting passwords, OTPs, PINs, or links to spoofed login portals.
+        </div>
+        <div style="padding:8px 0;">
+          <strong style="color:var(--text-primary);">🌐 Deceptive URL Architecture</strong><br>
+          Raw IP addresses, typosquatted brand strings, and high-risk domain extensions.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2);">
+      <div class="card-title" style="margin-bottom:8px;font-size:0.9rem;">🆘 Emergency Fraud Helpline</div>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;">
+        If you have shared credentials or banking OTPs with an unverified party:
+      </p>
+      <div style="font-size:0.85rem;font-weight:700;color:var(--risk-high);margin-bottom:4px;">National Cybercrime Portal: 1930</div>
+      <a href="https://cybercrime.gov.in" target="_blank" rel="noopener" class="btn btn-danger btn-sm btn-block">
+        Report at cybercrime.gov.in →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Analysis Results (if submitted) -->
+{% if analysis %}
+<div class="card mt-24 fade-in" id="analysisResults">
+  <div class="card-header">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <span class="card-title">📊 Threat Assessment Results</span>
+      <span class="badge" style="background:{{ analysis.tier_color }};color:#fff;font-weight:700;">
+        {{ analysis.tier | upper }} RISK (Score: {{ analysis.score }}/100)
+      </span>
+    </div>
+    <span class="badge badge-secondary">{{ analysis.char_count }} Characters Analyzed</span>
+  </div>
+
+  <p style="font-size:0.9rem;color:var(--text-primary);margin:10px 0 16px;">
+    <strong>Executive Summary:</strong> {{ analysis.summary }}
+  </p>
+
+  <!-- Matched Indicators -->
+  <h3 style="font-size:0.95rem;font-weight:700;margin:18px 0 10px;color:var(--text-primary);">
+    🚨 Matched Threat Indicators ({{ analysis.matched_indicators | length }})
+  </h3>
+  {% if analysis.matched_indicators %}
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {% for ind in analysis.matched_indicators %}
+      <div class="phishing-indicator-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <strong style="color:var(--accent);font-size:0.88rem;">{{ ind.category }}</strong>
+          <span class="badge badge-danger" style="font-size:0.7rem;">Triggered</span>
+        </div>
+        <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;">
+          {{ ind.explanation }}
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);font-family:monospace;">
+          Sample Match: "{{ ind.sample_hit }}"
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-success" style="font-size:0.85rem;">
+      ✅ No known phishing keyword triggers or deceptive structures were found in the provided text.
+    </div>
+  {% endif %}
+
+  <!-- Detected URLs -->
+  {% if analysis.urls_detected %}
+  <h3 style="font-size:0.95rem;font-weight:700;margin:18px 0 10px;color:var(--text-primary);">
+    🌐 Extracted URL Risk Analysis
+  </h3>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    {% for u in analysis.urls_detected %}
+    <div class="url-threat-card">
+      <div style="color:#60a5fa;word-break:break-all;">{{ u.url }}</div>
+      {% if u.threat_flags %}
+        <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;">
+          {% for flag in u.threat_flags %}
+          <span style="color:#f87171;font-size:0.74rem;">⚠️ {{ flag }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="margin-top:4px;color:#4ade80;font-size:0.74rem;">✓ No high-risk structural domain flags identified in offline check.</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Recommended Mitigations -->
+  <h3 style="font-size:0.95rem;font-weight:700;margin:18px 0 10px;color:var(--text-primary);">
+    🛡️ Recommended Defensive Actions
+  </h3>
+  <ul style="margin:0 0 0 18px;padding:0;font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+    {% for rec in analysis.recommendations %}
+    <li>{{ rec }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<script>
+const PRESETS = {
+  bec_wire: "From: Rahul Sharma <ceo@voiceshie1d-corp.com>\nTo: accounts@voiceshield.ai\nSubject: URGENT: Overseas Acquisition Settlement\n\nI am boarding a flight to London. Do not call my mobile right now. Immediate action required: wire transfer $48,500 to account IBAN-GB89321 within 2 hours. Confirm once dispatched.",
+  bank_kyc: "Dear SBI customer, your banking account will be suspended within 24 hours due to pending KYC update. Click here to verify your account and share your OTP immediately: http://192.168.1.55/sbi-kyc-verify/login.php",
+  courier_sms: "Your delivery package could not be dispatched due to unpaid custom fee. Enter your password and card details immediately to avoid return penalty: http://delivery-track-parcel.xyz/apple-id-verify",
+  benign_meeting: "Hi team, please find attached the agenda for tomorrow's engineering sprint planning session at 10:00 AM UTC. Let me know if you would like to add any items to the discussion."
+};
+
+function loadPhishingPreset() {
+  const sel = document.getElementById("presetSelector").value;
+  if (PRESETS[sel]) {
+    document.getElementById("threat_text").value = PRESETS[sel];
+  }
+}
+
+function clearPhishingInput() {
+  document.getElementById("threat_text").value = "";
+  document.getElementById("presetSelector").value = "";
+}
+</script>
+{% endblock %}

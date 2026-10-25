@@ -1,0 +1,366 @@
+{% extends "layout.html" %}
+{% block title %}Cybersecurity Awareness Training &amp; Quizzes – VoiceShield AI{% endblock %}
+{% block page_title %}🎓 Cybersecurity Awareness Training{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+    <span class="badge badge-primary">Security Awareness</span>
+    <span class="badge badge-info">8 Interactive Modules</span>
+    <span class="badge badge-secondary">Knowledge Verification</span>
+  </div>
+  <h1>🎓 Cybersecurity Awareness Training Hub</h1>
+  <p style="max-width:850px;color:var(--text-secondary);line-height:1.6;">
+    Interactive security education covering essential attack vectors, personal defense habits, and incident response procedures. Complete the 8 lessons below and test your retention with the Knowledge Verification Quiz.
+  </p>
+</div>
+
+<!-- Navigation Topic Pills -->
+<div class="topic-nav-pills fade-in" style="margin-bottom:24px;">
+  <a href="#mod-phishing" class="topic-nav-pill">🎣 1. Phishing &amp; Social Eng.</a>
+  <a href="#mod-ransomware" class="topic-nav-pill">🦠 2. Ransomware &amp; Malware</a>
+  <a href="#mod-mfa" class="topic-nav-pill">🔑 3. MFA &amp; Password Hygiene</a>
+  <a href="#mod-browsing" class="topic-nav-pill">🌐 4. Safe Browsing</a>
+  <a href="#mod-privacy" class="topic-nav-pill">🔒 5. Data Privacy</a>
+  <a href="#mod-wifi" class="topic-nav-pill">📶 6. Public Wi-Fi &amp; Device</a>
+  <a href="#mod-reporting" class="topic-nav-pill">🚨 7. Incident Reporting</a>
+  <a href="#mod-voice" class="topic-nav-pill">🎙️ 8. Voice-Cloning Awareness</a>
+  <a href="#training-quiz" class="topic-nav-pill" style="border-color:var(--accent);color:var(--accent);font-weight:700;">📝 Training Quiz</a>
+</div>
+
+<!-- 8 Educational Modules Grid -->
+<div style="display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:30px;" class="fade-in">
+
+  <!-- Module 1 -->
+  <div class="card" id="mod-phishing">
+    <div class="card-header">
+      <span class="card-title">🎣 Module 1: Phishing &amp; Social Engineering</span>
+      <span class="badge badge-info">Human Factor Defense</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Phishing exploits human psychological biases (authority, scarcity, curiosity, and fear) rather than technical software bugs. Attackers impersonate trusted brands, colleagues, or executives to steal credentials or induce unauthorized payments.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--accent);font-size:0.85rem;">Key Takeaway &amp; Rule of Thumb:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Never approve wire transfers, share one-time passcodes (OTPs), or click links in unsolicited urgent emails. Always verify the communication through a trusted secondary channel (out-of-band phone call or internal chat).
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 2 -->
+  <div class="card" id="mod-ransomware">
+    <div class="card-header">
+      <span class="card-title">🦠 Module 2: Ransomware &amp; Malware Prevention</span>
+      <span class="badge badge-info">Endpoint Protection</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Ransomware encrypts user files and databases using asymmetric cryptography, demanding cryptocurrency payments for decryption. Modern variants utilize double extortion—threatening public disclosure of exfiltrated data if the ransom is not paid.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--accent-2);font-size:0.85rem;">The 3-2-1 Backup Defense:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Maintain <strong>3</strong> copies of critical data across <strong>2</strong> different media types, with at least <strong>1</strong> copy stored off-site, offline, or in an immutable cloud bucket that cannot be reached from the local network.
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 3 -->
+  <div class="card" id="mod-mfa">
+    <div class="card-header">
+      <span class="card-title">🔑 Module 3: Multi-Factor Authentication &amp; Password Hygiene</span>
+      <span class="badge badge-info">Identity Security</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Passwords alone are vulnerable to credential stuffing, dictionary guessing, and database breaches. Multi-Factor Authentication (MFA) requires two or more independent factors: Something you know (password), Something you have (authenticator app / FIDO2 key), or Something you are (biometrics).
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--risk-low);font-size:0.85rem;">Phishing-Resistant MFA:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Hardware security keys (FIDO2 / WebAuthn) bind the cryptographic challenge to the legitimate domain origin, completely neutralizing reverse-proxy phishing attacks that bypass SMS codes.
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 4 -->
+  <div class="card" id="mod-browsing">
+    <div class="card-header">
+      <span class="card-title">🌐 Module 4: Safe Browsing &amp; Suspicious Link Analysis</span>
+      <span class="badge badge-info">Web Defense</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> An HTTPS padlock only indicates that the connection between your browser and the remote server is encrypted—it does <em>not</em> prove the website is honest or safe. Phishing sites frequently register free TLS certificates.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--accent);font-size:0.85rem;">Domain Inspection Rule:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Read the fully qualified domain name backwards from the first single forward slash. For example, in <code>https://paypal.com.verify-security.xyz/login</code>, the real destination domain is <code>verify-security.xyz</code>, not PayPal!
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 5 -->
+  <div class="card" id="mod-privacy">
+    <div class="card-header">
+      <span class="card-title">🔒 Module 5: Data Privacy &amp; Safe Information Sharing</span>
+      <span class="badge badge-info">Regulatory Compliance</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Personal Identifiable Information (PII) such as Aadhaar numbers, PAN, date of birth, and home addresses are weaponized by identity thieves. Under the <strong>Digital Personal Data Protection (DPDP) Act 2023</strong>, organizations are legally mandated to implement technical and organizational security safeguards.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--accent-2);font-size:0.85rem;">Principle of Data Minimization:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Only collect and disclose the exact data points strictly necessary for the specified operational purpose. Mask identity identifiers wherever full disclosure is not required by law.
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 6 -->
+  <div class="card" id="mod-wifi">
+    <div class="card-header">
+      <span class="card-title">📶 Module 6: Public Wi-Fi &amp; Mobile Device Security</span>
+      <span class="badge badge-info">Network Protection</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Open public Wi-Fi networks (cafes, airports, transit) lack packet isolation, allowing adversaries to launch rogue "Evil Twin" hotspots or perform ARP spoofing to inspect unencrypted traffic and redirect DNS requests.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--risk-low);font-size:0.85rem;">Defensive Best Practice:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Use corporate or trusted Virtual Private Networks (VPNs) when connecting through public networks, disable automatic Wi-Fi reconnect, and enforce Full Disk Encryption (BitLocker / FileVault) on all portable laptops.
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 7 -->
+  <div class="card" id="mod-reporting">
+    <div class="card-header">
+      <span class="card-title">🚨 Module 7: Cyber Incident Reporting &amp; Rapid Response</span>
+      <span class="badge badge-info">Regulatory &amp; Incident Triage</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Rapid containment determines whether an incident remains an isolated compromise or escalates into catastrophic data exfiltration. Prompt reporting enables financial freeze windows and statutory compliance.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--risk-high);font-size:0.85rem;">Crucial Contact Channels:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        • <strong>Citizen Financial Fraud Helpline 1930:</strong> Immediate call to freeze fraudulent UPI/banking disbursements.<br>
+        • <strong>National Cyber Crime Portal:</strong> File formal police complaints at <code>cybercrime.gov.in</code>.<br>
+        • <strong>CERT-In Directions:</strong> Organizations must report qualifying incidents within <strong>6 hours</strong> to <code>incident@cert-in.org.in</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 8 -->
+  <div class="card" id="mod-voice">
+    <div class="card-header">
+      <span class="card-title">🎙️ Module 8: Voice-Cloning Impersonation Awareness</span>
+      <span class="badge badge-info">Emerging Generative Threats</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+      <strong>Core Concept:</strong> Neural speech synthesis models can clone a speaker's vocal timbre with short audio samples harvested from speeches or social media. Attackers combine synthetic voices with caller ID spoofing to execute high-impact vishing attacks against finance teams.
+    </p>
+    <div style="background:var(--bg-surface);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--border);margin-top:10px;">
+      <strong style="color:var(--accent);font-size:0.85rem;">Zero-Trust Vocal Verification:</strong>
+      <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;">
+        Never rely on voice familiarity alone to authorize money transfers or reset root credentials. Establish a mandatory verbal challenge passphrase or hang up and call back over verified internal extensions.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Interactive Quiz Section -->
+<div class="card fade-in" id="training-quiz">
+  <div class="card-header">
+    <div>
+      <span class="card-title">📝 Cybersecurity Awareness Verification Quiz</span>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px;">
+        Answer 8 multiple-choice questions covering all modules to test your defensive knowledge.
+      </div>
+    </div>
+    <div id="quizScoreBadge" class="badge badge-secondary" style="font-size:0.85rem;padding:6px 12px;">
+      Score: 0 / 8
+    </div>
+  </div>
+
+  <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.25);border-radius:var(--radius);padding:10px 14px;margin-bottom:16px;font-size:0.8rem;color:var(--text-secondary);">
+    ⚖️ <strong>Educational Notice:</strong> Questions test conceptual understanding of defensive security best practices. Answers and explanations are revealed upon submission.
+  </div>
+
+  <!-- Quiz Questions Q1 to Q8 -->
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <!-- Q1 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        1. An email claiming to be from the IT Helpdesk instructs you to "Click here to re-authenticate your mailbox within 2 hours or your account will be deleted." What is the primary indicator of phishing?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq1" value="a" style="margin-right:8px;"> A) Artificial urgency combined with threats of immediate account closure to force compliance without verification.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq1" value="b" style="margin-right:8px;"> B) The email was sent during normal corporate business hours.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq1" value="c" style="margin-right:8px;"> C) The email used proper English grammar.</label>
+      </div>
+      <div id="tq1-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        2. What does the "1" in the 3-2-1 backup strategy specifically represent?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq2" value="a" style="margin-right:8px;"> A) Creating a backup at least 1 time per year.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq2" value="b" style="margin-right:8px;"> B) Storing at least 1 copy off-site, offline, or in an immutable location isolated from the primary network.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq2" value="c" style="margin-right:8px;"> C) Protecting all backups with a 1-character password.</label>
+      </div>
+      <div id="tq2-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        3. Why are hardware security keys (FIDO2 / WebAuthn) superior to SMS-based verification codes?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq3" value="a" style="margin-right:8px;"> A) FIDO2 keys cryptographically bind the authentication challenge to the real domain origin, neutralizing reverse-proxy phishing and SIM-swapping.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq3" value="b" style="margin-right:8px;"> B) SMS codes are completely immune to interception.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq3" value="c" style="margin-right:8px;"> C) Hardware keys only work when connected to the internet via Wi-Fi.</label>
+      </div>
+      <div id="tq3-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        4. When examining the URL <code>https://bank.com.secure-portal-update.xyz/login</code>, what is the actual destination domain?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq4" value="a" style="margin-right:8px;"> A) <code>bank.com</code></label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq4" value="b" style="margin-right:8px;"> B) <code>secure-portal-update.xyz</code></label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq4" value="c" style="margin-right:8px;"> C) <code>https</code></label>
+      </div>
+      <div id="tq4-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        5. What is the fundamental principle of "Data Minimization" under modern privacy statutes such as DPDP Act 2023?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq5" value="a" style="margin-right:8px;"> A) Deleting all corporate emails after 24 hours.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq5" value="b" style="margin-right:8px;"> B) Collecting and processing only the personal data strictly necessary for the explicitly specified purpose.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq5" value="c" style="margin-right:8px;"> C) Compressing database files to save disk space.</label>
+      </div>
+      <div id="tq5-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        6. What is the primary security hazard when browsing without a VPN on an untrusted public Wi-Fi hotspot?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq6" value="a" style="margin-right:8px;"> A) The public Wi-Fi router will automatically drain your device battery to 0%.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq6" value="b" style="margin-right:8px;"> B) Attackers on the same network can stage Evil Twin or ARP spoofing attacks to intercept unencrypted traffic or spoof DNS records.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq6" value="c" style="margin-right:8px;"> C) Wi-Fi signals delete hard drive files permanently.</label>
+      </div>
+      <div id="tq6-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item" style="padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        7. In India, what is the dedicated national citizen emergency helpline for reporting online financial cyber fraud?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq7" value="a" style="margin-right:8px;"> A) 100</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq7" value="b" style="margin-right:8px;"> B) 1930 (Citizen Financial Cyber Fraud Reporting System)</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq7" value="c" style="margin-right:8px;"> C) 1098</label>
+      </div>
+      <div id="tq7-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-item" style="padding-bottom:12px;">
+      <div style="font-weight:600;font-size:0.88rem;color:var(--text-primary);margin-bottom:6px;">
+        8. What is the recommended operational policy to defend against deepfake voice-cloning executive impersonation calls?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq8" value="a" style="margin-right:8px;"> A) Never authorize financial disbursements or release credentials based solely on phone calls; enforce dual-authorization and out-of-band verification.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq8" value="b" style="margin-right:8px;"> B) Trust callers if their voice accent matches the executive's voice.</label>
+        <label class="form-check" style="font-size:0.82rem;cursor:pointer;"><input type="radio" name="tq8" value="c" style="margin-right:8px;"> C) Ask the caller to speak faster to test their audio bitrate.</label>
+      </div>
+      <div id="tq8-fb" style="display:none;margin-top:6px;font-size:0.8rem;padding:6px 10px;border-radius:4px;"></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;margin-top:20px;">
+    <button class="btn btn-primary" onclick="submitTrainingQuiz()">
+      Submit Quiz Answers
+    </button>
+    <button class="btn btn-secondary" onclick="resetTrainingQuiz()">
+      Reset Quiz
+    </button>
+  </div>
+</div>
+
+<script>
+const TRAINING_KEY = {
+  tq1: { correct: "a", exp: "Phishing emails create artificial urgency and severe threats (e.g. account suspension within hours) to coerce victims into bypassing normal verification." },
+  tq2: { correct: "b", exp: "The '1' in 3-2-1 means keeping at least 1 copy off-site, offline, or air-gapped from the network to survive ransomware encryption." },
+  tq3: { correct: "a", exp: "FIDO2 security keys perform cryptographic origin checks, making it impossible for a phisher's reverse-proxy server to harvest or replay the token." },
+  tq4: { correct: "b", exp: "In domain parsing, the actual domain is the segment immediately preceding the first single forward slash: 'secure-portal-update.xyz'." },
+  tq5: { correct: "b", exp: "Data minimization limits data processing to what is strictly necessary to fulfill the stated legitimate purpose." },
+  tq6: { correct: "b", exp: "Open Wi-Fi allows attackers on the local segment to spoof ARP replies or broadcast rogue SSIDs, enabling credential sniffing and traffic redirection." },
+  tq7: { correct: "b", exp: "1930 is the dedicated national cyber financial fraud helpline operated under the Indian Cyber Crime Coordination Centre (I4C)." },
+  tq8: { correct: "a", exp: "Zero Trust operations mandate dual-control thresholds and out-of-band callback verification, never executing wire transfers based on voice familiarity alone." }
+};
+
+function submitTrainingQuiz() {
+  let score = 0;
+  for (const [qKey, data] of Object.entries(TRAINING_KEY)) {
+    const selected = document.querySelector('input[name="' + qKey + '"]:checked');
+    const fb = document.getElementById(qKey + "-fb");
+    fb.style.display = "block";
+
+    if (selected && selected.value === data.correct) {
+      score++;
+      fb.style.background = "rgba(34,197,94,0.1)";
+      fb.style.color = "#4ade80";
+      fb.style.border = "1px solid rgba(34,197,94,0.3)";
+      fb.innerHTML = "✅ Correct! " + data.exp;
+    } else {
+      fb.style.background = "rgba(239,68,68,0.1)";
+      fb.style.color = "#f87171";
+      fb.style.border = "1px solid rgba(239,68,68,0.3)";
+      fb.innerHTML = "❌ Incorrect. Correct Answer: Option " + data.correct.toUpperCase() + ". " + data.exp;
+    }
+  }
+
+  const badge = document.getElementById("quizScoreBadge");
+  const pct = Math.round((score / 8) * 100);
+  badge.innerText = "Score: " + score + " / 8 (" + pct + "%)";
+  if (score >= 7) {
+    badge.className = "badge badge-success";
+  } else if (score >= 5) {
+    badge.className = "badge badge-warning";
+  } else {
+    badge.className = "badge badge-danger";
+  }
+}
+
+function resetTrainingQuiz() {
+  for (const qKey of Object.keys(TRAINING_KEY)) {
+    const inputs = document.querySelectorAll('input[name="' + qKey + '"]');
+    inputs.forEach(i => i.checked = false);
+    const fb = document.getElementById(qKey + "-fb");
+    if (fb) fb.style.display = "none";
+  }
+  const badge = document.getElementById("quizScoreBadge");
+  badge.innerText = "Score: 0 / 8";
+  badge.className = "badge badge-secondary";
+}
+</script>
+{% endblock %}

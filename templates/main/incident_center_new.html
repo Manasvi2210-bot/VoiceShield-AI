@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}Log Security Incident – Incident Center – VoiceShield AI{% endblock %}
+{% block page_title %}➕ Log Security Incident{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+    <a href="{{ url_for('main.incident_center') }}" class="btn btn-secondary btn-sm">← Back to Incident Center</a>
+    <span class="badge badge-primary">Triage Intake</span>
+  </div>
+  <h1>➕ Log New Defensive Security Incident</h1>
+  <p style="max-width:800px;color:var(--text-secondary);line-height:1.6;">
+    Initiate structured incident response under NIST SP 800-61 guidelines. Document initial attack vectors, assign response leads, and initialize a defensive audit timeline.
+  </p>
+</div>
+
+<div class="card fade-in" style="max-width:800px;">
+  <div class="card-header">
+    <span class="card-title">📋 Incident Intake Form</span>
+    <span class="badge badge-secondary">Status: Open</span>
+  </div>
+
+  <form method="POST" action="{{ url_for('main.incident_center_new') }}">
+    <div class="form-group mb-16">
+      <label class="form-label" for="title">Incident Title *</label>
+      <input type="text" id="title" name="title" class="form-control"
+             placeholder="e.g. Suspected CEO Voice-Cloning Wire Transfer Request" required>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="responsive-two-col mb-16">
+      <div class="form-group">
+        <label class="form-label" for="category">Incident Category *</label>
+        <select id="category" name="category" class="form-control" required>
+          {% for cat in categories %}
+          <option value="{{ cat }}">{{ cat }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="severity">Initial Severity Assessment *</label>
+        <select id="severity" name="severity" class="form-control" required>
+          {% for sev in severities %}
+          <option value="{{ sev }}" {% if sev == 'Medium' %}selected{% endif %}>{{ sev }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group mb-16">
+      <label class="form-label" for="assigned_responder">Assigned Incident Responder</label>
+      <input type="text" id="assigned_responder" name="assigned_responder" class="form-control"
+             value="SOC Tier 1 Analyst" placeholder="e.g. Lead Forensics Analyst / IT Security Team">
+    </div>
+
+    <div class="form-group mb-20">
+      <label class="form-label" for="description">Incident Narrative Description &amp; Observed Indicators *</label>
+      <textarea id="description" name="description" class="form-control" rows="6"
+                placeholder="Detail what occurred, systems or users impacted, observed hashes or IPs, and initial containment actions taken..." required></textarea>
+    </div>
+
+    <div style="display:flex;gap:12px;">
+      <button type="submit" class="btn btn-primary">
+        🚀 Log Incident &amp; Start Timeline
+      </button>
+      <a href="{{ url_for('main.incident_center') }}" class="btn btn-secondary">
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

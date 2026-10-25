@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block title %}Analyse Audio – VoiceShield AI{% endblock %}
+{% block page_title %}🎙️ Analyse Audio{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>Audio Analysis</h1>
+  <p>Upload a suspicious call recording or paste a transcript for scam phrase detection and acoustic measurement.</p>
+</div>
+
+<!-- Methodology & Authenticity Scope Notice -->
+<div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.25);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:0.83rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:12px;" class="fade-in">
+  <span style="font-size:1.3rem;line-height:1;">ℹ️</span>
+  <div>
+    <strong style="color:var(--text-primary);display:block;margin-bottom:3px;">Methodology &amp; Scope Disclosure:</strong>
+    VoiceShield AI evaluates incident risk using <strong>rule-based scam phrase detection</strong> on the call transcript and measures <strong>acoustic signal quality</strong> (clipping, SNR, spectral flatness). It does <em>not</em> claim a trained biometric ML classifier for voice-clone authentication (scheduled for Unit V: AI in Security).
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;" class="fade-in">
+
+  <!-- Form -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">📤 Upload & Analyse</span>
+      <span class="badge badge-info">Whisper AI Transcription</span>
+    </div>
+
+    <form id="analyseForm" method="POST" action="{{ url_for('main.analyse') }}"
+          enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label class="form-label" for="title">Incident Title *</label>
+        <input id="title" name="title" type="text" class="form-control"
+               placeholder="e.g. Bank OTP request call from unknown number" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="category">Category</label>
+        <select id="category" name="category" class="form-control">
+          {% for cat in categories %}
+          <option value="{{ cat }}">{{ cat }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Upload zone -->
+      <div class="form-group">
+        <label class="form-label">Audio File (Optional)</label>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="audioFile" name="audio_file"
+                 accept=".wav,.mp3,.ogg,.flac,.m4a,.webm">
+          <div class="upload-icon">🎵</div>
+          <h3>Drag & drop audio or click to browse</h3>
+          <p>Supports: WAV, MP3, OGG, FLAC, M4A, WEBM &nbsp;•&nbsp; Max 50 MB</p>
+          <div id="fileLabel" class="file-selected" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Manual transcript fallback -->
+      <div class="form-group">
+        <label class="form-label" for="manual_text">
+          Paste Transcript / Suspicious Text
+          <span style="color:var(--text-muted);font-weight:400;">(used if no audio or transcription fails)</span>
+        </label>
+        <textarea id="manual_text" name="manual_text" class="form-control"
+                  placeholder="Paste the call transcript or suspicious message here…" rows="5"></textarea>
+      </div>
+
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:8px;padding:14px;margin-bottom:20px;font-size:0.8rem;color:var(--text-secondary);">
+        🔒 <strong>Privacy:</strong> Audio files are deleted <em>immediately</em> after analysis, whether successful or not.
+        Transcription uses <strong>Whisper (local, offline)</strong> — your audio is never sent to external servers.
+        <a href="{{ url_for('main.privacy') }}" style="color:var(--accent);">Full Privacy Notice →</a>
+      </div>
+
+      <button id="submitBtn" type="submit" class="btn btn-primary btn-lg btn-block">
+        🔍 Run Analysis
+      </button>
+    </form>
+  </div>
+
+  <!-- Info panel -->
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div class="card">
+      <div class="card-header"><span class="card-title">🔬 What We Analyse</span></div>
+      <div style="font-size:0.83rem;color:var(--text-secondary);">
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+          <strong style="color:var(--text-primary);">🧠 Scam Phrase Detection</strong><br>
+          18+ pattern categories including OTP fraud, KYC scams, lottery, remote access, digital payment fraud and more.
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+          <strong style="color:var(--text-primary);">📏 Acoustic Measurements</strong><br>
+          Signal clipping ratio, spectral flatness (Wiener entropy), estimated SNR, duration & sample rate.
+          <span style="color:var(--warning);">⚠️ These are quality indicators, NOT deepfake detectors.</span>
+        </div>
+        <div style="padding:8px 0;">
+          <strong style="color:var(--text-primary);">🗣️ Whisper Transcription</strong><br>
+          OpenAI Whisper (tiny model, runs locally). Upgrade to "base" or "small" for better accuracy by setting <code style="background:var(--bg-base);padding:2px 5px;border-radius:3px;">WHISPER_MODEL=base</code> env var.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">🎯 Risk Levels</span></div>
+      <div style="font-size:0.83rem;">
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <span class="badge badge-low">Low</span> <span style="color:var(--text-muted);">Score 0–29: No major red flags detected.</span>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <span class="badge badge-medium">Medium</span> <span style="color:var(--text-muted);">Score 30–54: Some suspicious patterns. Verify carefully.</span>
+        </div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <span class="badge badge-high">High</span> <span style="color:var(--text-muted);">Score 55–74: Multiple scam indicators. High caution.</span>
+        </div>
+        <div style="padding:8px 0;display:flex;align-items:center;gap:10px;">
+          <span class="badge badge-critical">Critical</span> <span style="color:var(--text-muted);">Score 75+: Very likely scam. Report immediately.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2);">
+      <div class="card-title" style="margin-bottom:10px;">🆘 Immediate Help</div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;">If you think you've been scammed:</p>
+      <a href="https://cybercrime.gov.in" target="_blank" rel="noopener"
+         class="btn btn-danger btn-block btn-sm">
+        🌐 Report at cybercrime.gov.in
+      </a>
+      <p style="text-align:center;margin-top:8px;font-size:0.82rem;color:var(--risk-high);font-weight:700;">Helpline: 1930</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

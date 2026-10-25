@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+{% block title %}Cyber Education – VoiceShield AI{% endblock %}
+{% block page_title %}📚 Cyber Education{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>Cybersecurity Education Hub</h1>
+  <p>Five core units aligned with the Indian cybersecurity syllabus. Stay informed, stay protected.</p>
+</div>
+
+<!-- Unit 1 -->
+<div class="card mb-24 fade-in" id="unit1">
+  <div class="card-header">
+    <span class="card-title" style="font-size:1.1rem;">Unit 1 – Cybersecurity Fundamentals</span>
+    <span class="badge badge-info">Foundation</span>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">🔐</div>
+      <h3>CIA Triad</h3>
+      <p>The three pillars of information security: <strong>Confidentiality</strong> (data accessible only to authorised users), <strong>Integrity</strong> (data is accurate and unaltered), and <strong>Availability</strong> (systems are accessible when needed).</p>
+      <div class="edu-tags"><span class="edu-tag">Confidentiality</span><span class="edu-tag">Integrity</span><span class="edu-tag">Availability</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(139,92,246,0.12);color:var(--accent-2);">🦠</div>
+      <h3>Types of Cyber Threats</h3>
+      <p>Major threat categories include <strong>Malware</strong> (viruses, ransomware, spyware), <strong>Phishing</strong> (deceptive communications), <strong>Social Engineering</strong> (psychological manipulation), and <strong>MITM attacks</strong> (intercepting communications).</p>
+      <div class="edu-tags"><span class="edu-tag">Malware</span><span class="edu-tag">Phishing</span><span class="edu-tag">Ransomware</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(6,182,212,0.12);color:var(--accent-3);">🛡️</div>
+      <h3>Defence Mechanisms</h3>
+      <p>Key controls: <strong>Firewalls</strong>, <strong>Intrusion Detection Systems (IDS)</strong>, <strong>Multi-Factor Authentication (MFA)</strong>, <strong>Encryption</strong> (AES-256, TLS), and <strong>Security patching</strong>. Defence-in-depth uses multiple layered controls.</p>
+      <div class="edu-tags"><span class="edu-tag">Firewall</span><span class="edu-tag">MFA</span><span class="edu-tag">Encryption</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(34,197,94,0.12);color:var(--risk-low);">🔑</div>
+      <h3>Password & Credential Security</h3>
+      <p>Use strong, unique passwords (≥12 chars, mixed case, numbers, symbols). Enable MFA everywhere. Use a password manager. Never reuse passwords across services. Hashing algorithms like bcrypt/PBKDF2 protect stored passwords.</p>
+      <div class="edu-tags"><span class="edu-tag">Passwords</span><span class="edu-tag">MFA</span><span class="edu-tag">PBKDF2</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Unit 2 -->
+<div class="card mb-24 fade-in" id="unit2">
+  <div class="card-header">
+    <span class="card-title" style="font-size:1.1rem;">Unit 2 – Cybercrime & Indian Cyber Law</span>
+    <span class="badge badge-warning">Legal</span>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--risk-medium);">⚖️</div>
+      <h3>Information Technology Act, 2000</h3>
+      <p>India's primary cyber law. Key sections: <strong>Section 43</strong> – Unauthorised computer access; <strong>Section 66</strong> – Computer-related offences; <strong>Section 66C</strong> – Identity theft; <strong>Section 66D</strong> – Cheating by impersonation; <strong>Section 67</strong> – Obscene content online.</p>
+      <div class="edu-tags"><span class="edu-tag">IT Act 2000</span><span class="edu-tag">S.66C</span><span class="edu-tag">S.66D</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">🚔</div>
+      <h3>Types of Cybercrime</h3>
+      <p><strong>Financial fraud</strong> (UPI/OTP/banking scams), <strong>Identity theft</strong>, <strong>Cyber bullying</strong>, <strong>Ransomware</strong>, <strong>Sextortion</strong>, <strong>Online job scams</strong>, and <strong>Investment fraud</strong>. All are punishable under the IT Act and IPC.</p>
+      <div class="edu-tags"><span class="edu-tag">IT Act</span><span class="edu-tag">IPC</span><span class="edu-tag">Fraud</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">📞</div>
+      <h3>How to Report Cybercrime</h3>
+      <p>
+        1. Call <strong>1930</strong> (National Cyber Crime Helpline) immediately.<br>
+        2. File complaint at <strong>cybercrime.gov.in</strong>.<br>
+        3. Visit local police station for FIR under IT Act / IPC.<br>
+        4. Preserve all screenshots, call records, and bank statements as evidence.
+      </p>
+      <div class="edu-tags"><span class="edu-tag">1930 Helpline</span><span class="edu-tag">cybercrime.gov.in</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(168,85,247,0.12);color:var(--risk-critical);">🏛️</div>
+      <h3>CERT-In & DPDP Act</h3>
+      <p><strong>CERT-In</strong> (Indian Computer Emergency Response Team) handles national cybersecurity incidents. The <strong>Digital Personal Data Protection Act 2023 (DPDP)</strong> governs how organisations process personal data — consent-based, purpose-limited, with data principal rights.</p>
+      <div class="edu-tags"><span class="edu-tag">CERT-In</span><span class="edu-tag">DPDP 2023</span><span class="edu-tag">Data Rights</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Unit 3 -->
+<div class="card mb-24 fade-in" id="unit3">
+  <div class="card-header">
+    <span class="card-title" style="font-size:1.1rem;">Unit 3 – Social Media Security</span>
+    <span class="badge badge-info">Digital Safety</span>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(236,72,153,0.12);color:#ec4899;">📱</div>
+      <h3>Social Engineering via Social Media</h3>
+      <p>Attackers use fake profiles, romance scams, impersonation, and urgent messages to extract money or credentials. <strong>Red flags:</strong> Requests for money, unsolicited links, too-good-to-be-true offers, pressure tactics.</p>
+      <div class="edu-tags"><span class="edu-tag">Fake Profiles</span><span class="edu-tag">Romance Scam</span><span class="edu-tag">Impersonation</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">🔒</div>
+      <h3>Account Security Best Practices</h3>
+      <p>Enable <strong>2FA/MFA</strong> on all social accounts. Review app permissions regularly. Use strong unique passwords. Check login activity. Never click unverified links in DMs. Verify unusual requests from "friends" through another channel.</p>
+      <div class="edu-tags"><span class="edu-tag">2FA</span><span class="edu-tag">App Permissions</span><span class="edu-tag">Login Alerts</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--risk-medium);">🔍</div>
+      <h3>Privacy Settings & Data Minimisation</h3>
+      <p>Limit profile visibility to friends only. Avoid sharing phone numbers, home addresses, or travel plans publicly. Understand each platform's data collection policy. Use <strong>Google's Data Export</strong> and <strong>Facebook Privacy Check-up</strong> tools.</p>
+      <div class="edu-tags"><span class="edu-tag">Privacy Settings</span><span class="edu-tag">Data Minimisation</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(34,197,94,0.12);color:var(--risk-low);">🤖</div>
+      <h3>AI-Generated Content & Deepfakes</h3>
+      <p>AI can generate convincing fake videos, voice clones, and images. Signs of deepfakes: unnatural eye movement, mismatched audio sync, blurry edges. Use reverse image search, verify via official channels, and use tools like <strong>InVID</strong>.</p>
+      <div class="edu-tags"><span class="edu-tag">Deepfakes</span><span class="edu-tag">Voice Cloning</span><span class="edu-tag">Verification</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Unit 4 -->
+<div class="card mb-24 fade-in" id="unit4">
+  <div class="card-header">
+    <span class="card-title" style="font-size:1.1rem;">Unit 4 – Digital Payment Fraud Prevention</span>
+    <span class="badge badge-high">High Priority</span>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">💳</div>
+      <h3>UPI & Mobile Banking Fraud</h3>
+      <p>Common scams: <strong>OTP sharing</strong>, <strong>fake QR codes</strong>, <strong>UPI payment requests disguised as money receipts</strong>, <strong>SIM swap fraud</strong>, <strong>fake bank customer service calls</strong>. Remember: receiving money requires NO PIN entry.</p>
+      <div class="edu-tags"><span class="edu-tag">UPI</span><span class="edu-tag">OTP Fraud</span><span class="edu-tag">SIM Swap</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--risk-medium);">🏦</div>
+      <h3>Safe Banking Practices</h3>
+      <p>Always verify IFSC/account details before transferring. Use RBI-regulated payment apps only. Enable transaction alerts via SMS and email. Set daily transfer limits. Immediately block card/account if compromised via bank's official number.</p>
+      <div class="edu-tags"><span class="edu-tag">RBI Guidelines</span><span class="edu-tag">Transfer Limits</span><span class="edu-tag">Alerts</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">🛒</div>
+      <h3>E-Commerce & Online Shopping Fraud</h3>
+      <p>Verify seller ratings, use trusted platforms. Avoid advance payment for unknown sellers. Check HTTPS and authentic domain names. Use credit cards (chargeback protection) over debit cards. Report fraud to the platform and local consumer court.</p>
+      <div class="edu-tags"><span class="edu-tag">E-Commerce</span><span class="edu-tag">HTTPS</span><span class="edu-tag">Chargeback</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(34,197,94,0.12);color:var(--risk-low);">📲</div>
+      <h3>Vishing & Smishing Attacks</h3>
+      <p><strong>Vishing</strong> (voice phishing) – callers impersonate bank/IT/police officials. <strong>Smishing</strong> (SMS phishing) – fraudulent SMS with malicious links. Never act on urgency from unknown callers. Verify by calling the official number independently.</p>
+      <div class="edu-tags"><span class="edu-tag">Vishing</span><span class="edu-tag">Smishing</span><span class="edu-tag">Verification</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Unit 5 -->
+<div class="card fade-in" id="unit5">
+  <div class="card-header">
+    <span class="card-title" style="font-size:1.1rem;">Unit 5 – Device & Endpoint Security</span>
+    <span class="badge badge-info">Technical</span>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(139,92,246,0.12);color:var(--accent-2);">📡</div>
+      <h3>Secure Wi-Fi & Network Usage</h3>
+      <p>Avoid public Wi-Fi for banking. Use WPA3 encryption at home. Change default router credentials. Use a VPN on untrusted networks. Disable Wi-Fi auto-connect. Enable firewall on all devices. Segment IoT devices on separate network.</p>
+      <div class="edu-tags"><span class="edu-tag">WPA3</span><span class="edu-tag">VPN</span><span class="edu-tag">Firewall</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(6,182,212,0.12);color:var(--accent-3);">📱</div>
+      <h3>Mobile Device Security</h3>
+      <p>Enable full-disk encryption. Use biometrics + PIN. Install apps from official stores only. Review permissions before installing. Keep OS and apps updated. Enable remote wipe (Find My Device / Google Find My). Avoid rooting/jailbreaking.</p>
+      <div class="edu-tags"><span class="edu-tag">Encryption</span><span class="edu-tag">App Stores</span><span class="edu-tag">Remote Wipe</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--risk-medium);">💻</div>
+      <h3>PC & Laptop Hardening</h3>
+      <p>Keep Windows/macOS updated. Use licensed antivirus. Enable Windows Defender / Gatekeeper. Encrypt drives with BitLocker/FileVault. Use standard user account for daily tasks. Disable unnecessary services and remote desktop when not in use.</p>
+      <div class="edu-tags"><span class="edu-tag">Antivirus</span><span class="edu-tag">BitLocker</span><span class="edu-tag">Patching</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">💾</div>
+      <h3>Data Backup & Recovery</h3>
+      <p>Follow the <strong>3-2-1 rule</strong>: 3 copies of data, on 2 different media types, with 1 offsite/cloud backup. Test restores regularly. Encrypt backups. Protects against ransomware, hardware failure, and accidental deletion.</p>
+      <div class="edu-tags"><span class="edu-tag">3-2-1 Backup</span><span class="edu-tag">Ransomware Defence</span><span class="edu-tag">Cloud Backup</span></div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:24px;padding:16px;background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.2);border-radius:10px;">
+    <strong style="color:var(--accent);">📌 Quick Reference – Indian Cybersecurity Resources</strong>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px;font-size:0.82rem;color:var(--text-secondary);">
+      <div>🌐 <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a> – File complaints</div>
+      <div>📞 <strong style="color:var(--text-primary);">1930</strong> – Cyber Crime Helpline</div>
+      <div>🏛️ <a href="https://cert-in.org.in" target="_blank" rel="noopener">cert-in.org.in</a> – CERT-In</div>
+      <div>🏦 <a href="https://rbi.org.in" target="_blank" rel="noopener">rbi.org.in</a> – RBI Banking safety</div>
+      <div>📱 <strong style="color:var(--text-primary);">Sanchar Saathi</strong> – TRAI portal for SIM fraud</div>
+      <div>🔒 <a href="https://meity.gov.in" target="_blank" rel="noopener">meity.gov.in</a> – MeitY guidelines</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

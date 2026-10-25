@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="app-wrapper">
+  <!-- Mobile overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-icon">🛡️</div>
+      <div class="brand-text">
+        VoiceShield AI
+        <span>Cybersecurity Platform</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Operations</div>
+      <a href="{{ url_for('main.dashboard') }}" class="nav-link" id="nav-dashboard">
+        <span class="nav-icon">🏠</span> Dashboard
+      </a>
+      <a href="{{ url_for('main.analyse') }}" class="nav-link" id="nav-analyse">
+        <span class="nav-icon">🎙️</span> AI Voice Detection
+      </a>
+      <a href="{{ url_for('main.incident_center') }}" class="nav-link" id="nav-incident-center">
+        <span class="nav-icon">🛡️</span> Incident Response
+      </a>
+      <a href="{{ url_for('main.phishing_checker') }}" class="nav-link" id="nav-phishing-checker">
+        <span class="nav-icon">🎣</span> Phishing Analyzer
+      </a>
+      <a href="{{ url_for('main.password_checker') }}" class="nav-link" id="nav-password-checker">
+        <span class="nav-icon">🔑</span> Password Checker
+      </a>
+      <a href="{{ url_for('main.file_integrity') }}" class="nav-link" id="nav-file-integrity">
+        <span class="nav-icon">📦</span> File Integrity
+      </a>
+      <a href="{{ url_for('main.history') }}" class="nav-link" id="nav-history">
+        <span class="nav-icon">📋</span> Incident History
+      </a>
+      <a href="{{ url_for('main.attack_lab') }}" class="nav-link" id="nav-attack-lab">
+        <span class="nav-icon">🧪</span> Attack &amp; Defense Lab
+      </a>
+
+      <div class="nav-section-label">Cyber Defense &amp; Training</div>
+      <a href="{{ url_for('main.threat_intelligence') }}" class="nav-link" id="nav-threat-intelligence">
+        <span class="nav-icon">🌐</span> Threat Intelligence
+      </a>
+      <a href="{{ url_for('main.security_training') }}" class="nav-link" id="nav-security-training">
+        <span class="nav-icon">🎓</span> Security Training
+      </a>
+      <a href="{{ url_for('main.personal_security_audit') }}" class="nav-link" id="nav-personal-security-audit">
+        <span class="nav-icon">📋</span> Personal Audit
+      </a>
+
+      <div class="nav-section-label">Course 171405A Syllabus</div>
+      <a href="{{ url_for('main.unit1') }}" class="nav-link" id="nav-unit1">
+        <span class="nav-icon">🌐</span> Unit I: Cyber Security
+      </a>
+      <a href="{{ url_for('main.unit2') }}" class="nav-link" id="nav-unit2">
+        <span class="nav-icon">🛡️</span> Unit II: Ethical Hacking
+      </a>
+      <a href="{{ url_for('main.unit3') }}" class="nav-link" id="nav-unit3">
+        <span class="nav-icon">⚖️</span> Unit III: Cyber Laws
+      </a>
+      <a href="{{ url_for('main.unit4') }}" class="nav-link" id="nav-unit4">
+        <span class="nav-icon">🔍</span> Unit IV: Cyber Forensics
+      </a>
+      <a href="{{ url_for('main.unit5') }}" class="nav-link" id="nav-unit5">
+        <span class="nav-icon">🧠</span> Unit V: AI in Security
+      </a>
+
+      <div class="nav-section-label">Knowledge &amp; Reports</div>
+      <a href="{{ url_for('main.education') }}" class="nav-link" id="nav-education">
+        <span class="nav-icon">📚</span> Education Center
+      </a>
+      <a href="{{ url_for('main.export_csv') }}" class="nav-link" id="nav-export-csv">
+        <span class="nav-icon">📄</span> Export CSV Report
+      </a>
+      <a href="{{ url_for('main.export_pdf') }}" class="nav-link" id="nav-export-pdf">
+        <span class="nav-icon">📑</span> Export PDF Report
+      </a>
+
+      <div class="nav-section-label">System</div>
+      <a href="{{ url_for('main.privacy') }}" class="nav-link" id="nav-privacy">
+        <span class="nav-icon">🔒</span> Privacy Notice
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">{{ current_user.username[0].upper() }}</div>
+        <div class="user-info">
+          <div class="name">{{ current_user.username }}</div>
+          <div class="role">Analyst</div>
+        </div>
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-ghost btn-sm" title="Logout"
+           style="padding:5px;font-size:1rem;">🚪</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content area -->
+  <div class="main-content">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+        <span class="topbar-title">{% block page_title %}Dashboard{% endblock %}</span>
+      </div>
+      <div class="topbar-right">
+        <span class="badge badge-info" style="font-size:0.7rem;">🇮🇳 India Cyber Safety</span>
+        <a href="{{ url_for('main.analyse') }}" class="btn btn-primary btn-sm">
+          + New Analysis
+        </a>
+      </div>
+    </header>
+
+    <!-- Flash messages -->
+    <div style="padding: 0 28px;" id="flashMessages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} fade-in" style="margin-top:16px;">
+            <span>
+              {% if category == 'success' %}✅
+              {% elif category == 'danger' %}❌
+              {% elif category == 'warning' %}⚠️
+              {% else %}ℹ️{% endif %}
+            </span>
+            {{ message }}
+            <button class="alert-close">✕</button>
+          </div>
+        {% endfor %}
+      {% endwith %}
+    </div>
+
+    <!-- Page content -->
+    <main class="page-content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer style="text-align:center;padding:16px 28px;font-size:0.75rem;color:var(--text-muted);border-top:1px solid var(--border);">
+      VoiceShield AI © 2026 &nbsp;|&nbsp; Audio is deleted immediately after analysis &nbsp;|&nbsp;
+      <a href="{{ url_for('main.privacy') }}">Privacy Notice</a> &nbsp;|&nbsp;
+      Report cybercrime: <strong>cybercrime.gov.in</strong> | Helpline: <strong>1930</strong>
+    </footer>
+  </div>
+</div>
+{% endblock %}

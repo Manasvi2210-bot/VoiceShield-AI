@@ -1,0 +1,401 @@
+{% extends "layout.html" %}
+
+{% block title %}Defensive Threat Intelligence Dashboard — VoiceShield AI{% endblock %}
+
+{% block content %}
+<div class="threat-intel-page">
+    <!-- Header -->
+    <div class="mb-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+            <div>
+                <span class="badge bg-info text-dark fw-bold me-2">Feature 5</span>
+                <span class="badge bg-secondary">Educational Threat Feed</span>
+            </div>
+            <span class="text-muted small">Course: 171405A — Cyber Security &amp; Laws | Last Curated Review: October 2026</span>
+        </div>
+        <h1 class="h2 mb-1" style="color: #60a5fa;">🌐 Defensive Threat Intelligence Dashboard</h1>
+        <p class="text-muted mb-0">
+            Curated repository of modern adversary tactics, techniques, typical indicators of compromise (IoCs), and defensive countermeasures aligned with the MITRE ATT&amp;CK&reg; framework and CERT-In advisories.
+        </p>
+    </div>
+
+    <!-- Educational Transparency Notice -->
+    <div class="alert alert-info border-info border-opacity-25 bg-dark text-light mb-4 shadow-sm" role="alert">
+        <div class="d-flex align-items-start gap-3">
+            <span style="font-size: 1.5rem;">ℹ️</span>
+            <div>
+                <strong>Educational Threat Repository Disclaimer:</strong>
+                This dashboard displays a static, vetted educational threat repository derived from public security advisories (CISA, CERT-In, NIST SP 800-61, MITRE ATT&amp;CK).
+                It does <em>not</em> connect to proprietary commercial threat feeds or claim live zero-day tracking. All sample hashes, domain patterns, and indicators are simulated illustrative artifacts for classroom learning and defensive posture assessment.
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Bar and Search -->
+    <div class="card bg-dark border-secondary border-opacity-25 mb-4 shadow-sm">
+        <div class="card-body p-3">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-7">
+                    <label class="form-label text-muted small mb-2 fw-semibold">FILTER BY THREAT CATEGORY</label>
+                    <div class="d-flex flex-wrap gap-2" id="threatCategoryFilters">
+                        <button type="button" class="btn btn-sm btn-outline-info active filter-btn" data-cat="all">All Threats (6)</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="phishing">Phishing &amp; BEC</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="ransomware">Ransomware</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="social-eng">Social Engineering</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="credential-theft">Credential Theft</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="data-breach">Data Breaches</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-cat="voice-clone">Voice Impersonation</button>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label for="threatSearchInput" class="form-label text-muted small mb-2 fw-semibold">SEARCH INDICATORS OR TECHNIQUES</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark border-secondary text-muted">🔍</span>
+                        <input type="text" id="threatSearchInput" class="form-control bg-dark text-light border-secondary" placeholder="Search MITRE ID, IoC, keywords...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Threat Intelligence Cards Grid -->
+    <div class="row g-4" id="threatCardsContainer">
+
+        <!-- Threat 1: Spear Phishing & BEC -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="phishing" data-keywords="spear phishing business email compromise bec t1566 credential harvesting invoices meity cert-in">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-danger me-2">CRITICAL</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1566.001</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: CISA / CERT-In</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Spear Phishing &amp; Business Email Compromise (BEC)</h3>
+                    <p class="text-light small mb-3">
+                        Targeted social-engineering emails crafted with sender-spoofing or lookalike typosquat domains to deceive finance personnel into redirecting vendor payments or surrendering corporate SSO credentials.
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">Display-Name Spoofing:</code> Executive name with external domain (<code class="text-muted">ceo-desk@secure-mail-update.net</code>)</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Urgent Payment Mod:</code> Immediate invoice rerouting requests bypassing dual-signoff protocols</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Lookalike URL:</code> Punycode or character substitution (e.g. <code class="text-muted">micros0ft-login.com</code>)</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">Unauthorized fund transfers, account takeover, exfiltration of corporate communications, regulatory disclosure liabilities under IT Act Sec 43A / DPDP Act 2023.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Enforce SPF, DKIM, and DMARC with strict <code class="text-info">p=reject</code> enforcement policies.</li>
+                            <li>Mandate out-of-band secondary channel confirmation for any bank account number change.</li>
+                            <li>Deploy FIDO2/WebAuthn hardware MFA resistant to adversary-in-the-middle (AiTM) reverse proxies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat 2: Double-Extortion Ransomware -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="ransomware" data-keywords="ransomware double extortion t1486 lockbit darkside encryption exfiltration cisa shadow copies">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-danger me-2">CRITICAL</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1486</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: CISA Alert AA23-325A</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Double-Extortion Ransomware Campaigns</h3>
+                    <p class="text-light small mb-3">
+                        Adversaries breach perimeter network via exposed RDP/VPN or phishing, exfiltrate confidential gigabytes to cloud storage for extortion leverage, and deploy AES-256/ChaCha20 encryption across all domain shares.
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">VSS Tampering:</code> Execution of <code class="text-muted">vssadmin.exe delete shadows /all /quiet</code></li>
+                            <li><code class="text-warning bg-black px-1 rounded">Data Stage Tooling:</code> Unapproved execution of Rclone, MegaSync, or PsExec on servers</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Mass File Rename:</code> Rapid creation of appended extensions (e.g. <code class="text-muted">.locked</code>) and ransom notes</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">Total operational paralysis, irreversible loss of proprietary customer data, mandatory CERT-In 6-hour cybersecurity incident reporting compliance.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Maintain immutable, offline air-gapped backups tested via quarterly bare-metal restores.</li>
+                            <li>Implement zero-trust network segmentation to prevent lateral movement across server VLANs.</li>
+                            <li>Disable public internet-facing RDP (TCP 3389) and require MFA-protected VPN tunnels.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat 3: Synthetic Voice Impersonation & Vishing -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="voice-clone" data-keywords="voice impersonation deepfake vishing t1598 social engineering audio cloning call center otp wire transfer">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-warning text-dark me-2">HIGH</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1598.003</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: FBI IC3 Alert / VoiceShield Lab</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Voice-Cloning &amp; AI-Assisted Vishing Schemes</h3>
+                    <p class="text-light small mb-3">
+                        Threat actors harvest 10-30 seconds of high-fidelity executive speech from public podcasts, webinars, or media interviews to synthesize urgent phone requests instructing junior staff to authorize emergency wire transfers.
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">Extreme Emotional Urgency:</code> Claims of critical acquisition deadline, hostage situation, or severe legal penalty</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Audio Artifacts:</code> Monotone prosody, unnatural breath timing, and abrupt spectral cutoff past 4 kHz</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Unconventional Routing:</code> Caller insists on using non-corporate WhatsApp, Telegram, or burner mobile numbers</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">High-value fraudulent disbursements, bypass of voice biometric authentication in banking call centers, severe corporate reputational damage.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Establish agreed-upon verbal verification code words or challenge-response questions for high-value requests.</li>
+                            <li>Strict callback policy: hang up and dial back the executive using the official corporate directory number.</li>
+                            <li>Never permit single-person authorization for wire transfers regardless of the caller's stated seniority.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat 4: Credential Stuffing & Password Spraying -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="credential-theft" data-keywords="credential stuffing password spray t1110 brute force breach compilation dark web bots owasp a07">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-warning text-dark me-2">HIGH</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1110.003</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: OWASP Top 10 A07 / NIST 800-63B</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Automated Credential Stuffing &amp; Password Spraying</h3>
+                    <p class="text-light small mb-3">
+                        Adversaries leverage leaked breach databases (billions of username:password pairs) through automated botnets to systematically test against customer login portals, capitalizing on widespread cross-site password reuse.
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">Distributed Traffic:</code> Thousands of login attempts per hour distributed across residential proxy IP pools</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Single Password Spray:</code> Testing one common password (e.g. <code class="text-muted">Winter2026!</code>) across all known employee accounts to evade lockout</li>
+                            <li><code class="text-warning bg-black px-1 rounded">High Failure Ratio:</code> Sudden spike in HTTP 401/403 responses on authentication endpoints</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">Mass account takeover, unauthorized customer reward draining, compromised cloud portal management consoles, severe privacy audit penalties.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Implement progressive rate limiting, IP reputation scoring, and CAPTCHA challenges on authentication routes.</li>
+                            <li>Mandate phishing-resistant Multi-Factor Authentication (MFA) across all administrative and user portals.</li>
+                            <li>Deploy password compromise screening (checking new passwords against known compromised password corpora).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat 5: Data Exposure & Unprotected Cloud Storage -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="data-breach" data-keywords="data breach s3 bucket misconfiguration t1530 api leak pii dpdp act it act cert-in">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-warning text-dark me-2">HIGH</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1530</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: Cloud Security Alliance (CSA) / CERT-In</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Unauthenticated Cloud Storage &amp; API Data Exposure</h3>
+                    <p class="text-light small mb-3">
+                        Improper access control lists (ACLs) or unauthenticated REST APIs allow internet scanners and threat actors to download database backups, customer PII, or internal documents without requiring authentication.
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">Public Bucket ACL:</code> S3 buckets or Azure blobs configured with <code class="text-muted">AllUsers:READ</code> permissions</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Hardcoded Secrets:</code> API tokens, AWS secret keys, or database connection strings committed to public GitHub repositories</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Open Elasticsearch/MongoDB:</code> Unauthenticated database ports (9200, 27017) exposed directly to WAN</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">Massive statutory penalties under DPDP Act 2023 (up to ₹250 crore for failure to take reasonable security safeguards), catastrophic customer trust erosion.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Enforce Cloud Security Posture Management (CSPM) with automated detection of public storage buckets.</li>
+                            <li>Use automated pre-commit secret scanners (e.g. git-secrets, Trufflehog) in CI/CD pipelines.</li>
+                            <li>Mandate encryption-at-rest with customer-managed keys (CMK) across all database and storage volumes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat 6: Pretexting & Social Engineering via WhatsApp -->
+        <div class="col-lg-6 threat-card-wrapper" data-category="social-eng" data-keywords="social engineering pretexting whatsapp telegram t1598 gift card electricity bill scam meity">
+            <div class="card bg-dark border-secondary h-100 shadow-sm intel-card">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="badge bg-info text-dark me-2">MEDIUM</span>
+                        <span class="mitre-badge">MITRE ATT&amp;CK T1598.002</span>
+                    </div>
+                    <span class="text-muted small">Reviewed: Oct 2026 | Source: Indian Cyber Crime Coordination Centre (I4C)</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5 text-warning mb-2">Messaging App Pretexting &amp; Utility Disconnection Scams</h3>
+                    <p class="text-light small mb-3">
+                        Scammers send messages via WhatsApp or SMS claiming imminent electricity disconnection, unpaid traffic challans, or courier delivery address updates, directing victims to install malicious APK files or remote-desktop utilities (AnyDesk, TeamViewer).
+                    </p>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">TYPICAL INDICATORS (IoCs)</h4>
+                        <ul class="text-muted small mb-0 ps-3">
+                            <li><code class="text-warning bg-black px-1 rounded">Threat of Disconnection:</code> Claims of immediate service cutoff at 9:30 PM tonight unless an app is installed</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Sideloaded APK Link:</code> URL ending in <code class="text-muted">.apk</code> hosted on free hosting services (Firebase, MediaFire)</li>
+                            <li><code class="text-warning bg-black px-1 rounded">Screen Share Demand:</code> Instructions to share a 9-digit remote control code to &ldquo;assist with bill verification&rdquo;</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h4 class="text-info small fw-bold mb-1">POTENTIAL IMPACT</h4>
+                        <p class="text-light small mb-0">Total remote takeover of victim's smartphone, interception of SMS OTPs, unauthorized UPI transactions, and contact list extortion.</p>
+                    </div>
+
+                    <div class="p-3 bg-black bg-opacity-40 rounded border border-secondary border-opacity-25">
+                        <h4 class="text-success small fw-bold mb-1">DEFENSIVE MITIGATIONS</h4>
+                        <ul class="text-light small mb-0 ps-3">
+                            <li>Educate personnel never to sideload APKs or grant Accessibility permissions to unverified applications.</li>
+                            <li>Never download remote desktop software at the instruction of an unknown caller or messaging contact.</li>
+                            <li>Verify utility payment status directly through the provider's official portal or mobile app.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Empty search state -->
+    <div id="noThreatsFound" class="alert alert-warning text-center mt-4 d-none">
+        No threat intelligence entries matched your filter criteria. Try adjusting your search query or selecting "All Threats".
+    </div>
+
+    <!-- Educational Footer Reference -->
+    <div class="card bg-dark border-secondary border-opacity-25 mt-4">
+        <div class="card-body p-3">
+            <h5 class="text-info small fw-bold mb-2">OFFICIAL CYBERSECURITY INTELLIGENCE REFERENCES</h5>
+            <div class="row g-2 text-muted small">
+                <div class="col-md-4">
+                    <strong>CERT-In Vulnerability Notes:</strong>
+                    <p class="mb-0">Indian Computer Emergency Response Team security guidelines and advisories (cert-in.org.in).</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>CISA Known Exploited Vulnerabilities (KEV):</strong>
+                    <p class="mb-0">U.S. Cybersecurity &amp; Infrastructure Security Agency catalog of actively exploited CVEs.</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>MITRE ATT&amp;CK&reg; Matrix for Enterprise:</strong>
+                    <p class="mb-0">Globally accessible knowledge base of adversary tactics and techniques based on real-world observations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const searchInput = document.getElementById("threatSearchInput");
+    const cards = document.querySelectorAll(".threat-card-wrapper");
+    const noResults = document.getElementById("noThreatsFound");
+
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function filterCards() {
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute("data-category");
+            const cardKeywords = card.getAttribute("data-keywords") || "";
+            const cardText = card.innerText.toLowerCase();
+
+            const matchesCategory = (currentCategory === "all") || (cardCategory === currentCategory);
+            const matchesSearch = (!searchQuery) || cardKeywords.toLowerCase().includes(searchQuery) || cardText.includes(searchQuery);
+
+            if (matchesCategory && matchesSearch) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        if (visibleCount === 0) {
+            noResults.classList.remove("d-none");
+        } else {
+            noResults.classList.add("d-none");
+        }
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            filterButtons.forEach(b => {
+                b.classList.remove("active", "btn-outline-info");
+                b.classList.add("btn-outline-secondary");
+            });
+            this.classList.remove("btn-outline-secondary");
+            this.classList.add("active", "btn-outline-info");
+
+            currentCategory = this.getAttribute("data-cat");
+            filterCards();
+        });
+    });
+
+    searchInput.addEventListener("input", function() {
+        searchQuery = this.value.trim().toLowerCase();
+        filterCards();
+    });
+});
+</script>
+{% endblock %}

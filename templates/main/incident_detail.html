@@ -1,0 +1,225 @@
+{% extends "layout.html" %}
+{% block title %}Incident #{{ incident.id }} – VoiceShield AI{% endblock %}
+{% block page_title %}Incident #{{ incident.id }}{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;" class="fade-in">
+  <div>
+    <h1 style="font-size:1.4rem;font-weight:700;margin-bottom:6px;">{{ incident.title }}</h1>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="badge badge-info">{{ incident.category }}</span>
+      <span class="badge badge-{{ incident.risk_level | lower }}">
+        {{ incident.risk_level }} Risk
+      </span>
+      <span class="text-muted text-small">{{ incident.created_at.strftime('%d %B %Y, %H:%M') }}</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <a href="{{ url_for('main.history') }}" class="btn btn-secondary btn-sm">← Back</a>
+    <form method="POST" action="{{ url_for('main.delete_incident', incident_id=incident.id) }}"
+          style="display:inline;">
+      <button type="submit" class="btn btn-danger btn-sm"
+              data-confirm="Delete this incident permanently?">🗑️ Delete</button>
+    </form>
+  </div>
+</div>
+
+<!-- Risk meter -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="card-title">🎯 Risk Score</span>
+      <span class="badge badge-secondary" style="font-size:0.72rem;">Heuristic Content Risk</span>
+    </div>
+    <span style="font-size:1.6rem;font-weight:800;color:
+      {% if incident.risk_level == 'Critical' %}var(--risk-critical)
+      {% elif incident.risk_level == 'High' %}var(--risk-high)
+      {% elif incident.risk_level == 'Medium' %}var(--risk-medium)
+      {% elif incident.risk_level == 'Low' %}var(--risk-low)
+      {% else %}var(--risk-unknown){% endif %};">
+      {{ incident.risk_score }}/100
+    </span>
+  </div>
+  <div class="risk-meter">
+    <div class="risk-meter-label">
+      <span class="text-muted text-small">0 – Safe</span>
+      <span class="badge badge-{{ incident.risk_level | lower }}">{{ incident.risk_level }}</span>
+      <span class="text-muted text-small">100 – Critical</span>
+    </div>
+    <div class="risk-bar-track">
+      <div class="risk-bar-fill {{ incident.risk_level | lower }}"
+           data-score="{{ incident.risk_score }}" style="width:0%"></div>
+    </div>
+  </div>
+  <div style="margin-top:8px;font-size:0.75rem;color:var(--text-muted);">
+    ℹ️ This score reflects detected scam keywords and urgency tactics in the call transcript, not an acoustic biometric voice authenticity guarantee.
+  </div>
+</div>
+
+<div class="detail-grid fade-in">
+  <!-- LEFT: Info + Transcript -->
+  <div style="display:flex;flex-direction:column;gap:20px;">
+
+    <!-- Incident info -->
+    <div class="card">
+      <div class="card-header"><span class="card-title">📋 Incident Details</span></div>
+      <div class="info-row">
+        <span class="info-label">Category</span>
+        <span class="info-value">{{ incident.category }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Created</span>
+        <span class="info-value">{{ incident.created_at.strftime('%d %b %Y, %H:%M UTC') }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Original File</span>
+        <span class="info-value">{{ incident.original_filename or '—' }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Audio File Status</span>
+        <span class="info-value">
+          {% if incident.audio_deleted %}
+            <span class="badge badge-success">🗑️ Deleted</span>
+          {% else %}
+            <span class="badge badge-warning">Retained</span>
+          {% endif %}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Transcription Status</span>
+        <span class="info-value">
+          {% if incident.transcription_status == 'success' %}
+            <span class="badge badge-success">✅ Success</span>
+          {% elif incident.transcription_status == 'failed' %}
+            <span class="badge badge-high">❌ Failed</span>
+          {% elif incident.transcription_status == 'unavailable' %}
+            <span class="badge badge-unknown">⚠️ Unavailable</span>
+          {% else %}
+            <span class="badge badge-unknown">{{ incident.transcription_status }}</span>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    <!-- Transcript -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🗣️ Transcript</span>
+        {% if incident.transcription_status == 'unavailable' %}
+          <span class="badge badge-warning">⚠️ Whisper not available</span>
+        {% endif %}
+      </div>
+      {% if incident.transcript %}
+        <div class="transcript-box">{{ incident.transcript }}</div>
+      {% elif incident.transcription_status == 'unavailable' %}
+        <div class="alert alert-warning">
+          ⚠️ Whisper transcription is not available on this system. Install it with:<br>
+          <code style="font-family:monospace;">py -m pip install openai-whisper</code><br>
+          You can also paste text manually into the analysis form.
+        </div>
+      {% else %}
+        <p class="text-muted text-small">No transcript available for this incident.</p>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Scam analysis + Acoustic -->
+  <div style="display:flex;flex-direction:column;gap:20px;">
+
+    <!-- Scam indicators -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🚨 Scam Indicators</span>
+        <span class="badge badge-{{ incident.risk_level | lower }}">{{ incident.matched_phrases | from_json | length }} matched</span>
+      </div>
+      {% set phrases = incident.matched_phrases | from_json %}
+      {% if phrases %}
+        {% for p in phrases %}
+        <div class="phrase-item">
+          <div class="phrase-category">{{ p.category }}</div>
+          <div style="font-size:0.82rem;color:var(--text-primary);">Pattern detected in transcript</div>
+          <div class="phrase-tip">💡 {{ p.tip }}</div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted text-small">✅ No scam phrases detected.</p>
+      {% endif %}
+    </div>
+
+    <!-- Safety recommendations -->
+    <div class="card">
+      <div class="card-header"><span class="card-title">🛡️ Safety Recommendations</span></div>
+      {% set recs = incident.recommendations | from_json %}
+      {% for r in recs %}
+      <div class="rec-item">
+        <span class="rec-icon">→</span>
+        <span>{{ r }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Acoustic measurements -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📏 Acoustic Measurements</span>
+        <span class="badge badge-info">Signal Quality Only</span>
+      </div>
+
+      {% if incident.acoustic_note %}
+      <div class="alert alert-info" style="margin-bottom:14px;font-size:0.78rem;">
+        ℹ️ {{ incident.acoustic_note }}
+      </div>
+      {% endif %}
+
+      <div class="measurement-grid">
+        <div class="measurement-item" data-tooltip="Percentage of audio samples at or near maximum amplitude (potential distortion)">
+          <div class="measurement-value">
+            {% if incident.clipping_ratio is not none %}{{ incident.clipping_ratio }}%{% else %}—{% endif %}
+          </div>
+          <div class="measurement-label">Clipping Ratio</div>
+        </div>
+        <div class="measurement-item" data-tooltip="Wiener entropy (0=tonal, 1=noise-like). NOT a deepfake indicator.">
+          <div class="measurement-value">
+            {% if incident.spectral_flatness is not none %}{{ incident.spectral_flatness }}{% else %}—{% endif %}
+          </div>
+          <div class="measurement-label">Spectral Flatness</div>
+        </div>
+        <div class="measurement-item" data-tooltip="Estimated signal-to-noise ratio in decibels.">
+          <div class="measurement-value">
+            {% if incident.snr_db is not none %}{{ incident.snr_db }} dB{% else %}—{% endif %}
+          </div>
+          <div class="measurement-label">Est. SNR</div>
+        </div>
+        <div class="measurement-item" data-tooltip="Audio duration in seconds.">
+          <div class="measurement-value">
+            {% if incident.duration_seconds is not none %}{{ incident.duration_seconds }}s{% else %}—{% endif %}
+          </div>
+          <div class="measurement-label">Duration</div>
+        </div>
+        <div class="measurement-item" data-tooltip="Audio sample rate in Hz.">
+          <div class="measurement-value">
+            {% if incident.sample_rate is not none %}{{ incident.sample_rate }} Hz{% else %}—{% endif %}
+          </div>
+          <div class="measurement-label">Sample Rate</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;padding:10px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:6px;font-size:0.75rem;color:var(--warning);">
+        ⚠️ <strong>Disclaimer:</strong> Acoustic measurements are signal quality indicators only.
+        They do <em>not</em> determine whether audio is AI-generated or authentic.
+        Do not use these figures as evidence of voice deepfakes.
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Custom Jinja2 filter emulation for from_json in template
+// (actual filter registered in app)
+</script>
+{% endblock %}

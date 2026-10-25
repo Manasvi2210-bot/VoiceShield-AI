@@ -1,0 +1,371 @@
+{% extends "layout.html" %}
+{% block title %}Unit V – Digital Device Security – VoiceShield AI{% endblock %}
+{% block page_title %}🖥️ Unit V – Digital Device Security{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>Digital Device Security, Tools &amp; Technologies</h1>
+  <p>Secure your phone and computer with this comprehensive checklist. Track your progress below.</p>
+</div>
+
+<div class="info-box amber fade-in">
+  <strong>ℹ️ Guidance Only:</strong> This checklist provides <strong>security guidance and self-assessment</strong>. VoiceShield AI does not scan, modify or automatically secure your device. Items checked here are stored only in your browser (localStorage) and are not sent to any server. Please verify each item yourself.
+</div>
+
+<!-- Progress tracker -->
+<div class="checklist-progress fade-in" id="progressCard">
+  <div class="score-text" id="progressScore">0%</div>
+  <div class="progress-info">
+    <div class="progress-label">Security checklist progress — <span id="progressCount">0 of 0</span> items checked</div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+    </div>
+  </div>
+  <button class="btn btn-ghost btn-sm" onclick="resetChecklist()" title="Reset all checkboxes">Reset</button>
+</div>
+
+<!-- Phone Security -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <span class="card-title">📱 Mobile / Phone Security</span>
+    <span class="badge badge-info">Smartphones</span>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🔒 Lock &amp; Access</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m1"><label for="chk_m1">
+        <strong>Enable screen lock (PIN, pattern or biometrics)</strong>
+        <span>A lock screen prevents physical access if your phone is lost or stolen. Use at least a 6-digit PIN; avoid obvious patterns.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m2"><label for="chk_m2">
+        <strong>Set auto-lock (screen timeout ≤ 1 minute)</strong>
+        <span>A short auto-lock time limits the window of opportunity if your phone is left unattended.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m3"><label for="chk_m3">
+        <strong>Enable remote wipe (Find My Device / Google Find My)</strong>
+        <span>If your device is stolen, remote wipe allows you to erase all data from another device. Set it up before you need it.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🔄 Updates &amp; Apps</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m4"><label for="chk_m4">
+        <strong>Keep OS (Android / iOS) fully updated</strong>
+        <span>Updates patch security vulnerabilities. Enable automatic updates in Settings → Software Update.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m5"><label for="chk_m5">
+        <strong>Install apps only from official stores (Play Store / App Store)</strong>
+        <span>Third-party APK files can contain malware. Sideloading bypasses security checks built into official stores.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m6"><label for="chk_m6">
+        <strong>Review and minimise app permissions</strong>
+        <span>Go to Settings → Apps → Permissions. Deny location, contacts, microphone and camera access to apps that don't need them.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m7"><label for="chk_m7">
+        <strong>Uninstall apps you no longer use</strong>
+        <span>Unused apps may receive no security updates and still have permissions and access to data.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🌐 Connectivity</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m8"><label for="chk_m8">
+        <strong>Avoid using public / open Wi-Fi for banking or sensitive tasks</strong>
+        <span>Public Wi-Fi can be intercepted. Use mobile data or a VPN on untrusted networks.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m9"><label for="chk_m9">
+        <strong>Turn off Bluetooth and Wi-Fi when not in use</strong>
+        <span>Leaving Bluetooth on exposes you to Bluejacking and Bluebugging attacks. Wi-Fi auto-connect can join rogue hotspots.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_m10"><label for="chk_m10">
+        <strong>Do not root or jailbreak your device</strong>
+        <span>Rooting/jailbreaking removes built-in security protections and voids warranties. It exposes the device to significantly more risk.</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Computer Security -->
+<div class="card mb-24 fade-in">
+  <div class="card-header">
+    <span class="card-title">💻 Computer / Laptop Security</span>
+    <span class="badge badge-info">PCs &amp; Laptops</span>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🔄 Updates &amp; Patching</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c1"><label for="chk_c1">
+        <strong>Enable automatic Windows / macOS / Linux updates</strong>
+        <span>Critical security patches are released regularly. Delaying them leaves known vulnerabilities open to exploitation.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c2"><label for="chk_c2">
+        <strong>Keep all installed software and browser updated</strong>
+        <span>Applications like browsers, office suites and media players are frequent attack targets. Update them regularly.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c3"><label for="chk_c3">
+        <strong>Use only licensed / genuine software</strong>
+        <span>Pirated software often contains malware. It also does not receive official security updates.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🛡️ Antivirus &amp; Firewall</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c4"><label for="chk_c4">
+        <strong>Enable and keep antivirus / Windows Defender updated</strong>
+        <span>Windows Defender (built-in) is effective when kept updated. Paid options: Kaspersky, Bitdefender, Avast (reputable options). Scan regularly.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c5"><label for="chk_c5">
+        <strong>Enable the operating system firewall</strong>
+        <span>Windows Defender Firewall / macOS built-in firewall blocks unauthorised incoming network connections. Keep it enabled always.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c6"><label for="chk_c6">
+        <strong>Use a standard (non-admin) user account for daily tasks</strong>
+        <span>Using an administrator account daily means malware has administrator privileges too. Keep admin use to software installation only.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🔑 Passwords &amp; Authentication</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c7"><label for="chk_c7">
+        <strong>Use strong unique passwords for all accounts</strong>
+        <span>At least 12 characters: mix of uppercase, lowercase, numbers and symbols. Use a password manager (Bitwarden, KeePass) to store them securely.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c8"><label for="chk_c8">
+        <strong>Enable Multi-Factor Authentication (MFA) on all important accounts</strong>
+        <span>MFA adds a second verification step. Even if your password is stolen, MFA prevents unauthorised access. Use authenticator apps over SMS when possible.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c9"><label for="chk_c9">
+        <strong>Set a BIOS/UEFI password and enable Secure Boot</strong>
+        <span>These prevent booting from external media and loading unauthorised software before the OS starts.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>💾 Backups</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c10"><label for="chk_c10">
+        <strong>Follow the 3-2-1 backup rule</strong>
+        <span>3 copies of data, on 2 different media types (e.g., hard drive + cloud), with 1 copy offsite. Test your backups — an untested backup is not a reliable backup.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c11"><label for="chk_c11">
+        <strong>Keep at least one backup disconnected (offline / external drive)</strong>
+        <span>Ransomware can encrypt connected cloud drives and network shares. An offline backup is immune to ransomware if it is disconnected during an attack.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c12"><label for="chk_c12">
+        <strong>Encrypt sensitive backups</strong>
+        <span>Use BitLocker (Windows), FileVault (macOS) or VeraCrypt for encrypting backup drives. This protects data if the drive is lost or stolen.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🌐 Wi-Fi &amp; Network</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c13"><label for="chk_c13">
+        <strong>Use WPA3 or WPA2 encryption on your home Wi-Fi router</strong>
+        <span>Never use WEP (outdated and easily cracked). Change default router credentials — default passwords are publicly known.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c14"><label for="chk_c14">
+        <strong>Change default router admin username and password</strong>
+        <span>Default credentials (admin/admin, admin/password) are well-known and are the first thing attackers try. Change them to strong unique credentials.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c15"><label for="chk_c15">
+        <strong>Keep router firmware updated</strong>
+        <span>Router vulnerabilities allow attackers to intercept all traffic on your network. Check the manufacturer's website for firmware updates.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c16"><label for="chk_c16">
+        <strong>Use a VPN on public / untrusted networks</strong>
+        <span>A reputable VPN (Proton VPN, Mullvad) encrypts your traffic on public networks. Avoid free VPNs — they often sell your data.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🕵️ Spyware &amp; Data Leakage Prevention</h3>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c17"><label for="chk_c17">
+        <strong>Cover or disable your webcam when not in use</strong>
+        <span>Remote Access Trojans (RATs) can activate cameras without the indicator light. A physical cover costs very little and provides certainty.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c18"><label for="chk_c18">
+        <strong>Review and limit data shared with cloud services</strong>
+        <span>Turn off sync for folders containing sensitive files unless necessary. Use zero-knowledge encrypted cloud storage for highly sensitive data.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c19"><label for="chk_c19">
+        <strong>Never leave your device unattended in public without locking it</strong>
+        <span>Use Win + L (Windows) or Ctrl + Cmd + Q (macOS) to lock instantly. Even a brief window can allow someone to install a keylogger.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleItem(this)">
+      <input type="checkbox" id="chk_c20"><label for="chk_c20">
+        <strong>Securely wipe devices before selling or disposing</strong>
+        <span>Factory reset alone may not permanently erase data. Use DBAN or manufacturer-provided secure erase tools before giving away old devices.</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Pegasus Case Study -->
+<div class="card fade-in">
+  <div class="card-header">
+    <span class="card-title">📖 Case Study</span>
+    <span class="badge badge-high">Real Incident</span>
+  </div>
+
+  <div class="case-study spyware">
+    <div class="case-study-header">
+      <span style="font-size:2rem;">🕵️</span>
+      <div>
+        <div class="case-study-badge" style="background:rgba(139,92,246,0.15);color:var(--risk-critical);border-color:rgba(139,92,246,0.3);">Spyware Awareness</div>
+        <h3>Pegasus Spyware – Global Surveillance Awareness</h3>
+      </div>
+    </div>
+    <p><strong>What is Pegasus?</strong> Pegasus is a sophisticated commercial spyware product developed by <strong>NSO Group</strong>, an Israeli technology company. NSO Group states it sells Pegasus only to vetted government clients for law enforcement and intelligence purposes. However, investigations by multiple organisations have documented its alleged use against journalists, human rights defenders, lawyers and opposition politicians in various countries.</p>
+
+    <p><strong>How it works (technical overview for awareness):</strong> Pegasus exploits vulnerabilities in mobile operating systems (iOS and Android) to gain deep access to a target device. It has used both "one-click" infection methods (requiring the target to click a link) and "zero-click" methods (requiring no action from the target — a WhatsApp call or iMessage was enough in documented cases). Once installed, Pegasus can theoretically access: messages (including encrypted apps), emails, photos, location data, microphone and camera.</p>
+
+    <p><strong>Indian context:</strong> In 2021, a global investigative project (the "Pegasus Project") led by Forbidden Stories and Amnesty International, involving 17 media partners including The Wire (India), analysed a leaked list of over 50,000 phone numbers reportedly selected as potential surveillance targets. Indian phone numbers appeared on this list. The Government of India neither confirmed nor denied the use of Pegasus. The Supreme Court of India appointed a technical committee to investigate (2021). This is an ongoing and contested area — the following is factual reporting of what has been publicly documented.</p>
+
+    <ul>
+      <li>Pegasus has been documented by Citizen Lab (University of Toronto) in detailed technical reports since 2016</li>
+      <li>Apple released emergency security updates in September 2021 after Citizen Lab discovered a zero-click iOS exploit used to deliver Pegasus</li>
+      <li>Apple now notifies users it believes may have been targeted by state-sponsored spyware</li>
+      <li>The case highlights that even fully updated devices can be vulnerable to sophisticated, well-funded state-level threats</li>
+      <li>WhatsApp filed a lawsuit against NSO Group in 2019 (US District Court, Northern California)</li>
+    </ul>
+
+    <div class="lesson">
+      <strong>💡 Key Lessons for Everyday Users:</strong> State-level spyware like Pegasus is generally not a threat to ordinary individuals — it is expensive and reportedly targeted. However, it demonstrates why security updates matter (every Pegasus infection depended on unpatched vulnerabilities) and why device hygiene is important. For most people: keep your OS and apps updated, use end-to-end encrypted messaging apps (Signal, WhatsApp), enable MFA on accounts, and be cautious about clicking links in messages from unknown senders. If you are a journalist or human rights worker handling sensitive information, consult resources from <a href="https://securitylab.amnesty.org" target="_blank" rel="noopener">Amnesty Tech</a> or <a href="https://citizenlab.ca" target="_blank" rel="noopener">Citizen Lab</a>.
+    </div>
+  </div>
+</div>
+
+<script>
+// Checklist IDs — all checkbox IDs on this page
+const CHECKLIST_IDS = [
+  'chk_m1','chk_m2','chk_m3','chk_m4','chk_m5','chk_m6','chk_m7',
+  'chk_m8','chk_m9','chk_m10',
+  'chk_c1','chk_c2','chk_c3','chk_c4','chk_c5','chk_c6','chk_c7',
+  'chk_c8','chk_c9','chk_c10','chk_c11','chk_c12','chk_c13','chk_c14',
+  'chk_c15','chk_c16','chk_c17','chk_c18','chk_c19','chk_c20'
+];
+const STORAGE_KEY = 'vs_device_checklist';
+
+function loadChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    CHECKLIST_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (saved[id]) {
+        el.checked = true;
+        el.closest('.checklist-item').classList.add('checked');
+      }
+    });
+  } catch(e) {}
+  updateProgress();
+}
+
+function saveChecklist() {
+  const state = {};
+  CHECKLIST_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) state[id] = el.checked;
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function toggleItem(row) {
+  const cb = row.querySelector('input[type="checkbox"]');
+  if (!cb) return;
+  // If click is directly on checkbox, don't double-toggle
+  if (event && event.target === cb) {
+    row.classList.toggle('checked', cb.checked);
+  } else {
+    cb.checked = !cb.checked;
+    row.classList.toggle('checked', cb.checked);
+  }
+  saveChecklist();
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = CHECKLIST_IDS.length;
+  const checked = CHECKLIST_IDS.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.checked;
+  }).length;
+  const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+  document.getElementById('progressScore').textContent = pct + '%';
+  document.getElementById('progressCount').textContent = checked + ' of ' + total;
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function resetChecklist() {
+  if (!confirm('Reset all checklist items? Your progress will be lost.')) return;
+  CHECKLIST_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.checked = false;
+      const row = el.closest('.checklist-item');
+      if (row) row.classList.remove('checked');
+    }
+  });
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  updateProgress();
+}
+
+document.addEventListener('DOMContentLoaded', loadChecklist);
+</script>
+{% endblock %}

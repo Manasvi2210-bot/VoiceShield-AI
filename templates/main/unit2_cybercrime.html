@@ -1,0 +1,931 @@
+{% extends "layout.html" %}
+{% block title %}Unit II – Ethical Hacking – VoiceShield AI{% endblock %}
+{% block page_title %}🛡️ Unit II – Ethical Hacking &amp; Security Testing{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+    <span class="badge badge-info" style="font-weight:700;">Course Code: 171405A</span>
+    <span class="badge badge-secondary">SY B.Tech Computer Engineering</span>
+    <span class="badge badge-primary">06 Lecture Hours</span>
+  </div>
+  <h1>Unit II: Ethical Hacking &amp; Security Testing</h1>
+  <p>Authorized penetration testing methodology, hacker classifications, reconnaissance, vulnerability scanning, common web application security risks, password defenses, ethical tool usage, responsible disclosure, and the Sony PlayStation Network cyberattack case study.</p>
+</div>
+
+<!-- Topic Navigation Pills -->
+<div class="topic-nav-pills fade-in">
+  <a href="#sec-objectives" class="topic-nav-pill">🎯 Objectives</a>
+  <a href="#sec-intro" class="topic-nav-pill">🛡️ Ethical Hacking Intro</a>
+  <a href="#sec-roles" class="topic-nav-pill">🎭 Hacker Categories</a>
+  <a href="#sec-methodology" class="topic-nav-pill">🔄 5-Phase Methodology</a>
+  <a href="#sec-recon" class="topic-nav-pill">🔍 Reconnaissance &amp; OSINT</a>
+  <a href="#sec-vuln-cvss" class="topic-nav-pill">📊 Scanning &amp; CVSS</a>
+  <a href="#sec-web-risks" class="topic-nav-pill">🌐 Web Security &amp; OWASP</a>
+  <a href="#sec-auth-defenses" class="topic-nav-pill">🔑 Password Auditing</a>
+  <a href="#sec-social-voice" class="topic-nav-pill">🎙️ Social Eng. &amp; Voice Vishing</a>
+  <a href="#sec-tools-labs" class="topic-nav-pill">🧰 Tools &amp; Safe Labs</a>
+  <a href="#sec-disclosure" class="topic-nav-pill">📜 Responsible Disclosure</a>
+  <a href="#sec-sony-case" class="topic-nav-pill">⚠️ Sony Case Study</a>
+  <a href="#sec-progress" class="topic-nav-pill">📊 Progress Tracker</a>
+  <a href="#sec-quiz" class="topic-nav-pill" style="border-color:var(--accent);color:var(--accent);font-weight:600;">📝 Knowledge Quiz</a>
+</div>
+
+<!-- Section: Learning Objectives -->
+<div class="card mb-24 fade-in" id="sec-objectives">
+  <div class="card-header">
+    <span class="card-title">🎯 Learning Objectives</span>
+    <span class="badge badge-info">Syllabus Overview</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent);display:block;margin-bottom:4px;">1. Legal &amp; Ethical Boundaries</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Understand the legal boundary between authorized ethical testing and unauthorized intrusion under the Indian IT Act 2000.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent-2);display:block;margin-bottom:4px;">2. Five Testing Phases</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Master the structured methodology: Planning, Reconnaissance, Scanning/Enumeration, Controlled Validation, and Reporting.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-low);display:block;margin-bottom:4px;">3. Web Vulnerabilities &amp; Defense</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Examine SQLi, XSS, and broken access control at a conceptual level with defensive coding principles.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-high);display:block;margin-bottom:4px;">4. Hacktivism &amp; Case Study</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Analyze the 2011 Sony PlayStation Network attack, comparing criminal hacktivism to professional responsible disclosure.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 1: Introduction to Ethical Hacking -->
+<div class="card mb-24 fade-in" id="sec-intro">
+  <div class="card-header">
+    <span class="card-title">🛡️ 1. Introduction to Ethical Hacking &amp; Legal Authorization</span>
+    <span class="badge badge-info">Foundations</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    <strong>Ethical Hacking</strong> is the authorized, structured simulation of cyberattacks against computer systems, networks, and applications to uncover and remediate security vulnerabilities before malicious adversaries can exploit them. Ethical hackers adopt the adversarial mindset and toolsets of attackers, but operate under strict legal authorization and ethical standards.
+  </p>
+
+  <h3 style="font-size:0.95rem;font-weight:700;margin:16px 0 10px;color:var(--text-primary);">Ethical Hacking vs. Malicious Hacking: Key Differences</h3>
+  <div class="comparison-table-wrapper">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Ethical Hacking (White-Hat)</th>
+          <th>Malicious Hacking (Black-Hat)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Authorization</strong></td>
+          <td>Explicit, written authorization prior to any testing</td>
+          <td>Zero authorization; illegal trespass into computer resources</td>
+        </tr>
+        <tr>
+          <td><strong>Intent</strong></td>
+          <td>Identify vulnerabilities to improve organizational security posture</td>
+          <td>Financial theft, extortion, espionage, sabotage, or notoriety</td>
+        </tr>
+        <tr>
+          <td><strong>Scope Boundaries</strong></td>
+          <td>Strictly confined to agreed Rules of Engagement (RoE)</td>
+          <td>No boundaries; freely pivots and accesses unauthorized systems</td>
+        </tr>
+        <tr>
+          <td><strong>Confidentiality</strong></td>
+          <td>Discovered vulnerabilities and data remain confidential under NDA</td>
+          <td>Data exfiltrated, sold on dark web markets, or published publicly</td>
+        </tr>
+        <tr>
+          <td><strong>Outcome</strong></td>
+          <td>Comprehensive remediation report and coordinated retesting</td>
+          <td>System compromise, service downtime, financial and reputational loss</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box amber mt-16 mb-0">
+    <strong>The Absolute Requirement for Written Authorization:</strong> Under India's <strong>Information Technology Act, 2000 (Section 43 &amp; Section 66)</strong>, accessing a computer system or network without explicit permission from the owner is a criminal offense punishable by imprisonment and heavy financial penalties. Good intentions, curiosity, or educational motivations are <em>not</em> legal defenses. Every professional assessment requires a formal <strong>Rules of Engagement (RoE)</strong> and a signed <strong>Scope of Work (SoW)</strong>.
+  </div>
+</div>
+
+<!-- Section 2: Roles & Hacker Categories -->
+<div class="card mb-24 fade-in" id="sec-roles">
+  <div class="card-header">
+    <span class="card-title">🎭 2. Cybersecurity Roles &amp; Hacker Classifications</span>
+    <span class="badge badge-primary">Industry Roles</span>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(34,197,94,0.12);color:var(--risk-low);">🎩</div>
+      <h3>White-Hat Hackers</h3>
+      <p>Security professionals, penetration testers, and certified ethical hackers who use their skills exclusively for defensive purposes. They operate under formal contracts, adhere strictly to organizational scopes, and disclose findings privately to system owners.</p>
+      <div class="edu-tags"><span class="edu-tag">Authorized</span><span class="edu-tag">Defensive</span><span class="edu-tag">Certified</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">🏴</div>
+      <h3>Black-Hat Hackers</h3>
+      <p>Malicious actors who breach computer security without authorization for personal or financial gain, political motives, or destructive purposes. They deploy malware, steal credentials, deploy ransomware, and disrupt critical infrastructure.</p>
+      <div class="edu-tags"><span class="edu-tag">Unauthorized</span><span class="edu-tag">Criminal</span><span class="edu-tag">Malicious</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(245,158,11,0.12);color:var(--warning);">🧢</div>
+      <h3>Grey-Hat Hackers</h3>
+      <p>Individuals who discover security flaws without prior authorization, but without explicit malicious intent (e.g. notifying the owner after the fact or requesting a bug bounty). Even without malicious intent, unauthorized probing is illegal and ethically ambiguous.</p>
+      <div class="edu-tags"><span class="edu-tag">No Prior Consent</span><span class="edu-tag">Legal Risk</span><span class="edu-tag">Ambiguous</span></div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(59,130,246,0.12);color:var(--accent);">🛡️</div>
+      <h3>Blue, Red &amp; Purple Teams</h3>
+      <p><strong>Red Teams</strong> simulate realistic offensive adversaries to test defenses. <strong>Blue Teams</strong> manage SOC monitoring, firewalls, and incident response. <strong>Purple Teams</strong> facilitate continuous collaboration between both groups to maximize defensive resilience.</p>
+      <div class="edu-tags"><span class="edu-tag">Red Team</span><span class="edu-tag">Blue Team</span><span class="edu-tag">Purple Team</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 3: The 5 Phases of Ethical Hacking -->
+<div class="card mb-24 fade-in" id="sec-methodology">
+  <div class="card-header">
+    <span class="card-title">🔄 3. The 5 Phases of Ethical Hacking Methodology</span>
+    <span class="badge badge-info">Methodology</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    Professional security assessments follow a structured, repeatable lifecycle. This methodology ensures thorough coverage while preventing unintended disruptions to production environments:
+  </p>
+
+  <div class="lifecycle-grid">
+    <div class="lifecycle-card">
+      <div class="lifecycle-step-num">1</div>
+      <h4>Planning &amp; Scoping</h4>
+      <p>Establish Rules of Engagement, legal agreements, testing timelines, emergency contacts, and in-scope versus out-of-scope IP ranges and applications.</p>
+    </div>
+
+    <div class="lifecycle-card">
+      <div class="lifecycle-step-num">2</div>
+      <h4>Reconnaissance</h4>
+      <p>Gather intelligence on the target using passive OSINT and active network queries to understand organizational footprint and architecture.</p>
+    </div>
+
+    <div class="lifecycle-card">
+      <div class="lifecycle-step-num">3</div>
+      <h4>Scanning &amp; Enumeration</h4>
+      <p>Discover live hosts, open ports, running services, operating system versions, and potential vulnerabilities across target systems.</p>
+    </div>
+
+    <div class="lifecycle-card">
+      <div class="lifecycle-step-num">4</div>
+      <h4>Vulnerability Validation</h4>
+      <p>Safely confirm vulnerability exploitability under strict controls without triggering denial-of-service, data loss, or persistent backdoors.</p>
+    </div>
+
+    <div class="lifecycle-card">
+      <div class="lifecycle-step-num">5</div>
+      <h4>Reporting &amp; Retesting</h4>
+      <p>Document findings with CVSS severity ratings, detailed remediation steps, remove all test artifacts, and conduct post-patch retesting.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Section 4: Reconnaissance & OSINT -->
+<div class="card mb-24 fade-in" id="sec-recon">
+  <div class="card-header">
+    <span class="card-title">🔍 4. Reconnaissance &amp; Open Source Intelligence (OSINT)</span>
+    <span class="badge badge-primary">Information Gathering</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div style="background:var(--bg-surface);padding:18px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h3 style="font-size:1rem;color:var(--accent);margin-bottom:8px;">Passive Reconnaissance</h3>
+      <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+        Gathering intelligence <strong>without directly interacting</strong> with the target's servers or generating network logs on their perimeter.
+      </p>
+      <ul style="padding-left:18px;margin-top:8px;font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">
+        <li><strong>Public DNS Records &amp; WHOIS:</strong> Querying registrar databases for nameservers, MX mail records, and IP netblocks.</li>
+        <li><strong>Certificate Transparency Logs:</strong> Reviewing public SSL/TLS certificate databases (e.g. <code>crt.sh</code>) to discover unlisted subdomains.</li>
+        <li><strong>Search Engine Dorking:</strong> Using advanced operators (e.g. <code>site:</code>, <code>filetype:pdf</code>) to uncover indexed public files.</li>
+        <li><strong>Social Media Intelligence:</strong> Identifying technology stacks, employee roles, and software versions shared publicly.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:18px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h3 style="font-size:1rem;color:var(--risk-medium);margin-bottom:8px;">Active Reconnaissance</h3>
+      <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+        Directly querying target infrastructure, which <strong>initiates network connections</strong> and produces firewall/IDS log entries.
+      </p>
+      <ul style="padding-left:18px;margin-top:8px;font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">
+        <li><strong>DNS Zone Transfers (AXFR):</strong> Requesting complete zone files from misconfigured DNS nameservers.</li>
+        <li><strong>ICMP Ping Sweeps:</strong> Sending echo requests across a subnet to detect active systems.</li>
+        <li><strong>Service Banner Grabbing:</strong> Connecting to open ports (e.g. HTTP, SSH, SMTP) to capture software names and exact version strings.</li>
+        <li><strong>Port Probing:</strong> Testing specific TCP/UDP ports to map listening services.</li>
+      </ul>
+      <div style="margin-top:10px;font-size:0.78rem;color:var(--risk-high);font-weight:600;">⚠️ Ethical Rule: Active reconnaissance requires explicit written authorization from the system owner.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 5: Scanning, Vulnerabilities, Threats & CVSS -->
+<div class="card mb-24 fade-in" id="sec-vuln-cvss">
+  <div class="card-header">
+    <span class="card-title">📊 5. Scanning, Vulnerability Assessment &amp; The CVSS Framework</span>
+    <span class="badge badge-info">Risk Assessment</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:18px;">
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--accent);display:block;margin-bottom:2px;">Vulnerability</strong>
+      <span style="font-size:0.8rem;color:var(--text-secondary);">A flaw, weakness, or bug in software code, architecture, or configuration.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--risk-high);display:block;margin-bottom:2px;">Threat</strong>
+      <span style="font-size:0.8rem;color:var(--text-secondary);">An adversary, malicious program, or event capable of exploiting a vulnerability.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--warning);display:block;margin-bottom:2px;">Exploit</strong>
+      <span style="font-size:0.8rem;color:var(--text-secondary);">A piece of software or sequence of commands designed to trigger a vulnerability.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--accent-2);display:block;margin-bottom:2px;">Risk</strong>
+      <span style="font-size:0.8rem;color:var(--text-secondary);">The calculated outcome: <code>Risk = Likelihood × Impact</code> on business operations.</span>
+    </div>
+  </div>
+
+  <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:8px;color:var(--text-primary);">Common Vulnerability Scoring System (CVSS v3.1)</h3>
+  <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;margin-bottom:12px;">
+    CVSS provides an open, standardized framework for communicating the characteristics and severity of software vulnerabilities. The <strong>Base Score</strong> ranges from 0.0 to 10.0:
+  </p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px;">
+    <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);padding:12px;border-radius:var(--radius-sm);">
+      <span class="badge badge-success">Low (0.1 – 3.9)</span>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:6px;">Minimal impact; requires high privileges or complex local interaction.</p>
+    </div>
+    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);padding:12px;border-radius:var(--radius-sm);">
+      <span class="badge badge-warning">Medium (4.0 – 6.9)</span>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:6px;">Moderate impact; may allow partial information disclosure or privilege escalation.</p>
+    </div>
+    <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);padding:12px;border-radius:var(--radius-sm);">
+      <span class="badge badge-high">High (7.0 – 8.9)</span>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:6px;">Significant impact; remote unauthorized access, data compromise, or partial DoS.</p>
+    </div>
+    <div style="background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);padding:12px;border-radius:var(--radius-sm);">
+      <span class="badge badge-critical">Critical (9.0 – 10.0)</span>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:6px;">Severe threat; unauthenticated remote code execution (RCE) with root privileges.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Section 6: Common Web Application Security Risks -->
+<div class="card mb-24 fade-in" id="sec-web-risks">
+  <div class="card-header">
+    <span class="card-title">🌐 6. Common Web Application Security Risks &amp; Defenses (OWASP)</span>
+    <span class="badge badge-high">Application Security</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    The Open Web Application Security Project (<strong>OWASP</strong>) documents the most critical security flaws affecting web applications. Ethical hackers test for these flaws, and developers apply secure coding controls to prevent them:
+  </p>
+
+  <!-- SQLi -->
+  <div style="margin-top:16px;background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+    <h3 style="font-size:0.95rem;color:var(--accent);margin-bottom:6px;">1. SQL Injection (SQLi)</h3>
+    <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:10px;">
+      Occurs when untrusted user input is directly concatenated into a dynamic SQL query string, allowing an attacker to alter query logic and view, modify, or delete database tables.
+    </p>
+    <div class="code-comparison-grid">
+      <div class="code-box vulnerable">
+        <div class="code-box-header">❌ Vulnerable (Dynamic String Concatenation)</div>
+        <code># Flawed: User input concatenated into SQL string<br>query = f"SELECT * FROM users WHERE username = '{user_input}'"<br>db.execute(query)</code>
+      </div>
+      <div class="code-box secure">
+        <div class="code-box-header">✅ Secure (Parameterized Query / ORM)</div>
+        <code># Secure: Database engine separates code from data<br>query = "SELECT * FROM users WHERE username = ?"<br>db.execute(query, (user_input,))</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- XSS -->
+  <div style="margin-top:16px;background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+    <h3 style="font-size:0.95rem;color:var(--accent-2);margin-bottom:6px;">2. Cross-Site Scripting (XSS)</h3>
+    <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:10px;">
+      Occurs when an application includes unvalidated user data in a web page without proper contextual encoding. An attacker can execute arbitrary JavaScript in the victim's browser session, hijacking authentication cookies or session tokens.
+    </p>
+    <div class="code-comparison-grid">
+      <div class="code-box vulnerable">
+        <div class="code-box-header">❌ Vulnerable (Unescaped HTML Rendering)</div>
+        <code>&lt;!-- Flawed: Browser executes injected script tags --&gt;<br>&lt;div&gt;Welcome, {{ user_input | safe }}&lt;/div&gt;</code>
+      </div>
+      <div class="code-box secure">
+        <div class="code-box-header">✅ Secure (Contextual Output Encoding &amp; CSP)</div>
+        <code>&lt;!-- Secure: Jinja2 auto-escapes HTML entities --&gt;<br>&lt;div&gt;Welcome, {{ user_input }}&lt;/div&gt;<br>&lt;!-- Add HttpOnly cookies + Content-Security-Policy --&gt;</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Broken Access Control -->
+  <div style="margin-top:16px;background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+    <h3 style="font-size:0.95rem;color:var(--risk-low);margin-bottom:6px;">3. Broken Access Control (Insecure Direct Object Reference)</h3>
+    <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:10px;">
+      Occurs when an application permits a user to access sensitive objects (e.g. incident reports, account records) simply by altering the record identifier in a URL without verifying ownership.
+    </p>
+    <div class="code-comparison-grid">
+      <div class="code-box vulnerable">
+        <div class="code-box-header">❌ Vulnerable (Missing Ownership Check)</div>
+        <code>@app.route("/incident/&lt;int:id&gt;")<br>def view(id):<br>    # Flawed: Anyone can view any incident ID!<br>    return Incident.query.get(id)</code>
+      </div>
+      <div class="code-box secure">
+        <div class="code-box-header">✅ Secure (VoiceShield AI Privacy Isolation)</div>
+        <code>@app.route("/incident/&lt;int:id&gt;")<br>@login_required<br>def view(id):<br>    # Secure: Filters strictly by authenticated user<br>    return Incident.query.filter_by(id=id, user_id=current_user.id).first_or_404()</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 7: Password & Authentication Security -->
+<div class="card mb-24 fade-in" id="sec-auth-defenses">
+  <div class="card-header">
+    <span class="card-title">🔑 7. Password &amp; Authentication Defensive Engineering</span>
+    <span class="badge badge-info">Defensive Controls</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div>
+      <h3 style="font-size:1rem;color:var(--accent);margin-bottom:8px;">Hashing vs. Encryption</h3>
+      <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+        A critical distinction in cybersecurity engineering:
+      </p>
+      <ul style="padding-left:18px;margin-top:8px;font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">
+        <li><strong>Hashing (One-Way):</strong> A mathematical algorithm (e.g. SHA-256) transforms input into a fixed-length digest. It cannot be decrypted back to plaintext. Used for password verification and file integrity.</li>
+        <li><strong>Encryption (Two-Way):</strong> Converts plaintext into ciphertext using an algorithm and key (e.g. AES). Can be decrypted back to plaintext with the appropriate decryption key. Used for confidential data storage and transit.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:1rem;color:var(--risk-low);margin-bottom:8px;">Defensive Credential Protections</h3>
+      <ul style="padding-left:18px;margin-top:8px;font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">
+        <li><strong>Unique Cryptographic Salts:</strong> Generating a unique random string per user prevents precomputed Rainbow Table lookups.</li>
+        <li><strong>Memory-Hard Key Derivation:</strong> Algorithms like <code>Argon2id</code>, <code>bcrypt</code>, and <code>PBKDF2</code> introduce deliberate computational work factors, slowing down offline cracking attempts from millions of guesses per second to a few dozen.</li>
+        <li><strong>Ethical Password Auditing:</strong> Security teams audit company password strength offline using sanitized password hash dumps without storing or exfiltrating user plaintext passwords.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Section 8: Social Engineering & Voice Vishing -->
+<div class="card mb-24 fade-in" id="sec-social-voice">
+  <div class="card-header">
+    <span class="card-title">🎙️ 8. Social Engineering &amp; Voice-Cloning Impersonation</span>
+    <span class="badge badge-primary">VoiceShield AI Focus</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    Social engineering targets the human element of organizations. Attackers manipulate psychological heuristics such as authority, urgency, and fear:
+  </p>
+  <div class="edu-grid" style="margin-top:16px;">
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(239,68,68,0.12);color:var(--risk-high);">🎯</div>
+      <h3>Pretexting &amp; Spear Phishing</h3>
+      <p>Fabricating a plausible false scenario to establish trust (e.g. impersonating IT support requesting password verification or an auditor demanding financial records).</p>
+      <div class="edu-tags"><span class="edu-tag">Pretexting</span><span class="edu-tag">Targeted</span></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(168,85,247,0.12);color:var(--risk-critical);">🗣️</div>
+      <h3>Voice Cloning &amp; AI Vishing</h3>
+      <p>Using synthetic neural audio vocoders to clone an executive's voice. Criminals call financial officers requesting urgent unauthorized wire transfers, bypassing traditional email filters.</p>
+      <div class="edu-tags"><span class="edu-tag">Synthetic Voice</span><span class="edu-tag">CEO Fraud</span></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-card-icon" style="background:rgba(34,197,94,0.12);color:var(--risk-low);">📞</div>
+      <h3>Out-of-Band Verification</h3>
+      <p>The primary defense against voice cloning: never authorize financial transfers or credential changes during an unsolicited call. Disconnect and call back using a known, verified directory number.</p>
+      <div class="edu-tags"><span class="edu-tag">Callback Policy</span><span class="edu-tag">Dual Approval</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 9: Tools & Safe Lab Environments -->
+<div class="card mb-24 fade-in" id="sec-tools-labs">
+  <div class="card-header">
+    <span class="card-title">🧰 9. Security Tools &amp; Safe Educational Lab Practice</span>
+    <span class="badge badge-info">Toolsets</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    Professional ethical hackers rely on standard diagnostic and assessment utilities. These tools are dual-use; their legality is determined by <strong>authorization</strong>:
+  </p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:14px;">
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--accent);">Nmap (Network Mapper)</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:6px 0 0;">An open-source network scanner used for host discovery, port identification, service versioning, and OS fingerprinting.</p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--accent-2);">Wireshark</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:6px 0 0;">A network packet analyzer used by network engineers and defenders to dissect protocol traffic and diagnose security anomalies.</p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+      <strong style="color:var(--warning);">OWASP ZAP / Burp Suite</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:6px 0 0;">Intercepting HTTP proxies used to inspect web traffic, test input validation, and identify web application vulnerabilities.</p>
+    </div>
+  </div>
+
+  <div class="info-box blue mt-16 mb-0">
+    <strong>Authorized Practice Environments:</strong> Students should hone technical skills exclusively in intentionally vulnerable, legal sandbox environments:
+    <br>• <strong>OWASP Juice Shop:</strong> A modern, intentionally insecure web application for practicing OWASP Top 10 defenses.
+    <br>• <strong>DVWA (Damn Vulnerable Web App):</strong> A PHP/MySQL web application for learning defensive web engineering.
+    <br>• <strong>PortSwigger Web Security Academy:</strong> Free, authorized hands-on labs created by the makers of Burp Suite.
+    <br><em>Scanning or testing public websites without explicit written permission violates cyber laws.</em>
+  </div>
+</div>
+
+<!-- Section 10: Responsible Disclosure -->
+<div class="card mb-24 fade-in" id="sec-disclosure">
+  <div class="card-header">
+    <span class="card-title">📜 10. Responsible Disclosure &amp; Vulnerability Reporting</span>
+    <span class="badge badge-success">Professional Standards</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">
+    <strong>Coordinated Vulnerability Disclosure (CVD)</strong> is the industry standard process for reporting discovered security vulnerabilities to vendors without exposing users to zero-day attacks:
+  </p>
+  <ul class="steps-list" style="margin-top:14px;">
+    <li>
+      <div>
+        <strong style="color:var(--text-primary);display:block;margin-bottom:2px;">1. Discovery &amp; Scope Verification</strong>
+        <span>Confirm the vulnerability is within an authorized program's scope (e.g. Bug Bounty policy). Avoid accessing or downloading any user personal data.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong style="color:var(--text-primary);display:block;margin-bottom:2px;">2. Confidential Submission</strong>
+        <span>Submit a detailed, reproducible report privately to the vendor's security team or national CERT (e.g. CERT-In) via encrypted channels.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong style="color:var(--text-primary);display:block;margin-bottom:2px;">3. Remediation Window</strong>
+        <span>Allow the vendor a reasonable remediation period (industry standard is typically 90 days) to develop, test, and deploy a security patch.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong style="color:var(--text-primary);display:block;margin-bottom:2px;">4. Coordinated Advisory &amp; Credit</strong>
+        <span>Once the patch is available to customers, the vendor and researcher publish a coordinated security advisory with CVE credit.</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Section 11: Case Study - Anonymous & Sony Cyberattack -->
+<div class="card mb-24 fade-in" id="sec-sony-case" style="border:1px solid rgba(239,68,68,0.3);background:linear-gradient(135deg,var(--bg-card),rgba(239,68,68,0.04));">
+  <div class="card-header">
+    <span class="card-title">⚠️ 11. Case Study: Anonymous &amp; The 2011 Sony PlayStation Network Cyberattack</span>
+    <span class="badge badge-high">Syllabus Case Study</span>
+  </div>
+
+  <div class="case-study banking" style="margin-top:0;">
+    <div class="case-study-header">
+      <span class="case-study-badge">Incident Analysis</span>
+      <h3 style="margin:0;">The Sony PlayStation Network Breach: Hacktivism vs. Authorized Testing</h3>
+    </div>
+    <p>
+      In <strong>April 2011</strong>, Sony Corporation experienced one of the most significant data security breaches in corporate history. The PlayStation Network (PSN), Qriocity, and Sony Online Entertainment services suffered massive unauthorized intrusions, forcing Sony to take the entire global network offline for <strong>23 days</strong>.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
+      <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+        <strong style="color:var(--accent);display:block;margin-bottom:6px;">Context &amp; Hacktivism:</strong>
+        <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">
+          The breach occurred amid retaliatory attacks launched by the hacktivist collective "Anonymous" (under "Operation Sony") following Sony's high-profile lawsuit against security researcher George Hotz for publishing jailbreak keys for the PlayStation 3. While Anonymous coordinated volumetric Distributed Denial of Service (DDoS) attacks against Sony web properties, sophisticated cybercriminals exploited unpatched software flaws to compromise internal databases.
+        </p>
+      </div>
+
+      <div style="background:var(--bg-surface);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+        <strong style="color:var(--risk-high);display:block;margin-bottom:6px;">Vulnerabilities &amp; Compromise:</strong>
+        <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">
+          Investigations revealed that attackers leveraged SQL injection and unpatched application vulnerabilities in outdated Apache server software located behind misconfigured firewalls. Approximately <strong>77 million user accounts</strong> were compromised, including names, physical addresses, email addresses, dates of birth, and unhashed/unsalted user passwords.
+        </p>
+      </div>
+    </div>
+
+    <h4 style="font-size:0.92rem;color:var(--accent);margin-bottom:8px;">Ethical Hacking vs. Unauthorized Attacks:</h4>
+    <ul>
+      <li><strong>Unauthorized Intrusions &amp; Hacktivism are Illegal:</strong> Regardless of political motivations, unauthorized access to computer systems, denial-of-service disruptions, and theft of user records are serious offenses under criminal cyber law. They inflict widespread harm on innocent end-users.</li>
+      <li><strong>The Professional Ethical Hacking Role:</strong> An authorized penetration testing team operating under a signed Scope of Work would have identified the unpatched Apache server and SQL injection vulnerabilities safely, reporting them directly to Sony management under an NDA. This would have enabled Sony to patch the systems months before external exposure.</li>
+    </ul>
+
+    <h4 style="font-size:0.92rem;color:#4ade80;margin:14px 0 8px;">Key Organizational Lessons Learned:</h4>
+    <ul>
+      <li><strong>Defense-in-Depth:</strong> Perimeter firewalls alone are inadequate; internal database tiers must be isolated in secure network segments with strict egress filtering.</li>
+      <li><strong>Mandatory Cryptographic Salting &amp; Hashing:</strong> Storing password records in plaintext or weak unsalted formats leaves users exposed when database breaches occur.</li>
+      <li><strong>Continuous Vulnerability Patch Management:</strong> Running obsolete server daemon versions with publicly known CVEs exposes organizations to automated exploit tools.</li>
+    </ul>
+
+    <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--text-muted);">
+      📚 <strong>Authoritative Sources:</strong> Sony Computer Entertainment Official Disclosures (2011) | US House of Representatives Subcommittee on Commerce, Manufacturing, and Trade Hearing on Sony PSN Breach | SANS Institute Cyber Incident Archive.
+    </div>
+  </div>
+</div>
+
+<!-- Section 12: Student Progress Checklist -->
+<div class="card mb-24 fade-in" id="sec-progress">
+  <div class="card-header">
+    <span class="card-title">📊 Unit II Revision Progress Tracker</span>
+    <span class="badge badge-success">Self Assessment</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">
+    Track your revision of Unit II topics. Check off each milestone as you master it:
+  </p>
+
+  <div class="checklist-progress" id="unit2ProgressCard">
+    <div class="score-text" id="unit2Score">0%</div>
+    <div class="progress-info">
+      <div class="progress-label">Syllabus revision progress — <span id="unit2CheckedCount">0 of 6</span> milestones completed</div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="unit2ProgressBar" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_1" onchange="updateUnit2Progress()">
+      <label for="chk2_1">
+        <strong>1. Ethical Hacking Definition &amp; Written Authorization</strong>
+        <span>Purpose, legality, Rules of Engagement (RoE), Section 43/66 IT Act boundaries.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_2" onchange="updateUnit2Progress()">
+      <label for="chk2_2">
+        <strong>2. Hacker Categories &amp; Security Roles</strong>
+        <span>White-hat, black-hat, grey-hat, red team, blue team, purple team.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_3" onchange="updateUnit2Progress()">
+      <label for="chk2_3">
+        <strong>3. 5-Phase Ethical Hacking Methodology</strong>
+        <span>Planning, Reconnaissance, Scanning/Enumeration, Controlled Validation, Reporting.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_4" onchange="updateUnit2Progress()">
+      <label for="chk2_4">
+        <strong>4. Vulnerability Assessment &amp; CVSS Metrics</strong>
+        <span>Asset discovery, CVE standards, CVSS Base Score (Low/Med/High/Critical).</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_5" onchange="updateUnit2Progress()">
+      <label for="chk2_5">
+        <strong>5. Web Application Security (OWASP Top 10)</strong>
+        <span>SQL Injection parameterized queries, XSS encoding, Broken Access Control IDOR.</span>
+      </label>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem2(this)">
+      <input type="checkbox" id="chk2_6" onchange="updateUnit2Progress()">
+      <label for="chk2_6">
+        <strong>6. Sony PSN Case Study &amp; Responsible Disclosure</strong>
+        <span>Hacktivism vs ethical hacking, Coordinated Vulnerability Disclosure (CVD).</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Section 13: Interactive Unit II Knowledge Quiz -->
+<div class="card fade-in" id="sec-quiz">
+  <div class="card-header">
+    <span class="card-title">📝 Unit II Interactive Knowledge Quiz</span>
+    <span class="badge badge-primary">10 Questions</span>
+  </div>
+
+  <div class="info-box blue" style="margin-bottom:20px;">
+    <strong>Instructions:</strong> Test your understanding of Unit II syllabus concepts. Select one answer for each question and click <strong>Submit Answers</strong>. Explanations and answer evaluations will appear immediately. You can retry as many times as you like.
+  </div>
+
+  <!-- Score Banner -->
+  <div class="quiz-score-banner" id="quizScoreBanner2">
+    <div style="font-size:1.8rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;" id="quizScoreText2">Score: 0 / 10</div>
+    <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:14px;" id="quizFeedbackText2">Complete all questions to see your assessment.</p>
+    <button class="btn btn-secondary btn-sm" onclick="resetQuiz2()">🔄 Retry Quiz</button>
+  </div>
+
+  <form id="unit2QuizForm" onsubmit="event.preventDefault(); submitQuiz2();">
+    <!-- Q1 -->
+    <div class="quiz-question-item" id="q2item-1">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q1</span>
+        <span>What is the single most critical legal requirement that distinguishes ethical hacking from criminal hacking?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q1" value="A"> The ethical hacker must use open-source operating systems exclusively.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q1" value="B"> Prior, explicit written authorization and defined Rules of Engagement from the system owner.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q1" value="C"> The ethical hacker must be an employee of the target organization.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q1" value="D"> The ethical hacker must publish all findings on public social media.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-1">
+        <strong>Explanation:</strong> Under the law, any unauthorized access into a computer system is a criminal offense. Ethical hacking is legitimate <em>only</em> when conducted with prior, explicit written permission from the authorized owner defining the scope and rules.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question-item" id="q2item-2">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q2</span>
+        <span>How does a grey-hat hacker differ from a white-hat hacker under professional standards?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q2" value="A"> Grey-hat hackers only test hardware; white-hat hackers test software.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q2" value="B"> Grey-hat hackers probe systems without prior authorization, creating legal liability despite claiming benign intent.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q2" value="C"> Grey-hat hackers always steal money from bank accounts.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q2" value="D"> White-hat hackers never document their findings in reports.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-2">
+        <strong>Explanation:</strong> White-hat hackers operate strictly within authorized scopes with prior written consent. <strong>Grey-hat hackers</strong> discover vulnerabilities without permission; while they may report them without exploiting them, unauthorized probing violates cyber laws.
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question-item" id="q2item-3">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q3</span>
+        <span>What is the correct logical order of the five traditional phases of an ethical hacking assessment?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q3" value="A"> Gaining Access → Scanning → Planning → Reconnaissance → Reporting</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q3" value="B"> Planning/Scoping → Reconnaissance → Scanning/Enumeration → Vulnerability Validation → Reporting</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q3" value="C"> Reporting → Scanning → Exploitation → Scoping → Reconnaissance</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q3" value="D"> Reconnaissance → Denial of Service → Data Theft → Reporting → Scoping</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-3">
+        <strong>Explanation:</strong> The standard ethical hacking lifecycle begins with <strong>Planning/Scoping</strong>, followed by <strong>Reconnaissance</strong>, then <strong>Scanning/Enumeration</strong>, controlled <strong>Vulnerability Validation</strong>, and concludes with comprehensive <strong>Reporting &amp; Remediation</strong>.
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question-item" id="q2item-4">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q4</span>
+        <span>Which of the following is an example of passive reconnaissance?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q4" value="A"> Sending TCP SYN packets to all 65,535 ports on the target web server.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q4" value="B"> Querying public Certificate Transparency logs (crt.sh) and WHOIS records without sending packets to the target's servers.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q4" value="C"> Attempting automated SQL injection payloads in the login form.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q4" value="D"> Initiating a DNS zone transfer (AXFR) directly against the company's primary nameserver.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-4">
+        <strong>Explanation:</strong> <strong>Passive reconnaissance</strong> gathers intelligence without directly interacting with or sending packets to the target's network infrastructure (e.g. querying public third-party certificate transparency logs or WHOIS databases).
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question-item" id="q2item-5">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q5</span>
+        <span>Under the CVSS v3.1 scoring framework, how is a vulnerability with a Base Score of 9.8 classified?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q5" value="A"> Low</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q5" value="B"> Medium</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q5" value="C"> High</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q5" value="D"> Critical</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-5">
+        <strong>Explanation:</strong> In the CVSS v3.1 specification, vulnerabilities with a score between <strong>9.0 and 10.0</strong> are classified as <strong>Critical</strong> severity, typically denoting unauthenticated, network-accessible vulnerabilities.
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-question-item" id="q2item-6">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q6</span>
+        <span>What is the primary defensive coding countermeasure against SQL Injection (SQLi) vulnerabilities in web applications?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q6" value="A"> Installing a client-side JavaScript regex validation script on the browser.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q6" value="B"> Using parameterized queries (prepared statements) or ORM abstractions that separate SQL code from untrusted user data.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q6" value="C"> Converting all database text fields into uppercase characters.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q6" value="D"> Disabling database indexes on user tables.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-6">
+        <strong>Explanation:</strong> <strong>Parameterized queries (prepared statements)</strong> ensure that the database engine treats user input strictly as data parameters rather than executable SQL syntax, completely neutralizing SQL injection.
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-question-item" id="q2item-7">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q7</span>
+        <span>How does VoiceShield AI implement defensive access control to prevent Broken Access Control (IDOR) attacks on incident records?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q7" value="A"> By hiding the incident ID numbers using CSS opacity.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q7" value="B"> By strictly filtering database queries using <code>Incident.query.filter_by(id=id, user_id=current_user.id).first_or_404()</code> on the server.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q7" value="C"> By allowing all registered users to view and delete any incident report.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q7" value="D"> By encoding incident IDs in Base64 format in the URL.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-7">
+        <strong>Explanation:</strong> Server-side ownership verification ensures that even if an attacker alters the numeric incident ID in a URL (e.g. `/incident/1`), the server verifies that `user_id == current_user.id` and returns a 404/403 if they do not own the record.
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-question-item" id="q2item-8">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q8</span>
+        <span>What is the most effective organizational procedure to defeat synthetic AI voice-cloning social engineering attacks?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q8" value="A"> Never answering any phone call from anyone.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q8" value="B"> Mandating out-of-band verification via a known secondary contact method before authorizing sensitive transactions or data releases.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q8" value="C"> Assuming that all voices that sound familiar are authentic.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q8" value="D"> Authorizing wire transfers faster to avoid executive anger.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-8">
+        <strong>Explanation:</strong> Because generative neural audio can clone vocal timbres realistically, organizations must enforce <strong>out-of-band callbacks</strong> over pre-verified corporate channels and dual-authorization policies for sensitive transactions.
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="quiz-question-item" id="q2item-9">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q9</span>
+        <span>Where should students and ethical hackers practice hands-on vulnerability assessment techniques?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q9" value="A"> Public university servers and local government websites.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q9" value="B"> Local, intentionally vulnerable legal environments such as OWASP Juice Shop, DVWA, or PortSwigger Academy.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q9" value="C"> Random commercial websites found via search engines.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q9" value="D"> Competitor enterprise websites without their knowledge.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-9">
+        <strong>Explanation:</strong> Ethical hacking skills must be developed exclusively within authorized, locally hosted sandboxes (like DVWA, WebGoat, or Juice Shop) or authorized cloud labs. Scanning or testing third-party systems without permission is strictly illegal.
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="quiz-question-item" id="q2item-10">
+      <div class="quiz-question-title">
+        <span class="badge badge-info" style="font-size:0.75rem;">Q10</span>
+        <span>What key lesson does the 2011 Sony PlayStation Network cyberattack provide regarding ethical testing vs. hacktivism?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label"><input type="radio" name="u2q10" value="A"> Hacktivism is legally protected free speech under international law.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q10" value="B"> Unauthorized intrusions and data theft are criminal acts that harm users; professional ethical hackers test under authorization and report privately to enable patching before criminals strike.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q10" value="C"> Storing user passwords in plaintext is acceptable if a firewall is active.</label>
+        <label class="quiz-option-label"><input type="radio" name="u2q10" value="D"> Disabling network monitoring prevents hacktivists from discovering server locations.</label>
+      </div>
+      <div class="quiz-explanation" id="u2exp-10">
+        <strong>Explanation:</strong> The Sony incident demonstrates that unauthorized hacktivism and black-hat breaches result in criminal culpability and severe user harm. Authorized ethical testing would have discovered unpatched servers and SQL injection flaws privately, enabling remediation before breach.
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:20px;align-items:center;">
+      <button type="submit" class="btn btn-primary" id="btnSubmitQuiz2">
+        ✅ Submit Answers
+      </button>
+      <button type="button" class="btn btn-secondary" onclick="resetQuiz2()">
+        🔄 Reset
+      </button>
+      <span id="quizStatusMsg2" style="font-size:0.85rem;color:var(--text-muted);"></span>
+    </div>
+  </form>
+
+  <div class="info-box amber mt-16 mb-0">
+    <strong>Educational Disclaimer:</strong> This quiz is an academic self-assessment tool aligned with Course Code 171405A (Unit II). Quiz completion demonstrates conceptual review and does not confer professional penetration testing certification.
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Correct answers map for Unit II
+const QUIZ2_ANSWERS = {
+  u2q1: 'B',
+  u2q2: 'B',
+  u2q3: 'B',
+  u2q4: 'B',
+  u2q5: 'D',
+  u2q6: 'B',
+  u2q7: 'B',
+  u2q8: 'B',
+  u2q9: 'B',
+  u2q10: 'B'
+};
+
+function submitQuiz2() {
+  let score = 0;
+  const total = Object.keys(QUIZ2_ANSWERS).length;
+  let allAnswered = true;
+
+  for (let i = 1; i <= total; i++) {
+    const qKey = 'u2q' + i;
+    const selected = document.querySelector('input[name="' + qKey + '"]:checked');
+    const expEl = document.getElementById('u2exp-' + i);
+    const itemEl = document.getElementById('q2item-' + i);
+    const correctVal = QUIZ2_ANSWERS[qKey];
+
+    if (expEl) expEl.style.display = 'block';
+
+    const options = document.querySelectorAll('input[name="' + qKey + '"]');
+    options.forEach(opt => {
+      const parentLabel = opt.closest('.quiz-option-label');
+      if (!parentLabel) return;
+      parentLabel.classList.remove('correct-choice', 'incorrect-choice');
+      if (opt.value === correctVal) {
+        parentLabel.classList.add('correct-choice');
+      } else if (opt.checked && opt.value !== correctVal) {
+        parentLabel.classList.add('incorrect-choice');
+      }
+    });
+
+    if (selected) {
+      if (selected.value === correctVal) {
+        score++;
+        if (itemEl) itemEl.style.borderColor = 'rgba(34,197,94,0.4)';
+      } else {
+        if (itemEl) itemEl.style.borderColor = 'rgba(239,68,68,0.4)';
+      }
+    } else {
+      allAnswered = false;
+      if (itemEl) itemEl.style.borderColor = 'rgba(245,158,11,0.4)';
+    }
+  }
+
+  const banner = document.getElementById('quizScoreBanner2');
+  const scoreText = document.getElementById('quizScoreText2');
+  const feedback = document.getElementById('quizFeedbackText2');
+  const percentage = Math.round((score / total) * 100);
+
+  if (banner && scoreText && feedback) {
+    banner.classList.add('show');
+    scoreText.textContent = `Score: ${score} / ${total} (${percentage}%)`;
+    if (score === total) {
+      feedback.innerHTML = '<span style="color:#4ade80;font-weight:700;">🌟 Outstanding! Perfect score.</span> You have demonstrated mastery of Unit II Ethical Hacking concepts.';
+    } else if (score >= 7) {
+      feedback.innerHTML = '<span style="color:#60a5fa;font-weight:700;">✅ Well done! Pass grade achieved.</span> Review the explanations for any missed concepts.';
+    } else {
+      feedback.innerHTML = '<span style="color:#f87171;font-weight:700;">⚠️ Keep practicing.</span> Study the explanations below and retry the quiz.';
+    }
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  const statusMsg = document.getElementById('quizStatusMsg2');
+  if (statusMsg) {
+    statusMsg.textContent = allAnswered ? 'All questions evaluated.' : 'Note: Unanswered questions marked incorrect.';
+  }
+}
+
+function resetQuiz2() {
+  document.getElementById('unit2QuizForm').reset();
+  const banner = document.getElementById('quizScoreBanner2');
+  if (banner) banner.classList.remove('show');
+
+  for (let i = 1; i <= 10; i++) {
+    const expEl = document.getElementById('u2exp-' + i);
+    if (expEl) expEl.style.display = 'none';
+    const itemEl = document.getElementById('q2item-' + i);
+    if (itemEl) itemEl.style.borderColor = 'var(--border)';
+    const options = document.querySelectorAll('input[name="u2q' + i + '"]');
+    options.forEach(opt => {
+      const parentLabel = opt.closest('.quiz-option-label');
+      if (parentLabel) parentLabel.classList.remove('correct-choice', 'incorrect-choice', 'selected');
+    });
+  }
+  const statusMsg = document.getElementById('quizStatusMsg2');
+  if (statusMsg) statusMsg.textContent = 'Quiz reset. Select your answers.';
+}
+
+// Progress Checklist Logic for Unit II
+function toggleProgressItem2(el) {
+  const checkbox = el.querySelector('input[type="checkbox"]');
+  if (event.target !== checkbox) {
+    checkbox.checked = !checkbox.checked;
+  }
+  updateUnit2Progress();
+}
+
+function updateUnit2Progress() {
+  const checkboxes = document.querySelectorAll('#sec-progress input[type="checkbox"]');
+  const total = checkboxes.length;
+  let checked = 0;
+  checkboxes.forEach(cb => {
+    const parent = cb.closest('.checklist-item');
+    if (cb.checked) {
+      checked++;
+      if (parent) parent.classList.add('checked');
+    } else {
+      if (parent) parent.classList.remove('checked');
+    }
+  });
+  const pct = Math.round((checked / total) * 100);
+  const scoreEl = document.getElementById('unit2Score');
+  const barEl = document.getElementById('unit2ProgressBar');
+  const countEl = document.getElementById('unit2CheckedCount');
+  if (scoreEl) scoreEl.textContent = pct + '%';
+  if (barEl) barEl.style.width = pct + '%';
+  if (countEl) countEl.textContent = `${checked} of ${total}`;
+}
+</script>
+{% endblock %}

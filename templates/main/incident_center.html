@@ -1,0 +1,172 @@
+{% extends "layout.html" %}
+{% block title %}Security Incident Response Center – VoiceShield AI{% endblock %}
+{% block page_title %}🛡️ Security Incident Response Center{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+    <span class="badge badge-primary">Defensive Operations</span>
+    <span class="badge badge-info">NIST SP 800-61 Incident Handling</span>
+    <span class="badge badge-secondary">Role-Based Triage</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+    <div>
+      <h1>🛡️ Security Incident Response Center</h1>
+      <p style="max-width:850px;color:var(--text-secondary);line-height:1.6;">
+        Triage, investigate, contain, and resolve organizational cybersecurity incidents. Track responder assignments, document containment actions, and maintain an immutable chronological audit trail.
+      </p>
+    </div>
+    <a href="{{ url_for('main.incident_center_new') }}" class="btn btn-primary" style="white-space:nowrap;">
+      ➕ Log New Security Incident
+    </a>
+  </div>
+</div>
+
+<!-- Incident KPI Summary Cards -->
+<div class="stats-grid fade-in">
+  <div class="stat-card" style="--accent-gradient: linear-gradient(90deg,#3b82f6,#8b5cf6);">
+    <div class="stat-icon" style="background:rgba(59,130,246,0.12);">📋</div>
+    <div class="stat-value">{{ total_sec }}</div>
+    <div class="stat-label">Total Security Incidents</div>
+  </div>
+  <div class="stat-card" style="--accent-gradient: linear-gradient(90deg,#f59e0b,#ec4899);">
+    <div class="stat-icon" style="background:rgba(245,158,11,0.12);">⏳</div>
+    <div class="stat-value">{{ open_sec }}</div>
+    <div class="stat-label">Active / Investigating</div>
+  </div>
+  <div class="stat-card" style="--accent-gradient: linear-gradient(90deg,#ef4444,#f97316);">
+    <div class="stat-icon" style="background:rgba(239,68,68,0.12);">🚨</div>
+    <div class="stat-value">{{ critical_sec }}</div>
+    <div class="stat-label">High / Critical Severity</div>
+  </div>
+  <div class="stat-card" style="--accent-gradient: linear-gradient(90deg,#22c55e,#06b6d4);">
+    <div class="stat-icon" style="background:rgba(34,197,94,0.12);">✅</div>
+    <div class="stat-value">{{ resolved_sec }}</div>
+    <div class="stat-label">Contained &amp; Resolved</div>
+  </div>
+</div>
+
+<!-- Filters Bar -->
+<div class="card mb-24 fade-in">
+  <form method="GET" action="{{ url_for('main.incident_center') }}" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+    <div style="flex:1;min-width:180px;">
+      <label class="form-label" style="font-size:0.75rem;">Search Title</label>
+      <input type="text" name="search" class="form-control" placeholder="Search keywords..." value="{{ search }}">
+    </div>
+
+    <div style="min-width:150px;">
+      <label class="form-label" style="font-size:0.75rem;">Status</label>
+      <select name="status" class="form-control">
+        <option value="">All Statuses</option>
+        {% for st in statuses %}
+        <option value="{{ st }}" {% if status_filter == st %}selected{% endif %}>{{ st }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div style="min-width:150px;">
+      <label class="form-label" style="font-size:0.75rem;">Severity</label>
+      <select name="severity" class="form-control">
+        <option value="">All Severities</option>
+        {% for sev in severities %}
+        <option value="{{ sev }}" {% if sev_filter == sev %}selected{% endif %}>{{ sev }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div style="min-width:180px;">
+      <label class="form-label" style="font-size:0.75rem;">Category</label>
+      <select name="category" class="form-control">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+        <option value="{{ cat }}" {% if cat_filter == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div style="display:flex;gap:6px;">
+      <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+      <a href="{{ url_for('main.incident_center') }}" class="btn btn-secondary btn-sm">Reset</a>
+    </div>
+  </form>
+</div>
+
+<!-- Incidents Table -->
+<div class="card fade-in">
+  <div class="card-header">
+    <span class="card-title">🚨 Active &amp; Historical Incidents ({{ incidents | length }})</span>
+    <span class="badge badge-secondary">User Isolated Records</span>
+  </div>
+
+  {% if incidents %}
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Incident Title</th>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Status</th>
+          <th>Assigned Responder</th>
+          <th>Logged Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inc in incidents %}
+        <tr>
+          <td class="text-mono" style="font-weight:700;">#SEC-{{ inc.id }}</td>
+          <td>
+            <strong>{{ inc.title }}</strong>
+            <div style="font-size:0.75rem;color:var(--text-muted);max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              {{ inc.description }}
+            </div>
+          </td>
+          <td><span class="badge badge-info" style="font-size:0.7rem;">{{ inc.category }}</span></td>
+          <td>
+            {% if inc.severity == 'Critical' %}
+              <span class="badge badge-danger">Critical</span>
+            {% elif inc.severity == 'High' %}
+              <span class="badge badge-warning" style="background:#ea580c;color:#fff;">High</span>
+            {% elif inc.severity == 'Medium' %}
+              <span class="badge badge-warning">Medium</span>
+            {% else %}
+              <span class="badge badge-success">Low</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if inc.status == 'Open' %}
+              <span class="status-badge status-badge-open">● Open</span>
+            {% elif inc.status == 'Investigating' %}
+              <span class="status-badge status-badge-investigating">⚡ Investigating</span>
+            {% elif inc.status == 'Contained' %}
+              <span class="status-badge status-badge-contained">🛡️ Contained</span>
+            {% else %}
+              <span class="status-badge status-badge-resolved">✓ Resolved</span>
+            {% endif %}
+          </td>
+          <td style="font-size:0.8rem;color:var(--text-secondary);">{{ inc.assigned_responder }}</td>
+          <td style="font-size:0.78rem;color:var(--text-muted);">{{ inc.created_at.strftime('%d %b %Y, %H:%M') }}</td>
+          <td>
+            <a href="{{ url_for('main.incident_center_detail', incident_id=inc.id) }}" class="btn btn-ghost btn-sm">
+              Triage →
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">🛡️</div>
+    <h3>No security incidents found</h3>
+    <p>No records match your active search filters, or no incidents have been logged yet.</p>
+    <a href="{{ url_for('main.incident_center_new') }}" class="btn btn-primary mt-16">
+      ➕ Log First Security Incident
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

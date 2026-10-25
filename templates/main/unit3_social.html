@@ -1,0 +1,1644 @@
+{% extends "layout.html" %}
+{% block title %}Unit III – Cyber Laws – VoiceShield AI{% endblock %}
+{% block page_title %}⚖️ Unit III – Cyber Laws &amp; Digital Jurisprudence{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+    <span class="badge badge-info" style="font-weight:700;">Course Code: 171405A</span>
+    <span class="badge badge-secondary">SY B.Tech Computer Engineering</span>
+    <span class="badge badge-primary">Unit III: Cyber Laws</span>
+    <span class="badge badge-success" style="font-size:0.7rem;">Verified Legal Status: October 2026</span>
+  </div>
+  <h1>Unit III: Cyber Laws &amp; Legal Frameworks</h1>
+  <p>Comprehensive educational module on cyber jurisprudence, the Information Technology Act 2000, electronic records and digital signatures, the Digital Personal Data Protection Act 2023, cybercrime scenarios, electronic evidence admissibility, CERT-In compliance, and landmark judicial precedents.</p>
+</div>
+
+<!-- Topic Navigation Pills -->
+<div class="topic-nav-pills fade-in">
+  <a href="#sec-objectives" class="topic-nav-pill">🎯 Objectives</a>
+  <a href="#sec-timeline" class="topic-nav-pill">⏱️ Legal Timeline</a>
+  <a href="#sec-intro" class="topic-nav-pill">🌐 1. Cyber Law Intro</a>
+  <a href="#sec-itact" class="topic-nav-pill">📜 2. IT Act, 2000</a>
+  <a href="#sec-digisig" class="topic-nav-pill">✍️ 3. E-Signatures vs Digital</a>
+  <a href="#sec-privacy" class="topic-nav-pill">🛡️ 4. Privacy &amp; DPDP 2023</a>
+  <a href="#sec-scenarios" class="topic-nav-pill">⚖️ 5. Cybercrime Scenarios</a>
+  <a href="#sec-ip" class="topic-nav-pill">💡 6. Intellectual Property</a>
+  <a href="#sec-evidence" class="topic-nav-pill">🔬 7. Electronic Evidence</a>
+  <a href="#sec-cert" class="topic-nav-pill">🚨 8. CERT-In Compliance</a>
+  <a href="#sec-cases" class="topic-nav-pill">📖 9. Case Studies</a>
+  <a href="#sec-citizenship" class="topic-nav-pill">🤝 10. Digital Citizenship</a>
+  <a href="#sec-checker" class="topic-nav-pill">🔍 Scam Checker Tool</a>
+  <a href="#sec-glossary" class="topic-nav-pill">📚 Glossary</a>
+  <a href="#sec-references" class="topic-nav-pill">🔗 References</a>
+  <a href="#sec-progress" class="topic-nav-pill">📊 Progress Tracker</a>
+  <a href="#sec-quiz" class="topic-nav-pill" style="border-color:var(--accent);color:var(--accent);font-weight:600;">📝 Knowledge Quiz</a>
+</div>
+
+<!-- Section: Learning Objectives -->
+<div class="card mb-24 fade-in" id="sec-objectives">
+  <div class="card-header">
+    <span class="card-title">🎯 Learning Objectives</span>
+    <span class="badge badge-info">Course 171405A Syllabus</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;">
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent);display:block;margin-bottom:4px;">1. Legal Jurisprudence</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Understand the necessity of cyber laws for digital commerce, electronic communication, data protection, and cross-border jurisdiction.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent-2);display:block;margin-bottom:4px;">2. IT Act, 2000 &amp; Amendments</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Master civil liability (Sec 43) vs criminal offences (Sec 65-72), recognize why Section 66A was struck down, and analyze procedural safeguards.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-low);display:block;margin-bottom:4px;">3. Privacy &amp; Signatures</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Differentiate electronic vs digital signatures (PKI, Certifying Authorities) and evaluate the DPDP Act 2023 framework and transition status.</span>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-high);display:block;margin-bottom:4px;">4. Evidence &amp; Compliance</strong>
+      <span style="font-size:0.85rem;color:var(--text-secondary);">Examine electronic evidence integrity (hashes vs authenticity), CERT-In 6-hour reporting directions, and landmark Supreme Court rulings.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Visual Timeline: Indian Cyber Law Milestones -->
+<div class="card mb-24 fade-in" id="sec-timeline">
+  <div class="card-header">
+    <span class="card-title">⏱️ Visual Timeline of Indian Cyber Law &amp; Data Protection</span>
+    <span class="badge badge-info">Historical Evolution</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">
+    The legal architecture governing digital technology in India has evolved from early e-commerce recognition to comprehensive data privacy and incident response compliance:
+  </p>
+  <div class="law-timeline">
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot"></div>
+      <div class="law-timeline-date">June &ndash; October 2000</div>
+      <div class="law-timeline-content">
+        <h4>Enactment of the Information Technology Act, 2000 (Act No. 21 of 2000)</h4>
+        <p>India enacted its foundational cyber law based on the UNCITRAL Model Law on Electronic Commerce (1996), giving legal recognition to electronic records, digital signatures, and establishing penalties for unauthorized access (Section 43).</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot"></div>
+      <div class="law-timeline-date">November 2004</div>
+      <div class="law-timeline-content">
+        <h4>State of Tamil Nadu v. Suhas Katti &ndash; Landmark Section 67 Conviction</h4>
+        <p>First recorded conviction in India under Section 67 of the IT Act, 2000, establishing criminal liability for posting obscene and defamatory content online and demonstrating the evidentiary value of ISP logs and electronic records.</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot"></div>
+      <div class="law-timeline-date">October 2008 &ndash; 2009</div>
+      <div class="law-timeline-content">
+        <h4>Information Technology (Amendment) Act, 2008</h4>
+        <p>Major overhaul introducing Section 43A (compensation for failure to protect sensitive data), Section 66A to 66F (cyberterrorism, identity theft, cheating by personation, privacy violation), and formalizing CERT-In under Section 70B.</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot struckdown"></div>
+      <div class="law-timeline-date" style="color:var(--risk-high);">March 24, 2015</div>
+      <div class="law-timeline-content" style="border-left:3px solid var(--risk-high);">
+        <h4>Shreya Singhal v. Union of India &ndash; Section 66A Struck Down</h4>
+        <p>The Supreme Court of India unanimously struck down Section 66A in its entirety as unconstitutional under Article 19(1)(a). The Court held that criminalizing "offensive" online speech without clear bounds created an impermissible chilling effect on free speech.</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot privacy"></div>
+      <div class="law-timeline-date" style="color:var(--risk-low);">August 24, 2017</div>
+      <div class="law-timeline-content" style="border-left:3px solid var(--risk-low);">
+        <h4>Justice K.S. Puttaswamy (Retd.) v. Union of India &ndash; Right to Privacy</h4>
+        <p>A unanimous 9-judge bench of the Supreme Court held that the Right to Privacy is a fundamental right under Article 21 of the Constitution. This historic judgment mandated the drafting of comprehensive data protection legislation in India.</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot cert"></div>
+      <div class="law-timeline-date" style="color:var(--risk-medium);">April 2022</div>
+      <div class="law-timeline-content" style="border-left:3px solid var(--risk-medium);">
+        <h4>CERT-In Cybersecurity Directions 2022 Issued</h4>
+        <p>Issued under Section 70B(6), establishing mandatory 6-hour cybersecurity incident reporting for covered organizations, 180-day log retention within Indian jurisdiction, and strict NTP system clock synchronization.</p>
+      </div>
+    </div>
+    <div class="law-timeline-item">
+      <div class="law-timeline-dot privacy"></div>
+      <div class="law-timeline-date" style="color:var(--risk-low);">August 2023 &ndash; Phased Rollout (2025&ndash;2027)</div>
+      <div class="law-timeline-content" style="border-left:3px solid var(--risk-low);">
+        <h4>Digital Personal Data Protection Act, 2023 (DPDP Act) Enactment &amp; Official Commencement</h4>
+        <p>Enacted on August 11, 2023 (Act No. 22 of 2023). Under Official Gazette Notification <strong>G.S.R. 843(E) (Nov 13, 2025)</strong>, provisions commence in three phases: <em>Phase 1 (Nov 13, 2025)</em> operationalized preliminary definitions and established the Data Protection Board of India (DPBI); <em>Phase 2 (Nov 13, 2026)</em> activates consent-manager notices and inquiry procedures; <em>Phase 3 (May 13, 2027)</em> brings substantive Data Fiduciary obligations and Data Principal rights (Sections 3&ndash;17) into full effect.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 1: Introduction to Cyber Law -->
+<div class="card mb-24 fade-in" id="sec-intro">
+  <div class="card-header">
+    <span class="card-title">🌐 Topic 1: Introduction to Cyber Law &amp; Digital Jurisprudence</span>
+    <span class="badge badge-info">Foundations</span>
+  </div>
+  <p><strong>Cyber law</strong> (also known as Internet law or digital law) is the domain of legal jurisprudence that oversees the digital universe, including computers, telecommunications, software, data storage, electronic financial transactions, and internet communications.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0;">
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:6px;">Why Legal Rules are Necessary</h4>
+      <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.55;">
+        In the physical world, property boundaries, paper signatures, and physical locks provide tangible order. In cyberspace, electronic transactions occur instantaneously across invisible boundaries. Cyber laws are essential to:
+      </p>
+      <ul style="font-size:0.82rem;color:var(--text-secondary);padding-left:18px;margin-top:6px;line-height:1.55;">
+        <li>Provide <strong>legal validity</strong> to paperless contracts, electronic invoices, and digital signatures.</li>
+        <li>Define and criminalize unlawful activities (hacking, malware deployment, unauthorized access, identity impersonation).</li>
+        <li>Protect fundamental individual rights: personal privacy, confidentiality, and data autonomy.</li>
+        <li>Regulate intermediaries (platforms, cloud providers, ISPs) and allocate civil/criminal responsibility.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent-2);margin-bottom:6px;">Technology, Ethics &amp; Legal Responsibility</h4>
+      <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.55;">
+        Technology moves faster than the legislative process. Consequently, legal compliance is the minimum baseline, whereas ethical responsibility guides security professionals:
+      </p>
+      <ul style="font-size:0.82rem;color:var(--text-secondary);padding-left:18px;margin-top:6px;line-height:1.55;">
+        <li><strong>Dual-Use Technologies:</strong> Packet sniffers (Wireshark), port scanners (Nmap), and voice synthesis tools can be used for vital defensive testing or illegal surveillance. Authorization determines legality.</li>
+        <li><strong>Security Testing:</strong> Finding a vulnerability does not give permission to exploit it. Testing without explicit written consent constitutes unauthorized access under Section 43/66.</li>
+        <li><strong>Duty of Care:</strong> Software developers and systems engineers have an ethical and legal obligation to avoid deploying known dangerous flaws.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-low);margin-bottom:6px;">Cyberspace Jurisdiction &amp; Section 75</h4>
+      <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.55;">
+        Traditional law relies on physical territorial jurisdiction (where the person physically stood). In cyberspace, an attack can involve multiple geographic jurisdictions simultaneously:
+      </p>
+      <ul style="font-size:0.82rem;color:var(--text-secondary);padding-left:18px;margin-top:6px;line-height:1.55;">
+        <li>A perpetrator located in Country A.</li>
+        <li>Using proxy cloud servers located in Country B.</li>
+        <li>Targeting a bank database in India (Country C).</li>
+        <li>Defrauding victims residing across different Indian states.</li>
+      </ul>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;">
+        <strong>Section 75 of IT Act:</strong> Expressly grants <em>extra-territorial jurisdiction</em>. The Act applies to any offence committed outside India by any person, irrespective of nationality, if the act involves a computer, system, or network located in India.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 2: Information Technology Act, 2000 -->
+<div class="card mb-24 fade-in" id="sec-itact">
+  <div class="card-header">
+    <span class="card-title">📜 Topic 2: The Information Technology Act, 2000 &amp; Statutory Provisions</span>
+    <span class="badge badge-primary">Core Indian Legislation</span>
+  </div>
+  <p>The <strong>Information Technology Act, 2000 (IT Act)</strong>, enacted on June 9, 2000, and notified on October 17, 2000, is the primary statutory enactment in India dealing with cybercrime and electronic commerce. It was substantially amended by the <strong>Information Technology (Amendment) Act, 2008</strong>.</p>
+
+  <div class="legal-callout warning">
+    <strong style="color:var(--risk-high);font-size:0.95rem;display:block;margin-bottom:4px;">
+      ⚠️ Critical Legal Accuracy Requirement: Status of Section 66A
+    </strong>
+    Section 66A was <strong>STRUCK DOWN IN ITS ENTIRETY</strong> by the Supreme Court of India in the landmark judgment <em>Shreya Singhal v. Union of India (2015)</em>. The Supreme Court declared Section 66A unconstitutional because it violated the fundamental right to freedom of speech and expression under Article 19(1)(a) of the Constitution of India. <strong>Section 66A is NOT valid current law</strong>. It must never be described as an active criminal provision, and the Supreme Court in 2021 and 2022 issued binding directives to all state police forces prohibiting the registration of FIRs under Section 66A.
+  </div>
+
+  <div class="legal-callout info">
+    <strong style="color:var(--accent);display:block;margin-bottom:4px;">
+      Distinguishing Legal Categories in Cyber Law:
+    </strong>
+    Indian cyber law carefully separates different mechanisms:
+    <span style="display:block;margin-top:4px;">
+      &bull; <strong>Civil Liability (e.g., Section 43):</strong> Remedial, compensatory actions determined by an Adjudicating Officer (Director/Secretary of IT) to award monetary compensation for damages without criminal imprisonment.<br>
+      &bull; <strong>Criminal Offences (e.g., Sections 65, 66, 66C, 66D, 66F, 67):</strong> Punitive actions prosecuted by law enforcement before judicial magistrates requiring proof of <em>mens rea</em> (criminal intent, dishonesty, or fraud), carrying imprisonment and criminal fines.<br>
+      &bull; <strong>Procedural Powers (e.g., Section 69, 69A):</strong> Lawful interception, decryption, or blocking powers exerciseable only by authorized agencies with rigorous procedural safeguards.<br>
+      &bull; <strong>Regulatory Obligations (e.g., Section 70B):</strong> Compliance mandates issued by CERT-In governing incident reporting and log retention.
+    </span>
+  </div>
+
+  <h3 style="margin-top:20px;font-size:1.05rem;color:var(--text-primary);">Statutory Provisions Reference Table</h3>
+  <div class="legal-table-wrapper">
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Nature</th>
+          <th>Core Subject &amp; Essential Elements</th>
+          <th>Prescribed Statutory Penalty / Remedy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Section 43</strong></td>
+          <td><span class="pill-type pill-civil">Civil Liability</span></td>
+          <td>
+            <strong>Penalty and Compensation for Damage to Computer System:</strong><br>
+            Unauthorized access, downloading, copying data, introducing computer contaminant/virus, damaging systems, disrupting services, or denying access.
+          </td>
+          <td>Liable to pay compensation by way of damages to the affected person (adjudicated by the Adjudicating Officer).</td>
+        </tr>
+        <tr>
+          <td><strong>Section 43A</strong></td>
+          <td><span class="pill-type pill-civil">Civil (Historical)</span></td>
+          <td>
+            <strong>Compensation for Failure to Protect Data:</strong><br>
+            Mandated body corporates handling sensitive personal data or information (SPDI) to implement reasonable security practices.<br>
+            <em>*Current status: Slated for formal omission as the Digital Personal Data Protection Act, 2023 takes full effect.</em>
+          </td>
+          <td>Liable to pay damages by way of compensation to affected individuals.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 65</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Tampering with Computer Source Documents:</strong><br>
+            Knowingly or intentionally concealing, destroying, or altering computer source code required to be kept or maintained by law.
+          </td>
+          <td>Imprisonment up to 3 years, or fine up to ₹2,00,000, or both.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 66</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Computer Related Offences:</strong><br>
+            Committing any act referred to in Section 43 dishonestly or fraudulently (adds criminal intent / <em>mens rea</em> to the Section 43 acts).
+          </td>
+          <td>Imprisonment up to 3 years, or fine up to ₹5,00,000, or both.</td>
+        </tr>
+        <tr style="background:rgba(239,68,68,0.04);">
+          <td><strong>Section 66A</strong></td>
+          <td><span class="pill-type pill-struckdown">STRUCK DOWN</span></td>
+          <td>
+            <strong>Struck Down by Supreme Court:</strong><br>
+            Originally penalized sending offensive messages through communication services. Declared unconstitutional in <em>Shreya Singhal (2015)</em>.
+          </td>
+          <td><strong>VOID &amp; INOPERATIVE.</strong> No arrests or FIRs permitted under this section.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 66C</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Punishment for Identity Theft:</strong><br>
+            Dishonestly or fraudulently making use of the electronic signature, password, or any other unique identification feature of any other person.
+          </td>
+          <td>Imprisonment up to 3 years and fine up to ₹1,00,000.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 66D</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Cheating by Personation using Computer Resource:</strong><br>
+            Cheating by personating any person using any communication device or computer resource (directly applies to phone/voice cloning scams and spoofing).
+          </td>
+          <td>Imprisonment up to 3 years and fine up to ₹1,00,000.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 66E</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Punishment for Violation of Privacy:</strong><br>
+            Intentionally capturing, publishing, or transmitting the image of a private area of any person without consent under circumstances violating privacy.
+          </td>
+          <td>Imprisonment up to 3 years, or fine up to ₹2,00,000, or both.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 66F</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Punishment for Cyberterrorism:</strong><br>
+            Acts done with intent to threaten unity, integrity, security, or sovereignty of India, or strike terror in people by denying access, unauthorized access to computer resource, or introducing contaminants.
+          </td>
+          <td>Punishable with <strong>imprisonment for life</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 67 / 67A / 67B</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Obscene, Sexually Explicit &amp; CSAM Electronic Material:</strong><br>
+            Sec 67: publishing/transmitting obscene content. Sec 67A: sexually explicit acts. Sec 67B: child sexual abuse or exploitation material in electronic form.
+          </td>
+          <td>Sec 67: Up to 3 yrs (first), 5 yrs (second). Sec 67A/B: Up to 5 yrs (first), 7 yrs (second) + heavy fines.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 69 &amp; Section 69A</strong></td>
+          <td><span class="pill-type pill-procedural">Procedural Power</span></td>
+          <td>
+            <strong>Lawful Interception &amp; Public Access Blocking:</strong><br>
+            Section 69: Interception, monitoring, or decryption by authorized agencies for sovereignty and security of India with procedural safeguards. Section 69A: Blocking website access for public order or sovereignty with written recorded reasons.
+          </td>
+          <td>Failure of intermediary to assist: Imprisonment up to 7 years and fine.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 70</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Protected Systems:</strong><br>
+            Unauthorized access or attempt to access computer systems designated by the appropriate government as Critical Information Infrastructure (CII).
+          </td>
+          <td>Imprisonment up to <strong>10 years</strong> and fine.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 70B</strong></td>
+          <td><span class="pill-type pill-regulatory">Regulatory Body</span></td>
+          <td>
+            <strong>Indian Computer Emergency Response Team (CERT-In):</strong><br>
+            Statutory appointment of CERT-In as the national agency for incident response, cyber security forecasting, advisories, coordination, and mandatory reporting directions.
+          </td>
+          <td>Non-compliance with directions: Punishable under Section 70B(7) with imprisonment up to 1 year or fine up to ₹1,00,000.</td>
+        </tr>
+        <tr>
+          <td><strong>Section 72 / 72A</strong></td>
+          <td><span class="pill-type pill-criminal">Criminal Offence</span></td>
+          <td>
+            <strong>Breach of Confidentiality &amp; Disclosure in Breach of Contract:</strong><br>
+            Sec 72: Disclosing records accessed under statutory powers without consent. Sec 72A: Intermediary or contractor disclosing personal info without consent.
+          </td>
+          <td>Sec 72: Up to 2 yrs or ₹1,00,000. Sec 72A: Up to 3 yrs or ₹5,00,000 fine, or both.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Topic 3: Electronic Records and Digital Signatures -->
+<div class="card mb-24 fade-in" id="sec-digisig">
+  <div class="card-header">
+    <span class="card-title">✍️ Topic 3: Electronic Records &amp; Digital Signatures</span>
+    <span class="badge badge-info">PKI &amp; Authentication</span>
+  </div>
+  <p>The IT Act provides statutory equivalence between electronic records and traditional paper records (Section 4), and recognizes electronic authentication methods (Section 5). Understanding the distinction between general electronic signatures and asymmetric digital signatures is critical for cybersecurity engineers.</p>
+
+  <h3 style="margin-top:16px;font-size:1rem;color:var(--text-primary);">Electronic Signature vs. Digital Signature Comparison</h3>
+  <div class="legal-table-wrapper">
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Electronic Signature (E-Signature)</th>
+          <th>Digital Signature</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Legal Scope</strong></td>
+          <td>Broad legal umbrella term covering any electronic sound, symbol, or process attached to a document indicating intent to sign (e.g., Aadhaar eSign, OTP-based click-through, stylus mark).</td>
+          <td>A specific, mathematically verified technical implementation under the electronic signature umbrella utilizing asymmetric Public Key Infrastructure (PKI).</td>
+        </tr>
+        <tr>
+          <td><strong>Cryptographic Basis</strong></td>
+          <td>May or may not utilize cryptography. Can be as simple as an email sign-off or digitized handwritten image.</td>
+          <td>Strictly based on asymmetric key cryptography (RSA/ECC) paired with a secure cryptographic hash function (e.g., SHA-256).</td>
+        </tr>
+        <tr>
+          <td><strong>Key Pair Used</strong></td>
+          <td>Does not necessarily rely on a public/private cryptographic key pair.</td>
+          <td>Requires a private signing key (kept secret by signer) and a public verification key (published in a digital certificate).</td>
+        </tr>
+        <tr>
+          <td><strong>Integrity Assurance</strong></td>
+          <td>Vulnerable to subsequent tampering unless anchored by independent audit trails.</td>
+          <td>Tamper-evident: Any bit-level modification to the signed document invalidates the mathematical hash check.</td>
+        </tr>
+        <tr>
+          <td><strong>Regulatory Authority</strong></td>
+          <td>Governed under Section 3A of the IT Act and notified electronic signature techniques.</td>
+          <td>Regulated under Section 3 &amp; 35 of IT Act by the <strong>Controller of Certifying Authorities (CCA)</strong> under MeitY.</td>
+        </tr>
+        <tr>
+          <td><strong>Non-Repudiation</strong></td>
+          <td>Weak to moderate; easier for signer to challenge identity in court.</td>
+          <td>Very strong legal presumption of non-repudiation when executed with a valid Licensed CA Certificate.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:16px;">
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:6px;">Role of Certifying Authorities (CAs)</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Under Section 17-34 of the IT Act, the <strong>Controller of Certifying Authorities (CCA)</strong> licenses and oversees Certifying Authorities (e.g., eMudhra, (n)Code, NIC, CDAC). CAs issue Digital Signature Certificates (DSC Class 3) to verified individuals and organizations after rigorous identity verification.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-low);margin-bottom:6px;">Authentication &amp; Non-Repudiation</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        <strong>Authentication:</strong> Guarantees that the document was created by the entity holding the private key.<br>
+        <strong>Integrity:</strong> Confirms that the message has not been altered in transit.<br>
+        <strong>Non-Repudiation:</strong> The sender cannot dispute the authenticity of their signature on the document.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-high);margin-bottom:6px;">Protecting the Private Key</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        A digital signature is legally binding. If an attacker gains access to a user's private key (via token theft, malware, or phishing), the attacker can execute contracts or approve transactions in the user's name. Private keys must be stored in hardware cryptographic tokens (FIPS 140-2 Level 2/3) and protected with strict PINs.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 4: Privacy & Data Protection in India -->
+<div class="card mb-24 fade-in" id="sec-privacy">
+  <div class="card-header">
+    <span class="card-title">🛡️ Topic 4: Privacy &amp; Data Protection in India (DPDP Act, 2023)</span>
+    <span class="badge badge-success">DPDP Act Framework</span>
+  </div>
+  <p>Following the 2017 Supreme Court <em>Puttaswamy</em> privacy ruling, India enacted the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act, Act No. 22 of 2023)</strong>, which received Presidential assent on August 11, 2023.</p>
+
+  <div class="legal-callout success">
+    <strong style="color:var(--risk-low);display:block;margin-bottom:4px;">
+      Legal Status Check (October 2026): Official Commencement Notification &amp; Phased Schedule
+    </strong>
+    Under Section 1(2) of the DPDP Act, the Central Government notified the phased commencement schedule via Gazette Notification <strong>G.S.R. 843(E) dated November 13, 2025</strong> following the publication of the draft DPDP Rules, 2025:
+    <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:18px;margin-top:6px;line-height:1.55;">
+      <li><strong>Phase 1 (Immediate &ndash; Nov 13, 2025):</strong> Section 1(2), Section 2 (definitions), Sections 18&ndash;26 (constitution, terms, and powers of the Data Protection Board of India), and rulemaking powers in Section 44 came into force.</li>
+      <li><strong>Phase 2 (1 Year &ndash; Nov 13, 2026):</strong> Section 6(9) (notice regarding consent managers) and Section 27(1)(d) (inquiry powers) become active.</li>
+      <li><strong>Phase 3 (18 Months &ndash; May 13, 2027):</strong> Substantive Data Fiduciary compliance duties, breach notifications, and Data Principal rights (Sections 3 to 17, Sections 28 to 34) take full legal effect.</li>
+    </ul>
+    Until substantive sections are operational, transitional compliance continues under Section 43A of the IT Act (SPDI Rules 2011).
+  </div>
+
+  <h3 style="margin-top:16px;font-size:1rem;color:var(--text-primary);">Core Principles of Data Protection</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0;">
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent);font-size:0.85rem;">1. Purpose Limitation</strong>
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin:4px 0 0;">Process personal data strictly for the specified, lawful purpose for which consent was obtained.</p>
+    </div>
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent-2);font-size:0.85rem;">2. Data Minimisation</strong>
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin:4px 0 0;">Collect only the personal data strictly necessary to fulfill the intended purpose.</p>
+    </div>
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-low);font-size:0.85rem;">3. Storage Limitation</strong>
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin:4px 0 0;">Retain personal data only as long as necessary for the specified purpose or legal compliance.</p>
+    </div>
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-high);font-size:0.85rem;">4. Security Safeguards</strong>
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin:4px 0 0;">Implement reasonable technical and organizational measures to prevent data breaches.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px;font-size:1rem;color:var(--text-primary);">DPDP Act Key Statutory Roles &amp; Rights</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;">
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:8px;">Data Principal Rights</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:8px;">
+        A <strong>Data Principal</strong> is the natural person to whom the personal data relates:
+      </p>
+      <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:18px;line-height:1.6;">
+        <li><strong>Right to Access:</strong> Summary of personal data processed, identities of fiduciaries shared with.</li>
+        <li><strong>Right to Correction &amp; Erasure:</strong> Rectify inaccurate, misleading, or outdated personal data; request erasure once purpose is served.</li>
+        <li><strong>Right of Grievance Redressal:</strong> Accessible grievance redressal mechanism provided by Data Fiduciary.</li>
+        <li><strong>Right to Nominate:</strong> Nominate an individual to exercise rights in event of death or incapacity.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent-2);margin-bottom:8px;">Data Fiduciary Responsibilities</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:8px;">
+        A <strong>Data Fiduciary</strong> is the entity determining the purpose and means of data processing:
+      </p>
+      <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:18px;line-height:1.6;">
+        <li><strong>Notice &amp; Consent:</strong> Itemized, clear notice with the statutory option for the Data Principal to access the notice in English or any one language specified in the Eighth Schedule to the Constitution (Section 5(3)). Individual notices do not need to contain all 22 languages simultaneously.</li>
+        <li><strong>Breach Notification:</strong> Mandatory reporting of personal data breaches to the Data Protection Board and affected Data Principals.</li>
+        <li><strong>Significant Data Fiduciary (SDF):</strong> High-volume entities must appoint a resident DPO, independent auditor, and conduct DPIAs.</li>
+        <li><strong>Penalties:</strong> Up to ₹250 crore for failure to implement reasonable security safeguards preventing breach.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 5: Cybercrime Scenarios & Legal Consequences -->
+<div class="card mb-24 fade-in" id="sec-scenarios">
+  <div class="card-header">
+    <span class="card-title">⚖️ Topic 5: Cybercrime Scenarios &amp; Potential Legal Considerations</span>
+    <span class="badge badge-high">Practical Application</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:6px;">
+    In real cyber investigations, legal sections are determined based on specific facts, evidence, intent, and jurisdiction. The following 7 scenarios illustrate common cyber threats, their potential statutory considerations, and defensive safeguards.
+  </p>
+  <div class="scenario-grid">
+    <!-- Scenario 1 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">👤</span>
+        <span class="scenario-badge badge-warning">Identity Misuse</span>
+      </div>
+      <h4>1. Identity Theft &amp; SIM Swap</h4>
+      <div class="scenario-narrative">
+        An attacker uses forged Aadhaar documents to initiate a fraudulent SIM swap on a victim's phone number, intercepting banking 2FA SMS tokens to drain their savings account.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 66C:</strong> Identity theft using unique ID features.<br>
+        &bull; <strong>IT Act Sec 66D:</strong> Cheating by personation using computer resource.<br>
+        &bull; <strong>BNS / IPC:</strong> Forgery, fraudulent impersonation, cheating.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Use app-based authenticator apps or FIDO2 hardware keys rather than SMS 2FA. Set a carrier account PIN.
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">🎣</span>
+        <span class="scenario-badge badge-high">Financial Fraud</span>
+      </div>
+      <h4>2. Spear Phishing &amp; Credential Theft</h4>
+      <div class="scenario-narrative">
+        An employee receives an email mimicking the company's HR portal requesting "urgent benefits confirmation". The link directs to a counterfeit credential-harvesting server.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 43(a):</strong> Unauthorized access to computer resources.<br>
+        &bull; <strong>IT Act Sec 66:</strong> Dishonest computer-related offences.<br>
+        &bull; <strong>IT Act Sec 66D:</strong> Cheating by personation.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Check domain URLs carefully; implement SPF/DKIM/DMARC; enforce hardware WebAuthn MFA.
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">💾</span>
+        <span class="scenario-badge badge-info">Data Exfiltration</span>
+      </div>
+      <h4>3. Unauthorized Access &amp; Data Theft</h4>
+      <div class="scenario-narrative">
+        A resigning developer uses their existing database credentials to download proprietary customer datasets and source code to an external drive to sell to a competitor.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 43(a) &amp; (b):</strong> Unauthorized downloading and copying of data.<br>
+        &bull; <strong>IT Act Sec 65:</strong> Tampering with computer source documents.<br>
+        &bull; <strong>IT Act Sec 72 / 72A:</strong> Breach of confidentiality and contract.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Enforce Least Privilege; deploy Data Loss Prevention (DLP); revoke access immediately upon resignation.
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">📱</span>
+        <span class="scenario-badge badge-critical">Harassment</span>
+      </div>
+      <h4>4. Cyberstalking &amp; Online Harassment</h4>
+      <div class="scenario-narrative">
+        An individual creates multiple fake social media handles to relentlessly track, harass, and distribute defamatory and non-consensual private photos of a former colleague.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 66E:</strong> Violation of bodily privacy without consent.<br>
+        &bull; <strong>IT Act Sec 67 / 67A:</strong> Transmitting obscene or explicit electronic material.<br>
+        &bull; <strong>BNS / IPC:</strong> Cyberstalking, criminal intimidation, outraging modesty.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Preserve screenshots with timestamped URLs; report handles to platform safety teams and at cybercrime.gov.in.
+      </div>
+    </div>
+
+    <!-- Scenario 5 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">💳</span>
+        <span class="scenario-badge badge-warning">Payment Scam</span>
+      </div>
+      <h4>5. Digital Payment &amp; QR Code Scam</h4>
+      <div class="scenario-narrative">
+        A fraudster posing as an online buyer sends a merchant a QR code claiming: "Scan this QR code and enter your UPI PIN to receive payment of ₹15,000 immediately."
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 66D:</strong> Cheating by personation using communication device.<br>
+        &bull; <strong>IT Act Sec 43:</strong> Unlawful manipulation of digital system.<br>
+        &bull; <strong>BNS / IPC:</strong> Cheating and dishonestly inducing delivery of property.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Never enter your UPI PIN to receive money. A PIN is strictly required for debiting (sending) money.
+      </div>
+    </div>
+
+    <!-- Scenario 6 -->
+    <div class="scenario-card">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">🔒</span>
+        <span class="scenario-badge badge-critical">Extortion</span>
+      </div>
+      <h4>6. Ransomware on Healthcare Systems</h4>
+      <div class="scenario-narrative">
+        Cybercriminals exploit an unpatched VPN vulnerability to deploy ransomware across a hospital network, encrypting electronic patient health records and demanding 10 Bitcoin.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 43(c) &amp; (e):</strong> Introducing contaminant and disrupting services.<br>
+        &bull; <strong>IT Act Sec 66:</strong> Dishonest computer offences.<br>
+        &bull; <strong>IT Act Sec 66F / 70:</strong> Cyberterrorism / attack on protected healthcare infrastructure.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Maintain immutable offline 3-2-1 backups; segment critical clinical networks; report within 6 hours to CERT-In.
+      </div>
+    </div>
+
+    <!-- Scenario 7 -->
+    <div class="scenario-card" style="border:1px solid rgba(59,130,246,0.3);background:rgba(59,130,246,0.03);">
+      <div class="scenario-card-header">
+        <span class="scenario-icon">🎙️</span>
+        <span class="scenario-badge badge-primary">VoiceShield AI Focus</span>
+      </div>
+      <h4>7. AI-Generated Voice Impersonation Fraud</h4>
+      <div class="scenario-narrative">
+        A scammer uses a 10-second sample from an executive's public conference talk to train a generative voice clone. The clone calls a finance manager demanding an urgent ₹5,00,000 vendor transfer.
+      </div>
+      <div class="scenario-legal-box">
+        <strong>Potential Legal Considerations:</strong><br>
+        &bull; <strong>IT Act Sec 66D:</strong> Cheating by personation using computer resource.<br>
+        &bull; <strong>IT Act Sec 66C:</strong> Identity theft (misuse of biological/voice feature).<br>
+        &bull; <strong>Criminal Law:</strong> Fraud, forgery, criminal conspiracy.
+      </div>
+      <div class="scenario-prevention-box">
+        <strong>🛡️ Prevention Advice:</strong> Establish mandatory out-of-band verification via known secondary channel; establish a pre-agreed verbal passphrase; run recording through VoiceShield AI acoustic analysis.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 6: Intellectual Property and Digital Content -->
+<div class="card mb-24 fade-in" id="sec-ip">
+  <div class="card-header">
+    <span class="card-title">💡 Topic 6: Intellectual Property &amp; Digital Content in Cyberspace</span>
+    <span class="badge badge-info">IP Protection</span>
+  </div>
+  <p>Software, databases, digital content, and brand identities are protected under India's Intellectual Property framework, primarily the <strong>Copyright Act, 1957</strong>, the <strong>Trade Marks Act, 1999</strong>, and the <strong>Patents Act, 1970</strong>.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:14px;">
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:6px;">Copyright &amp; Software Licensing</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Under Section 2(o) of the Copyright Act, computer programs and source code are protected as "literary works".
+      </p>
+      <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:16px;margin-top:6px;line-height:1.5;">
+        <li><strong>Open Source Licenses:</strong> Permissive (MIT, Apache 2.0, BSD) grant broad reuse rights; Copyleft (GPLv3) requires downstream derivatives to remain open source.</li>
+        <li><strong>Software Piracy:</strong> Unauthorized copying, cracking, or commercial distribution of proprietary software is illegal and exposes organizations to severe backdoor malware risks.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent-2);margin-bottom:6px;">Trademarks &amp; Cybersquatting</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Trademarks protect brand names, logos, and domain identities against deceptive similarity and consumer confusion.
+      </p>
+      <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:16px;margin-top:6px;line-height:1.5;">
+        <li><strong>Cybersquatting &amp; Typosquatting:</strong> Registering domain names identical or confusingly similar to well-known brands (e.g., <code>voiceshield-login.com</code>) to deceive users.</li>
+        <li><strong>Dispute Mechanisms:</strong> Resolved under the .IN Domain Name Dispute Resolution Policy (INDRP) operated by NIXI, or WIPO's Uniform Domain-Name Dispute-Resolution Policy (UDRP).</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-low);margin-bottom:6px;">Ethical Use of AI Content</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Generative AI technologies raise critical copyright and ethical considerations:
+      </p>
+      <ul style="font-size:0.8rem;color:var(--text-secondary);padding-left:16px;margin-top:6px;line-height:1.5;">
+        <li><strong>Authorship:</strong> Under Indian copyright law, copyright requires human intellectual effort. Purely machine-generated content without human authorship has uncertain copyright status.</li>
+        <li><strong>Voice &amp; Likeness Rights:</strong> Generating synthetic voice clones of real individuals without their explicit authorization infringes personality rights and constitutes deception under Section 66D.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 7: Electronic Evidence and Incident Reporting -->
+<div class="card mb-24 fade-in" id="sec-evidence">
+  <div class="card-header">
+    <span class="card-title">🔬 Topic 7: Electronic Evidence &amp; Incident Reporting</span>
+    <span class="badge badge-primary">Digital Forensics</span>
+  </div>
+  <p>Electronic evidence is inherently intangible, easily modified, and highly volatile. A single accidental mouse click can alter file modification timestamps or temporary disk swap caches. Understanding legal standards for preserving digital evidence is crucial for technical analysts.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:8px;">Forensic Preservation &amp; Chain of Custody</h4>
+      <ul style="font-size:0.82rem;color:var(--text-secondary);padding-left:18px;line-height:1.6;">
+        <li><strong>Write-Blockers:</strong> Hardware or software write-blockers must be attached before mounting storage media to prevent write operations.</li>
+        <li><strong>Bit-Stream Forensic Imaging:</strong> Creating a raw bit-for-bit duplicate (e.g., <code>.dd</code> or <code>.E01</code>) of the source storage drive. Analysis is performed only on working copies, never on the original evidence.</li>
+        <li><strong>Chain of Custody:</strong> A contemporaneous, chronological log documenting every person who collected, transferred, stored, analyzed, or accessed the evidence. A broken chain of custody can render evidence inadmissible in court.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-surface);padding:16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-high);margin-bottom:8px;">Crucial Distinction: Integrity vs. Authenticity</h4>
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);padding:10px 12px;border-radius:var(--radius-sm);margin-bottom:8px;">
+        <strong style="color:var(--risk-high);font-size:0.82rem;">⚠️ Cryptographic Hashes Are Not Proof of Authenticity:</strong>
+        <p style="font-size:0.78rem;color:var(--text-secondary);margin:4px 0 0;">
+          A SHA-256 hash verifies <strong>data integrity</strong> (i.e., that the electronic file has not changed by a single bit since the hash was calculated). <strong>It does NOT prove that the recording is genuine or authentic!</strong> A synthetic AI voice clone generated by an attacker will still produce a valid, immutable SHA-256 hash. Proving whether the audio is real or synthetic requires forensic acoustic inspection.
+        </p>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-secondary);">
+        <strong>Statutory Certificate:</strong> Under Section 65B of the Indian Evidence Act, 1872 (and Section 63 of the Bharatiya Sakshya Adhiniyam, 2023), electronic records produced by a computer require a signed statutory certificate certifying the lawful custody and normal operation of the computer system during production.
+      </p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:16px;font-size:1rem;color:var(--text-primary);">Official Incident Reporting Channels in India</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:10px;">
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--accent);font-size:0.85rem;">National Cyber Crime Portal</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:4px 0 0;">
+        <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener">cybercrime.gov.in</a> &ndash; Official portal for citizens to register cybercrime complaints, especially financial fraud and child sexual abuse material.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-low);font-size:0.85rem;">National Helpline 1930</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:4px 0 0;">
+        Toll-free 24/7 Citizen Financial Cyber Fraud Reporting helpline to report online banking scams immediately for rapid fund-freezing.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:12px;border-radius:var(--radius);border:1px solid var(--border);">
+      <strong style="color:var(--risk-medium);font-size:0.85rem;">CERT-In Incident Desk</strong>
+      <p style="font-size:0.8rem;color:var(--text-secondary);margin:4px 0 0;">
+        <code>incident@cert-in.org.in</code> &ndash; Mandatory reporting channel for covered entities experiencing technical security incidents.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 8: CERT-In and Cybersecurity Compliance -->
+<div class="card mb-24 fade-in" id="sec-cert">
+  <div class="card-header">
+    <span class="card-title">🚨 Topic 8: CERT-In &amp; Cybersecurity Compliance</span>
+    <span class="badge badge-warning">Section 70B Mandate</span>
+  </div>
+  <p>The <strong>Indian Computer Emergency Response Team (CERT-In)</strong> is the statutory national nodal agency designated under Section 70B of the Information Technology Act, 2000 for handling cybersecurity incidents, issuing threat advisories, and coordinating national response.</p>
+
+  <h3 style="margin-top:16px;font-size:1rem;color:var(--text-primary);">CERT-In Cybersecurity Directions, 2022</h3>
+  <div class="legal-table-wrapper">
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Directive Feature</th>
+          <th>Regulatory Mandate</th>
+          <th>Entities Covered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Mandatory 6-Hour Reporting</strong></td>
+          <td>
+            Must report specified cybersecurity incidents (e.g., ransomware, unauthorized access, identity theft, data breaches) to CERT-In within <strong>6 hours</strong> of noticing the incident or being brought to notice.
+          </td>
+          <td>Service providers, intermediaries, data centers, body corporate, and government organizations. (Individuals do not have the 6-hour commercial mandate).</td>
+        </tr>
+        <tr>
+          <td><strong>180-Day Log Retention</strong></td>
+          <td>
+            All ICT logs across systems, firewalls, and applications must be maintained securely for a rolling window of <strong>180 days within Indian jurisdiction</strong>.
+          </td>
+          <td>Covered organizations and service providers operating infrastructure in India.</td>
+        </tr>
+        <tr>
+          <td><strong>NTP Clock Synchronization</strong></td>
+          <td>
+            All ICT system clocks must be synchronized with the Network Time Protocol (NTP) servers of the National Physical Laboratory (NPL) or NIC.
+          </td>
+          <td>All covered organizations to ensure uniform, verifiable forensic timestamps.</td>
+        </tr>
+        <tr>
+          <td><strong>KYC &amp; Record Retention</strong></td>
+          <td>
+            Data centers, virtual private server (VPS) providers, and cloud providers must maintain customer registration records (identity, IP, contact) for <strong>5 years</strong>.
+          </td>
+          <td>VPS, VPN, and cloud infrastructure service providers.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Topic 9: Cyber Law Case Studies -->
+<div class="card mb-24 fade-in" id="sec-cases">
+  <div class="card-header">
+    <span class="card-title">📖 Topic 9: Landmark Indian Cyber Law Case Studies</span>
+    <span class="badge badge-high">Fact-Checked Precedents</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">
+    Judicial interpretations by the Supreme Court of India and appellate courts establish binding precedents that define how cyber statutes are applied in practice.
+  </p>
+
+  <!-- Case Study 1: Shreya Singhal -->
+  <div class="case-study" style="border-left:4px solid var(--risk-high);margin-bottom:20px;background:var(--bg-surface);padding:18px 20px;border-radius:var(--radius);">
+    <div class="case-study-header" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <span style="font-size:2rem;">⚖️</span>
+      <div>
+        <span class="badge badge-high">Supreme Court Landmark</span>
+        <h3 style="font-size:1.1rem;color:var(--text-primary);margin-top:4px;">1. Shreya Singhal v. Union of India (AIR 2015 SC 1523)</h3>
+      </div>
+    </div>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Facts:</strong> In November 2012, two young women were arrested in Maharashtra under Section 66A of the IT Act for posting and liking a Facebook comment questioning the complete city shutdown following the death of a prominent political leader. Law student Shreya Singhal and civil liberties groups filed Public Interest Litigations (PILs) challenging the constitutional validity of Section 66A.
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Legal Issue:</strong> Did Section 66A infringe the fundamental right to freedom of speech and expression under Article 19(1)(a) of the Constitution of India, and did it fall outside the legitimate "reasonable restrictions" permitted under Article 19(2)?
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Supreme Court Decision (March 24, 2015):</strong> A division bench of the Supreme Court of India struck down Section 66A in its entirety as unconstitutional. The Court held that terms like "grossly offensive" and "menacing" were vague, overbroad, and lacked objective standards, creating an unacceptable chilling effect on legitimate online speech.
+    </p>
+    <div class="lesson" style="background:rgba(59,130,246,0.06);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid rgba(59,130,246,0.2);margin-top:10px;">
+      <strong>💡 Practical Cybersecurity &amp; Legal Lesson:</strong> Vague criminal provisions cannot be used to suppress online discourse. Security analysts must never recommend charging anyone under Section 66A. Laws must provide clear, objective notice of what conduct is prohibited.
+      <div style="margin-top:6px;font-size:0.75rem;">
+        <strong>Authoritative Citation:</strong> Supreme Court Judgment: <a href="https://main.sci.gov.in/jonew/judis/42497.pdf" target="_blank" rel="noopener">SCI Judgment Record (2015)</a> | India Code IT Act.
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Study 2: Suhas Katti -->
+  <div class="case-study" style="border-left:4px solid var(--accent);margin-bottom:20px;background:var(--bg-surface);padding:18px 20px;border-radius:var(--radius);">
+    <div class="case-study-header" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <span style="font-size:2rem;">🏛️</span>
+      <div>
+        <span class="badge badge-info">First Conviction Under Sec 67</span>
+        <h3 style="font-size:1.1rem;color:var(--text-primary);margin-top:4px;">2. State of Tamil Nadu v. Suhas Katti (CC No. 4680/2004)</h3>
+      </div>
+    </div>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Facts:</strong> The accused posted defamatory and obscene messages regarding a female divorcee on a Yahoo message group and forwarded unsolicited telephone calls using her contact number after she refused a marriage proposal.
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Legal Issue:</strong> Whether electronic records, ISP internet Protocol logs, and server records collected by cybercrime investigators were admissible and sufficient to prove criminal liability under Section 67 of the IT Act, 2000 and Sections 469 and 509 of the Indian Penal Code.
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Judicial Decision (November 5, 2004):</strong> The Additional Chief Metropolitan Magistrate (ACMM), Egmore, Chennai convicted the accused within 7 months of charge-sheet filing. The court sentenced the accused to 2 years rigorous imprisonment and a fine under Section 67 of the IT Act.
+    </p>
+    <div class="lesson" style="background:rgba(59,130,246,0.06);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid rgba(59,130,246,0.2);margin-top:10px;">
+      <strong>💡 Practical Cybersecurity &amp; Legal Lesson:</strong> Demonstrated that cyber harassment is punishable under criminal law and highlighted the necessity of prompt ISP log preservation, email header analysis, and authentic electronic evidence handling.
+      <div style="margin-top:6px;font-size:0.75rem;">
+        <strong>Authoritative Citation:</strong> ACMM Egmore Chennai Record; Cyber Crime Police Cell Documentation.
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Study 3: Puttaswamy -->
+  <div class="case-study" style="border-left:4px solid var(--risk-low);background:var(--bg-surface);padding:18px 20px;border-radius:var(--radius);">
+    <div class="case-study-header" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <span style="font-size:2rem;">🛡️</span>
+      <div>
+        <span class="badge badge-success">Constitutional Bench (9 Judges)</span>
+        <h3 style="font-size:1.1rem;color:var(--text-primary);margin-top:4px;">3. Justice K.S. Puttaswamy (Retd.) v. Union of India ((2017) 10 SCC 1)</h3>
+      </div>
+    </div>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Facts:</strong> Retired High Court Judge K.S. Puttaswamy and other petitioners challenged the biometric Aadhaar scheme, arguing that mandatory collection of fingerprints, iris scans, and demographic data infringed personal privacy.
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Legal Issue:</strong> Does the Indian Constitution guarantee a fundamental right to privacy, despite earlier conflicting judgments in <em>M.P. Sharma (1954)</em> and <em>Kharak Singh (1962)</em>?
+    </p>
+    <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.6;">
+      <strong>The Supreme Court Decision (August 24, 2017):</strong> A unanimous 9-judge bench of the Supreme Court held that the Right to Privacy is a protected fundamental right emanating from Article 21 (Life and Personal Liberty) and Part III of the Constitution. The Court established the three-fold test for state encroachment on privacy: Legality, Legitimate State Aim, and Proportionality.
+    </p>
+    <div class="lesson" style="background:rgba(59,130,246,0.06);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid rgba(59,130,246,0.2);margin-top:10px;">
+      <strong>💡 Practical Cybersecurity &amp; Legal Lesson:</strong> Laid the constitutional foundation for modern Indian data protection law, leading directly to the B.N. Srikrishna Committee recommendations and the Digital Personal Data Protection Act, 2023.
+      <div style="margin-top:6px;font-size:0.75rem;">
+        <strong>Authoritative Citation:</strong> Supreme Court of India: <a href="https://main.sci.gov.in/" target="_blank" rel="noopener">sci.gov.in Judgment Portal</a> | (2017) 10 SCC 1.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 10: Responsible Digital Citizenship -->
+<div class="card mb-24 fade-in" id="sec-citizenship">
+  <div class="card-header">
+    <span class="card-title">🤝 Topic 10: Responsible Digital Citizenship</span>
+    <span class="badge badge-info">Ethics &amp; Safety</span>
+  </div>
+  <p>Responsible digital citizenship requires balancing technical skills with ethical accountability, respecting personal privacy, and adhering to legal obligations.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin:16px 0;">
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent);margin-bottom:6px;">Consent &amp; Data Dignity</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Always obtain explicit, informed consent before recording audio, capturing images, or storing personal data belonging to others. Never share private communications or media without authorization.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--accent-2);margin-bottom:6px;">Coordinated Vulnerability Disclosure</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        When discovering security vulnerabilities in software or web services, report them responsibly through coordinated bug bounty or CERT-In vulnerability disclosure channels. Never publicly leak 0-day exploits.
+      </p>
+    </div>
+    <div style="background:var(--bg-surface);padding:14px 16px;border-radius:var(--radius);border:1px solid var(--border);">
+      <h4 style="color:var(--risk-low);margin-bottom:6px;">AI Ethics &amp; Deception Prohibition</h4>
+      <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+        Never generate synthetic voice clones or deepfake media to deceive, impersonate, defame, or extort individuals. Section 66D of the IT Act penalizes cheating by personation with up to 3 years imprisonment.
+      </p>
+    </div>
+  </div>
+
+  <div class="legal-callout info">
+    <strong>Educational Disclaimer:</strong> This module is designed for academic study under Course Code 171405A (Second Year B.Tech Computer Engineering). It provides general educational legal information, not formal legal advice. Individuals and organizations involved in actual legal disputes should consult qualified legal advocates.
+  </div>
+</div>
+
+<!-- Suspicious Message Checker Tool (Preserved Interactive Widget) -->
+<div class="card mb-24 fade-in" id="sec-checker">
+  <div class="card-header">
+    <span class="card-title">🔍 Interactive Tool: Suspicious Message &amp; Scam Checker</span>
+    <span class="badge badge-info">Practical Utility</span>
+  </div>
+  <div class="checker-widget">
+    <h3>Check Social Media &amp; SMS Messages for Scam Patterns</h3>
+    <div class="disclaimer">
+      ⚠️ <strong>Educational Rule-Based Checker:</strong> Scans message text for indicators of social engineering, phishing, lottery scams, and financial extortion. Do NOT enter real OTPs, passwords, or personal banking details.
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="socialMsgInput">Paste suspicious message or SMS text below</label>
+      <textarea class="form-control" id="socialMsgInput" rows="4"
+        placeholder="e.g. 'Congratulations! You have won a lottery. Share your OTP and click this link urgently to claim...'"
+        maxlength="2000"></textarea>
+      <div style="text-align:right;font-size:0.75rem;color:var(--text-muted);margin-top:4px;">
+        <span id="socialCharCount">0</span>/2000 characters
+      </div>
+    </div>
+    <button class="btn btn-primary" id="socialCheckBtn" onclick="checkSocialMessage()">
+      🔍 Analyse Message
+    </button>
+    <button class="btn btn-ghost btn-sm" onclick="clearSocialChecker()" style="margin-left:8px;">
+      Clear
+    </button>
+
+    <div class="checker-result" id="socialResult">
+      <div class="result-score-row">
+        <div class="result-score-circle" id="socialScoreCircle">0</div>
+        <div>
+          <div style="font-size:1.1rem;font-weight:700;" id="socialLevelText">Risk Level</div>
+          <div style="color:var(--text-secondary);font-size:0.85rem;">Pattern match risk score out of 100</div>
+        </div>
+      </div>
+      <div id="socialFlags"></div>
+      <div class="info-box green" id="socialSafeMsg" style="margin-top:12px;display:none;">
+        ✅ No common scam patterns detected. Always verify sender identity through secondary channels.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Legal Glossary -->
+<div class="card mb-24 fade-in" id="sec-glossary">
+  <div class="card-header">
+    <span class="card-title">📚 Glossary of Cyber Law &amp; Legal Terms</span>
+    <span class="badge badge-info">Terminology</span>
+  </div>
+  <div class="glossary-grid">
+    <div class="glossary-item">
+      <h4>Jurisdictional Nexus</h4>
+      <p>The legal connection or territorial link empowering a specific court or government authority to hear a case and exercise legal power over persons or events.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Mens Rea</h4>
+      <p>The mental element of a crime ("guilty mind"); criminal intent, dishonesty, or recklessness required to convict an accused of a criminal cyber offence.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Civil Liability</h4>
+      <p>Legal responsibility to compensate an aggrieved party for damages, adjudicated by regulatory officers without criminal imprisonment (e.g., Section 43).</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Data Principal</h4>
+      <p>Under the DPDP Act 2023, the natural person to whom the personal data relates (and parents/lawful guardians in the case of a child).</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Data Fiduciary</h4>
+      <p>Under the DPDP Act 2023, any person or entity that determines the purpose and means of processing personal data.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Certifying Authority (CA)</h4>
+      <p>An entity licensed by the Controller of Certifying Authorities (CCA) to issue Digital Signature Certificates verifying public key identity.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Non-Repudiation</h4>
+      <p>A technical and legal assurance that the author of a signed digital message cannot successfully deny having authored or signed it.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Cryptographic Hash</h4>
+      <p>A one-way mathematical function (e.g., SHA-256) verifying that a file has not been altered; an integrity check, not proof of recording authenticity.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Chain of Custody</h4>
+      <p>A meticulously documented record establishing chronological custody and handling of physical or electronic evidence to ensure judicial admissibility.</p>
+    </div>
+    <div class="glossary-item">
+      <h4>Protected System</h4>
+      <p>A computer or network designated under Section 70 of the IT Act as Critical Information Infrastructure, where unauthorized access carries up to 10 years imprisonment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Authoritative References Section -->
+<div class="card mb-24 fade-in" id="sec-references">
+  <div class="card-header">
+    <span class="card-title">🔗 Authoritative References &amp; Official Indian Legal Portals</span>
+    <span class="badge badge-info">Verified October 2026</span>
+  </div>
+  <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:12px;">
+    All statutory provisions and judicial citations in this module have been verified against authoritative government and legal databases:
+  </p>
+  <ul style="font-size:0.82rem;color:var(--text-secondary);padding-left:18px;line-height:1.7;">
+    <li><strong>India Code Legislative Repository:</strong> <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener">www.indiacode.nic.in</a> &ndash; Official digital repository of all Central Acts, including the Information Technology Act, 2000 (Act 21 of 2000).</li>
+    <li><strong>Ministry of Electronics and Information Technology (MeitY):</strong> <a href="https://www.meity.gov.in/" target="_blank" rel="noopener">www.meity.gov.in</a> &ndash; Administrative ministry overseeing IT rules, cyber laws, and digital governance.</li>
+    <li><strong>Indian Computer Emergency Response Team (CERT-In):</strong> <a href="https://www.cert-in.org.in/" target="_blank" rel="noopener">www.cert-in.org.in</a> &ndash; National nodal cybersecurity agency; publisher of the April 2022 Cybersecurity Directions.</li>
+    <li><strong>Office of the Controller of Certifying Authorities (CCA):</strong> <a href="https://cca.gov.in/" target="_blank" rel="noopener">cca.gov.in</a> &ndash; Regulates and licenses digital signature certifying authorities under the IT Act.</li>
+    <li><strong>Supreme Court of India Official Judgments:</strong> <a href="https://main.sci.gov.in/" target="_blank" rel="noopener">main.sci.gov.in</a> &ndash; Source of landmark judgments: <em>Shreya Singhal v. Union of India (2015)</em> and <em>Justice K.S. Puttaswamy v. Union of India (2017)</em>.</li>
+    <li><strong>National Cyber Crime Reporting Portal:</strong> <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener">cybercrime.gov.in</a> &ndash; National Citizen Cybercrime Reporting Portal under Ministry of Home Affairs.</li>
+  </ul>
+</div>
+
+<!-- Progress Tracker Checklist -->
+<div class="card mb-24 fade-in" id="sec-progress">
+  <div class="card-header">
+    <span class="card-title">📊 Unit III Student Revision Checklist</span>
+    <span class="badge badge-info" id="unit3Score">0%</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:12px;">
+    Track your mastery of Unit III: Cyber Laws topics. Click each item to check off completed concepts:
+  </p>
+  <div class="checklist-progress-container mb-16">
+    <div class="checklist-progress-bar" id="unit3ProgressBar" style="width:0%;"></div>
+  </div>
+  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:14px;">
+    Completed: <span id="unit3CheckedCount" style="color:var(--accent);font-weight:700;">0 of 8</span> topics
+  </div>
+
+  <div id="unit3ProgressCard">
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-1">
+      <div>
+        <strong>1. Cyber Jurisprudence &amp; Multi-Jurisdiction</strong>
+        <p>Understood why cyber laws are necessary, technological ethics, and extra-territorial jurisdiction under Section 75.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-2">
+      <div>
+        <strong>2. Civil Liability (Sec 43) vs. Criminal Offences (Sec 65-72)</strong>
+        <p>Distinguished monetary compensation under Section 43 from criminal imprisonment, fines, and <em>mens rea</em> under Sections 65, 66, 66C, 66D, 66E, and 66F.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-3">
+      <div>
+        <strong>3. Status of Section 66A (Struck Down)</strong>
+        <p>Mastered why the Supreme Court struck down Section 66A in <em>Shreya Singhal (2015)</em> as unconstitutional under Article 19(1)(a).</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-4">
+      <div>
+        <strong>4. Electronic Signatures vs. Digital Signatures</strong>
+        <p>Understood asymmetric cryptography (PKI, public/private keys), hash functions, and Certifying Authorities under the CCA.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-5">
+      <div>
+        <strong>5. DPDP Act, 2023 &amp; Privacy Architecture</strong>
+        <p>Reviewed Data Principal rights, Data Fiduciary obligations, Data Protection Board of India, and phased implementation status as of October 2026.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-6">
+      <div>
+        <strong>6. Cybercrime Scenarios &amp; AI Voice Cloning</strong>
+        <p>Analyzed legal considerations across identity theft, phishing, payment scams, ransomware, and Section 66D voice cloning fraud.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-7">
+      <div>
+        <strong>7. Electronic Evidence: Integrity vs. Authenticity</strong>
+        <p>Learned why SHA-256 hashes prove data integrity but not recording truthfulness, chain of custody, and Section 65B certificates.</p>
+      </div>
+    </div>
+    <div class="checklist-item" onclick="toggleProgressItem3(this)">
+      <input type="checkbox" id="chk3-8">
+      <div>
+        <strong>8. CERT-In Directions 2022 Compliance</strong>
+        <p>Memorized the mandatory 6-hour reporting window for covered entities, 180-day log retention, and NTP clock synchronization.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 10: Interactive Knowledge Quiz -->
+<div class="card mb-24 fade-in" id="sec-quiz">
+  <div class="card-header">
+    <span class="card-title">📝 Unit III Interactive Knowledge Quiz</span>
+    <span class="badge badge-info">10 Multiple Choice Questions</span>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">
+    Test your understanding of Cyber Laws, the IT Act, DPDP Act 2023, digital signatures, electronic evidence, and judicial precedents. Answers are graded client-side with complete explanations.
+  </p>
+
+  <!-- Score Banner -->
+  <div class="quiz-score-banner" id="quizScoreBanner3">
+    <h3 style="font-size:1.3rem;font-weight:800;color:var(--text-primary);margin-bottom:6px;" id="quizScoreText3">Score: 0 / 10 (0%)</h3>
+    <div style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;" id="quizFeedbackText3"></div>
+    <button class="btn btn-primary btn-sm" onclick="resetQuiz3()">🔄 Retake Quiz</button>
+  </div>
+
+  <form id="unit3QuizForm" onsubmit="event.preventDefault(); submitQuiz3();">
+    <!-- Question 1 -->
+    <div class="quiz-question-item" id="q3item-1">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q1</span>
+        <span>What is the jurisdictional scope of the Indian Information Technology Act, 2000 under Section 75?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q1" value="A">
+          <span>A) It applies only to Indian citizens physically residing within the territorial borders of India.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q1" value="B">
+          <span>B) It applies extra-territorially to any offence committed outside India by any person if the act involves a computer or network located in India.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q1" value="C">
+          <span>C) It applies only to cyber offences involving state-owned government computers and critical defense installations.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q1" value="D">
+          <span>D) It grants Indian courts jurisdiction only if the foreign offender's country has signed an extradition treaty with India.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-1">
+        <strong>Explanation:</strong> Under Section 75 of the IT Act 2000, the Act applies extra-territorially to any offence or contravention committed outside India by any person, regardless of nationality, if the act or conduct involves a computer, computer system, or computer network located in India.
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="quiz-question-item" id="q3item-2">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q2</span>
+        <span>How does Section 43 of the IT Act differ fundamentally from Section 66?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q2" value="A">
+          <span>A) Section 43 deals with civil liability and monetary compensation, whereas Section 66 criminalizes the same acts when done dishonestly or fraudulently with imprisonment.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q2" value="B">
+          <span>B) Section 43 applies only to hardware theft, while Section 66 applies exclusively to software intellectual property disputes.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q2" value="C">
+          <span>C) Section 43 is a criminal offence carrying 7 years imprisonment, while Section 66 is a minor civil tort carrying nominal fines.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q2" value="D">
+          <span>D) Section 43 was struck down by the Supreme Court, while Section 66 remains the only valid hacking provision.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-2">
+        <strong>Explanation:</strong> Section 43 creates civil liability for specified unauthorized acts (copying data, virus injection, system damage) with compensation awarded by an Adjudicating Officer. Section 66 adds criminal intent (<em>mens rea</em>: dishonestly or fraudulently) and imposes criminal imprisonment up to 3 years and fines up to ₹5 lakh.
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="quiz-question-item" id="q3item-3">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q3</span>
+        <span>What is the current constitutional and legal status of Section 66A of the Information Technology Act?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q3" value="A">
+          <span>A) It is an active criminal provision regularly used by police to arrest individuals for sending offensive emails.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q3" value="B">
+          <span>B) It was struck down in its entirety as unconstitutional by the Supreme Court in <em>Shreya Singhal v. Union of India (2015)</em> and is completely inoperative.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q3" value="C">
+          <span>C) It was amended by Parliament in 2023 to apply exclusively to AI-generated voice cloning scams.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q3" value="D">
+          <span>D) It was temporarily stayed by the High Court of Delhi but remains valid law across the rest of India.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-3">
+        <strong>Explanation:</strong> In <em>Shreya Singhal v. Union of India (2015)</em>, the Supreme Court struck down Section 66A for violating Article 19(1)(a) freedom of speech. It is null, void, and unconstitutional; no FIR may lawfully be registered under it.
+      </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="quiz-question-item" id="q3item-4">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q4</span>
+        <span>Which section of the IT Act directly penalizes cheating by personation using a computer resource, such as phone vishing or AI voice cloning impersonation?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q4" value="A">
+          <span>A) Section 43A</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q4" value="B">
+          <span>B) Section 66D</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q4" value="C">
+          <span>C) Section 70</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q4" value="D">
+          <span>D) Section 72A</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-4">
+        <strong>Explanation:</strong> Section 66D provides punishment for cheating by personation by using computer resource (up to 3 years imprisonment and fine), directly covering attacks where an impostor uses communication devices or AI voice clones to deceive victims.
+      </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="quiz-question-item" id="q3item-5">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q5</span>
+        <span>What is the fundamental technical distinction between an Electronic Signature and a Digital Signature?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q5" value="A">
+          <span>A) An electronic signature is always stronger mathematically than a digital signature.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q5" value="B">
+          <span>B) A digital signature is a specific cryptographic implementation using asymmetric key pairs (PKI) and hash functions, whereas electronic signature is a broader legal concept.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q5" value="C">
+          <span>C) Digital signatures do not require any private or public keys, while electronic signatures require biometric iris scans.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q5" value="D">
+          <span>D) Electronic signatures are regulated by the Reserve Bank of India, while digital signatures are unregulated in India.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-5">
+        <strong>Explanation:</strong> "Electronic signature" is the broad legal umbrella category (including OTP clicks, biometric Aadhaar eSigns). "Digital signature" is a specific cryptographic subset using asymmetric key pairs (public/private keys) and cryptographic hash functions regulated under the Controller of Certifying Authorities (CCA).
+      </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="quiz-question-item" id="q3item-6">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q6</span>
+        <span>Under the Digital Personal Data Protection Act, 2023 (DPDP Act), who is a "Data Fiduciary"?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q6" value="A">
+          <span>A) The individual citizen to whom the personal data belongs.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q6" value="B">
+          <span>B) Any person or entity that determines the purpose and means of processing personal data.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q6" value="C">
+          <span>C) The law enforcement police officer who investigates a cybercrime.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q6" value="D">
+          <span>D) The licensed agency authorized to issue digital signature certificates.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-6">
+        <strong>Explanation:</strong> Under Section 2(i) of the DPDP Act 2023, a Data Fiduciary is defined as any person or entity that alone or in conjunction with others determines the purpose and means of processing personal data. The individual to whom data relates is the Data Principal.
+      </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="quiz-question-item" id="q3item-7">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q7</span>
+        <span>What does a cryptographic hash (such as SHA-256) prove in the context of electronic evidence?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q7" value="A">
+          <span>A) It proves conclusively that the recorded speech in an audio file was truthfully spoken by the genuine person.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q7" value="B">
+          <span>B) It proves data integrity by verifying that the file has not been altered or corrupted since the hash was generated, but it does NOT prove whether the underlying recording was real or a deepfake.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q7" value="C">
+          <span>C) It serves as a substitute for a court warrant and permits unauthorized wiretapping.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q7" value="D">
+          <span>D) It decrypts encrypted files automatically without needing the private cryptographic key.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-7">
+        <strong>Explanation:</strong> Cryptographic hashes verify data integrity (confirming no bit-level alteration since acquisition). They do NOT prove authenticity or truthfulness. A synthetic voice clone or falsified document will still have a valid, pristine SHA-256 hash.
+      </div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="quiz-question-item" id="q3item-8">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q8</span>
+        <span>Under the CERT-In Cybersecurity Directions of April 2022, what is the mandatory incident reporting timeline for covered organizations?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q8" value="A">
+          <span>A) Within 72 hours of incident confirmation.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q8" value="B">
+          <span>B) Within 6 hours of noticing or being brought to notice of the cybersecurity incident.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q8" value="C">
+          <span>C) Within 30 calendar days at the end of the financial quarter.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q8" value="D">
+          <span>D) Reporting is completely optional for commercial entities and mandatory only for the military.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-8">
+        <strong>Explanation:</strong> The CERT-In Directions 2022 (issued under Section 70B(6)) mandate that covered entities (service providers, intermediaries, body corporate) must report specified cybersecurity incidents to CERT-In within 6 hours of noticing or being brought to notice of them.
+      </div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="quiz-question-item" id="q3item-9">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q9</span>
+        <span>What was the key constitutional ruling in <em>Justice K.S. Puttaswamy (Retd.) v. Union of India (2017)</em>?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q9" value="A">
+          <span>A) The Supreme Court ruled that companies may freely monetize user data without needing any user consent.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q9" value="B">
+          <span>B) A 9-judge bench unanimously recognized the Right to Privacy as a fundamental right protected under Article 21 of the Constitution of India.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q9" value="C">
+          <span>C) The Supreme Court held that all electronic evidence is inadmissible in criminal trials.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q9" value="D">
+          <span>D) The Court dissolved CERT-In and replaced it with private cybersecurity consulting firms.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-9">
+        <strong>Explanation:</strong> In <em>Justice K.S. Puttaswamy v. Union of India (2017)</em>, a unanimous 9-judge bench of the Supreme Court held that the Right to Privacy is a fundamental right under Article 21 and Part III, paving the way for the Digital Personal Data Protection Act, 2023.
+      </div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="quiz-question-item" id="q3item-10">
+      <div class="quiz-question-title">
+        <span class="badge badge-info">Q10</span>
+        <span>As a responsible digital citizen and software engineer, what should you do if you uncover a critical security vulnerability in an online service?</span>
+      </div>
+      <div class="quiz-options-list">
+        <label class="quiz-option-label">
+          <input type="radio" name="q10" value="A">
+          <span>A) Exploit the flaw immediately to extract databases and demand a ransom from the company.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q10" value="B">
+          <span>B) Post the exploit script publicly on social media to humiliate the website administrators.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q10" value="C">
+          <span>C) Practice Coordinated Vulnerability Disclosure (CVD) by reporting the flaw privately to the organization's security team or CERT-In without extracting data or causing disruption.</span>
+        </label>
+        <label class="quiz-option-label">
+          <input type="radio" name="q10" value="D">
+          <span>D) Sell the vulnerability to underground darknet forums for personal profit.</span>
+        </label>
+      </div>
+      <div class="quiz-explanation" id="u3exp-10">
+        <strong>Explanation:</strong> Ethical and lawful behavior requires Coordinated Vulnerability Disclosure (CVD). Unauthorized data extraction or exploitation constitutes criminal unauthorized access under Section 43/66 of the IT Act.
+      </div>
+    </div>
+
+    <!-- Quiz Action Buttons -->
+    <div style="display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap;">
+      <button type="submit" class="btn btn-primary" id="btnSubmitQuiz3">
+        ✅ Submit Quiz &amp; Calculate Score
+      </button>
+      <button type="button" class="btn btn-ghost" id="btnResetQuiz3" onclick="resetQuiz3()">
+        🔄 Reset Answers
+      </button>
+      <span id="quizStatusMsg3" style="font-size:0.85rem;color:var(--text-muted);">
+        Select answers for all 10 questions and submit.
+      </span>
+    </div>
+  </form>
+</div>
+
+<script>
+// Quiz Answer Key
+const QUIZ_ANSWERS_3 = {
+  q1: 'B',
+  q2: 'A',
+  q3: 'B',
+  q4: 'B',
+  q5: 'B',
+  q6: 'B',
+  q7: 'B',
+  q8: 'B',
+  q9: 'B',
+  q10: 'C'
+};
+
+function submitQuiz3() {
+  let score = 0;
+  const total = Object.keys(QUIZ_ANSWERS_3).length;
+  let allAnswered = true;
+
+  for (let i = 1; i <= total; i++) {
+    const qKey = 'q' + i;
+    const selected = document.querySelector('input[name="' + qKey + '"]:checked');
+    const expEl = document.getElementById('u3exp-' + i);
+    const itemEl = document.getElementById('q3item-' + i);
+    const correctVal = QUIZ_ANSWERS_3[qKey];
+
+    if (expEl) expEl.style.display = 'block';
+
+    const options = document.querySelectorAll('input[name="' + qKey + '"]');
+    options.forEach(opt => {
+      const parentLabel = opt.closest('.quiz-option-label');
+      if (!parentLabel) return;
+      parentLabel.classList.remove('correct-choice', 'incorrect-choice');
+      if (opt.value === correctVal) {
+        parentLabel.classList.add('correct-choice');
+      } else if (opt.checked && opt.value !== correctVal) {
+        parentLabel.classList.add('incorrect-choice');
+      }
+    });
+
+    if (selected) {
+      if (selected.value === correctVal) {
+        score++;
+        if (itemEl) itemEl.style.borderColor = 'rgba(34,197,94,0.4)';
+      } else {
+        if (itemEl) itemEl.style.borderColor = 'rgba(239,68,68,0.4)';
+      }
+    } else {
+      allAnswered = false;
+      if (itemEl) itemEl.style.borderColor = 'rgba(245,158,11,0.4)';
+    }
+  }
+
+  const banner = document.getElementById('quizScoreBanner3');
+  const scoreText = document.getElementById('quizScoreText3');
+  const feedback = document.getElementById('quizFeedbackText3');
+  const percentage = Math.round((score / total) * 100);
+
+  if (banner && scoreText && feedback) {
+    banner.classList.add('show');
+    scoreText.textContent = `Score: ${score} / ${total} (${percentage}%)`;
+    if (score === total) {
+      feedback.innerHTML = '<span style="color:#4ade80;font-weight:700;">🌟 Outstanding! Perfect score.</span> You have demonstrated mastery of Indian cyber laws, IT Act provisions, DPDP Act 2023, and landmark precedents.';
+    } else if (score >= 7) {
+      feedback.innerHTML = '<span style="color:#60a5fa;font-weight:700;">✅ Well done! Strong understanding.</span> Review the explanations for the provisions or case studies you missed.';
+    } else {
+      feedback.innerHTML = '<span style="color:#f87171;font-weight:700;">⚠️ Keep practicing.</span> Study the statutory summaries and Supreme Court cases above and try the quiz again.';
+    }
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  const statusMsg = document.getElementById('quizStatusMsg3');
+  if (statusMsg) {
+    statusMsg.textContent = allAnswered ? 'All questions evaluated.' : 'Note: Unanswered questions marked incorrect.';
+  }
+}
+
+function resetQuiz3() {
+  document.getElementById('unit3QuizForm').reset();
+  const banner = document.getElementById('quizScoreBanner3');
+  if (banner) banner.classList.remove('show');
+
+  for (let i = 1; i <= 10; i++) {
+    const expEl = document.getElementById('u3exp-' + i);
+    if (expEl) expEl.style.display = 'none';
+    const itemEl = document.getElementById('q3item-' + i);
+    if (itemEl) itemEl.style.borderColor = 'var(--border)';
+    const options = document.querySelectorAll('input[name="q' + i + '"]');
+    options.forEach(opt => {
+      const parentLabel = opt.closest('.quiz-option-label');
+      if (parentLabel) parentLabel.classList.remove('correct-choice', 'incorrect-choice', 'selected');
+    });
+  }
+  const statusMsg = document.getElementById('quizStatusMsg3');
+  if (statusMsg) statusMsg.textContent = 'Quiz reset. Select your answers.';
+}
+
+// Progress Checklist Logic for Unit III
+function toggleProgressItem3(el) {
+  const checkbox = el.querySelector('input[type="checkbox"]');
+  if (event.target !== checkbox) {
+    checkbox.checked = !checkbox.checked;
+  }
+  updateUnit3Progress();
+}
+
+function updateUnit3Progress() {
+  const checkboxes = document.querySelectorAll('#unit3ProgressCard input[type="checkbox"]');
+  const total = checkboxes.length;
+  let checked = 0;
+  checkboxes.forEach(cb => {
+    const parent = cb.closest('.checklist-item');
+    if (cb.checked) {
+      checked++;
+      if (parent) parent.classList.add('checked');
+    } else {
+      if (parent) parent.classList.remove('checked');
+    }
+  });
+  const pct = Math.round((checked / total) * 100);
+  const scoreEl = document.getElementById('unit3Score');
+  const barEl = document.getElementById('unit3ProgressBar');
+  const countEl = document.getElementById('unit3CheckedCount');
+  if (scoreEl) scoreEl.textContent = pct + '%';
+  if (barEl) barEl.style.width = pct + '%';
+  if (countEl) countEl.textContent = `${checked} of ${total}`;
+}
+
+// Suspicious Message Checker (Preserved for compatibility)
+const socialInput = document.getElementById('socialMsgInput');
+const socialCharCount = document.getElementById('socialCharCount');
+
+if (socialInput) {
+  socialInput.addEventListener('input', () => {
+    socialCharCount.textContent = socialInput.value.length;
+  });
+}
+
+async function checkSocialMessage() {
+  const text = socialInput.value.trim();
+  if (!text) { alert('Please enter a message to analyse.'); return; }
+
+  const btn = document.getElementById('socialCheckBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Analysing…';
+
+  try {
+    const res = await fetch('{{ url_for("main.unit3_check") }}', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
+    const data = await res.json();
+    if (data.error) { alert(data.error); return; }
+
+    const result = document.getElementById('socialResult');
+    const circle = document.getElementById('socialScoreCircle');
+    const levelText = document.getElementById('socialLevelText');
+    const flagsDiv = document.getElementById('socialFlags');
+    const safeMsg = document.getElementById('socialSafeMsg');
+
+    result.classList.add('show');
+    circle.textContent = data.score;
+    const lvl = data.level.toLowerCase();
+    circle.className = `result-score-circle ${lvl}`;
+
+    const levelLabels = { low: '🟢 Low Risk', medium: '🟡 Medium Risk', high: '🔴 High Risk', critical: '🔴 Critical Risk' };
+    levelText.textContent = levelLabels[lvl] || data.level;
+
+    if (data.flags.length === 0) {
+      flagsDiv.innerHTML = '';
+      safeMsg.style.display = 'block';
+    } else {
+      safeMsg.style.display = 'none';
+      flagsDiv.innerHTML = data.flags.map(f =>
+        `<div class="flag-item"><strong>⚠️ ${f.label}</strong><span>${f.tip}</span></div>`
+      ).join('');
+    }
+  } catch(e) {
+    alert('Analysis failed. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🔍 Analyse Message';
+  }
+}
+
+function clearSocialChecker() {
+  if (socialInput) socialInput.value = '';
+  socialCharCount.textContent = '0';
+  const result = document.getElementById('socialResult');
+  result.classList.remove('show');
+  document.getElementById('socialSafeMsg').style.display = 'none';
+}
+</script>
+{% endblock %}

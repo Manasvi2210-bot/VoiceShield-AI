@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block title %}Security Incident #SEC-{{ incident.id }} – Incident Center{% endblock %}
+{% block page_title %}🛡️ Incident #SEC-{{ incident.id }}{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+    <a href="{{ url_for('main.incident_center') }}" class="btn btn-secondary btn-sm">← Back to Incident Center</a>
+    <span class="badge badge-info">ID: #SEC-{{ incident.id }}</span>
+    {% if incident.status == 'Open' %}
+      <span class="status-badge status-badge-open">● Open</span>
+    {% elif incident.status == 'Investigating' %}
+      <span class="status-badge status-badge-investigating">⚡ Investigating</span>
+    {% elif incident.status == 'Contained' %}
+      <span class="status-badge status-badge-contained">🛡️ Contained</span>
+    {% else %}
+      <span class="status-badge status-badge-resolved">✓ Resolved</span>
+    {% endif %}
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+    <div>
+      <h1 style="margin:4px 0 6px;">{{ incident.title }}</h1>
+      <div style="display:flex;gap:8px;font-size:0.8rem;color:var(--text-muted);align-items:center;flex-wrap:wrap;">
+        <span>Category: <strong style="color:var(--text-primary);">{{ incident.category }}</strong></span>
+        <span>•</span>
+        <span>Severity: <strong style="color:var(--accent);">{{ incident.severity }}</strong></span>
+        <span>•</span>
+        <span>Logged: {{ incident.created_at.strftime('%d %b %Y, %H:%M UTC') }}</span>
+      </div>
+    </div>
+
+    <!-- Quick Close / Delete Actions -->
+    <div style="display:flex;gap:8px;">
+      {% if incident.status != 'Resolved' %}
+      <form method="POST" action="{{ url_for('main.incident_center_close', incident_id=incident.id) }}">
+        <button type="submit" class="btn btn-success btn-sm">
+          ✓ Mark Resolved
+        </button>
+      </form>
+      {% endif %}
+      <form method="POST" action="{{ url_for('main.incident_center_delete', incident_id=incident.id) }}"
+            onsubmit="return confirm('Permanently delete Security Incident #SEC-{{ incident.id }}?');">
+        <button type="submit" class="btn btn-danger btn-sm">
+          🗑️ Delete
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:24px;" class="responsive-two-col fade-in">
+  <!-- Left Column: Details + Timeline -->
+  <div style="display:flex;flex-direction:column;gap:20px;">
+    <!-- Narrative Card -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📝 Incident Description &amp; Scope</span>
+        <span class="badge badge-secondary">{{ incident.category }}</span>
+      </div>
+      <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;white-space:pre-wrap;margin:0;">{{ incident.description }}</p>
+    </div>
+
+    <!-- Response Notes Card -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📋 Responder Notes &amp; Remediation Log</span>
+      </div>
+      {% if incident.response_notes %}
+      <div style="background:#080c16;border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#e2e8f0;white-space:pre-wrap;line-height:1.6;">{{ incident.response_notes }}</div>
+      {% else %}
+      <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">No responder notes logged yet.</p>
+      {% endif %}
+    </div>
+
+    <!-- Activity & Audit Timeline -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">⏱️ Chronological Audit Trail &amp; Activity Log</span>
+        <span class="badge badge-info">{{ logs | length }} Events</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;">
+        {% for log in logs %}
+        <div class="incident-timeline-item">
+          <div class="incident-timeline-dot"></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;flex-wrap:wrap;">
+              <strong style="color:var(--text-primary);font-size:0.85rem;">{{ log.action }}</strong>
+              <span style="font-size:0.72rem;color:var(--text-muted);font-family:monospace;">{{ log.timestamp.strftime('%d %b %Y, %H:%M:%S UTC') }}</span>
+            </div>
+            <div style="font-size:0.78rem;color:var(--accent);margin-bottom:3px;">
+              Actor: {{ log.actor }}
+            </div>
+            {% if log.note %}
+            <div style="font-size:0.8rem;color:var(--text-secondary);background:var(--bg-surface);padding:6px 10px;border-radius:4px;border:1px solid var(--border);margin-top:4px;">
+              {{ log.note }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Status Update Controls & Responder Box -->
+  <div style="display:flex;flex-direction:column;gap:20px;">
+    <!-- Triage Update Form -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">⚙️ Update Incident Status</span>
+      </div>
+
+      <form method="POST" action="{{ url_for('main.incident_center_update', incident_id=incident.id) }}">
+        <div class="form-group mb-16">
+          <label class="form-label" for="status">Current Status</label>
+          <select id="status" name="status" class="form-control">
+            {% for st in statuses %}
+            <option value="{{ st }}" {% if incident.status == st %}selected{% endif %}>{{ st }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group mb-16">
+          <label class="form-label" for="severity">Severity Assessment</label>
+          <select id="severity" name="severity" class="form-control">
+            {% for sev in severities %}
+            <option value="{{ sev }}" {% if incident.severity == sev %}selected{% endif %}>{{ sev }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group mb-16">
+          <label class="form-label" for="assigned_responder">Assigned Responder</label>
+          <input type="text" id="assigned_responder" name="assigned_responder" class="form-control"
+                 value="{{ incident.assigned_responder }}">
+        </div>
+
+        <div class="form-group mb-16">
+          <label class="form-label" for="note">Append Remediation Note</label>
+          <textarea id="note" name="note" class="form-control" rows="3"
+                    placeholder="Document forensic actions taken, firewall blocks, or user resets..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          💾 Save Changes &amp; Record Log
+        </button>
+      </form>
+    </div>
+
+    <!-- Statutory Incident Reporting Notice -->
+    <div class="card" style="background:rgba(59,130,246,0.06);border-color:rgba(59,130,246,0.25);">
+      <div class="card-title" style="font-size:0.9rem;margin-bottom:8px;">⚖️ Statutory Reporting Deadlines</div>
+      <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6;">
+        Under <strong>CERT-In Directions (April 2022)</strong>, designated cyber incidents (ransomware, data breaches, server compromise, unauthorized access) must be reported within <strong>6 hours</strong> of noticing.<br><br>
+        • CERT-In Incident Reporting: <code style="color:var(--accent);">incident@cert-in.org.in</code><br>
+        • Citizen Financial Helpline: <strong style="color:var(--risk-high);">1930</strong>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

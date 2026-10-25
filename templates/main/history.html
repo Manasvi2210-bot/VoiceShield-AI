@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% block title %}Incident History – VoiceShield AI{% endblock %}
+{% block page_title %}📋 Incident History{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>Incident History</h1>
+  <p>All your analysed incidents. Filters apply instantly.</p>
+</div>
+
+<!-- Filter bar -->
+<form method="GET" class="filter-bar filter-auto-submit fade-in" id="filterForm">
+  <div class="filter-group">
+    <label>Search Title</label>
+    <input type="text" name="search" class="form-control" value="{{ search }}"
+           placeholder="Search…" style="min-width:180px;">
+  </div>
+  <div class="filter-group">
+    <label>Category</label>
+    <select name="category" class="form-control">
+      <option value="">All Categories</option>
+      {% for cat in categories %}
+      <option value="{{ cat }}" {% if cat_filter == cat %}selected{% endif %}>{{ cat }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Risk Level</label>
+    <select name="risk_level" class="form-control">
+      <option value="">All Levels</option>
+      {% for lvl in ['Low','Medium','High','Critical','Unknown'] %}
+      <option value="{{ lvl }}" {% if risk_filter == lvl %}selected{% endif %}>{{ lvl }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>From Date</label>
+    <input type="date" name="date_from" class="form-control" value="{{ date_from }}">
+  </div>
+  <div class="filter-group">
+    <label>To Date</label>
+    <input type="date" name="date_to" class="form-control" value="{{ date_to }}">
+  </div>
+  <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+    <button type="submit" class="btn btn-primary btn-sm">🔍 Filter</button>
+    <a href="{{ url_for('main.history') }}" class="btn btn-secondary btn-sm">✕ Clear</a>
+  </div>
+</form>
+
+<!-- Export buttons -->
+<div style="display:flex;gap:10px;justify-content:flex-end;margin-bottom:14px;" class="fade-in">
+  <a href="{{ url_for('main.export_csv') }}" class="btn btn-secondary btn-sm">📄 Export CSV</a>
+  <a href="{{ url_for('main.export_pdf') }}" class="btn btn-secondary btn-sm">📑 Export PDF</a>
+</div>
+
+<!-- Table -->
+<div class="card fade-in">
+  {% if incidents %}
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Risk</th>
+          <th>Score</th>
+          <th>Transcription</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inc in incidents %}
+        <tr>
+          <td class="text-muted text-mono">{{ inc.id }}</td>
+          <td>
+            <a href="{{ url_for('main.incident_detail', incident_id=inc.id) }}"
+               style="color:var(--text-primary);font-weight:500;">{{ inc.title }}</a>
+          </td>
+          <td><span class="badge badge-info" style="font-size:0.65rem;white-space:nowrap;">{{ inc.category }}</span></td>
+          <td><span class="badge badge-{{ inc.risk_level | lower }}">{{ inc.risk_level }}</span></td>
+          <td>
+            <span class="text-mono" style="font-weight:600;color:
+              {% if inc.risk_level == 'Critical' %}var(--risk-critical)
+              {% elif inc.risk_level == 'High' %}var(--risk-high)
+              {% elif inc.risk_level == 'Medium' %}var(--risk-medium)
+              {% else %}var(--risk-low){% endif %};">
+              {{ inc.risk_score }}/100
+            </span>
+          </td>
+          <td>
+            {% if inc.transcription_status == 'success' %}
+              <span class="badge badge-success">✅</span>
+            {% elif inc.transcription_status == 'failed' %}
+              <span class="badge badge-high">❌ Failed</span>
+            {% else %}
+              <span class="badge badge-unknown">⚠️ N/A</span>
+            {% endif %}
+          </td>
+          <td class="text-muted" style="white-space:nowrap;">{{ inc.created_at.strftime('%d %b %Y') }}</td>
+          <td>
+            <div style="display:flex;gap:6px;">
+              <a href="{{ url_for('main.incident_detail', incident_id=inc.id) }}"
+                 class="btn btn-ghost btn-sm">View</a>
+              <form method="POST"
+                    action="{{ url_for('main.delete_incident', incident_id=inc.id) }}"
+                    style="display:inline;">
+                <button type="submit" class="btn btn-ghost btn-sm" style="color:var(--risk-high);"
+                        data-confirm="Delete incident #{{ inc.id }}?">🗑️</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p style="padding:12px 0 0;font-size:0.8rem;color:var(--text-muted);">
+    Showing {{ incidents | length }} incident(s).
+  </p>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">📭</div>
+    <h3>No incidents found</h3>
+    <p>Try clearing your filters or upload a new audio recording.</p>
+    <a href="{{ url_for('main.analyse') }}" class="btn btn-primary mt-16">Start New Analysis →</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

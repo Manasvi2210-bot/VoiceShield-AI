@@ -1,0 +1,364 @@
+{% extends "layout.html" %}
+
+{% block title %}Personal Cybersecurity Hygiene Audit — VoiceShield AI{% endblock %}
+
+{% block content %}
+<div class="audit-page">
+    <!-- Header -->
+    <div class="mb-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+            <div>
+                <span class="badge bg-info text-dark fw-bold me-2">Feature 7</span>
+                <span class="badge bg-secondary">Self-Assessment Tool</span>
+            </div>
+            <span class="text-muted small">Course: 171405A — Cyber Security &amp; Laws | NIST Cybersecurity Framework</span>
+        </div>
+        <h1 class="h2 mb-1" style="color: #60a5fa;">📋 Personal Cybersecurity Hygiene Audit</h1>
+        <p class="text-muted mb-0">
+            Privacy-friendly self-assessment checklist evaluating personal defense readiness across authentication, backup resilience, device hardening, and social-engineering preparedness.
+        </p>
+    </div>
+
+    <!-- Educational Disclaimer & Privacy Notice -->
+    <div class="alert alert-info border-info border-opacity-25 bg-dark text-light mb-4 shadow-sm" role="alert">
+        <div class="d-flex align-items-start gap-3">
+            <span style="font-size: 1.5rem;">🛡️</span>
+            <div>
+                <strong>Privacy &amp; Educational Assessment Notice:</strong>
+                This audit runs entirely client-side. VoiceShield AI <strong>never</strong> asks for, transmits, or stores passwords, OTPs, bank credentials, recovery keys, or personal identifying information.
+                The readiness score is an educational baseline metric and does <em>not</em> constitute a formal ISO 27001 or professional cybersecurity compliance certification.
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Checklist Column -->
+        <div class="col-lg-7">
+            <div class="card bg-dark border-secondary shadow-sm mb-4">
+                <div class="card-header bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+                    <h2 class="h5 text-warning mb-0">Defense Readiness Checklist</h2>
+                    <span class="text-muted small">10 Control Domains</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush bg-dark" id="auditChecklist">
+
+                        <!-- Item 1: MFA -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_mfa">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_mfa" data-weight="10" data-domain="Authentication">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">1. Multi-Factor Authentication (MFA) Enabled</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Auth</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    MFA is enforced on primary email, banking portals, cloud storage, and corporate accounts using authenticator apps (TOTP) or hardware security keys (FIDO2), not purely SMS.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_mfa">
+                                    💡 <strong>Action:</strong> Download Google Authenticator, Microsoft Authenticator, or Bitwarden and enable 2-step verification across your Google, Apple, and banking accounts.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 2: Password Management -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_pwd">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_pwd" data-weight="10" data-domain="Credentials">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">2. Unique Passwords &amp; Password Manager</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Credentials</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Every online account has a unique, cryptographically generated passphrase (14+ characters) stored in a reputable password manager with zero cross-site password reuse.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_pwd">
+                                    💡 <strong>Action:</strong> Adopt an audited password manager (Bitwarden, 1Password, KeePassXC) and eliminate shared passwords for sensitive logins.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 3: OS & Software Updates -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_patch">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_patch" data-weight="10" data-domain="Endpoint">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">3. OS &amp; Application Patch Management</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Endpoint</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Automatic security updates are enabled on Windows/macOS/Linux and mobile devices. Web browsers and third-party apps are updated within 48 hours of security patch releases.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_patch">
+                                    💡 <strong>Action:</strong> Verify Windows Update / App Store settings to ensure automatic installation is active for critical security hotfixes.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 4: Backups & Disaster Recovery -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_backup">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_backup" data-weight="10" data-domain="Resilience">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">4. 3-2-1 Backup Strategy</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Resilience</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Critical documents and data follow the 3-2-1 rule: 3 total copies, on 2 different media types, with at least 1 copy stored offline or in immutable cloud storage.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_backup">
+                                    💡 <strong>Action:</strong> Set up an external encrypted hard drive backup disconnected when not in use to protect against double-extortion ransomware.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 5: Account Recovery Hygiene -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_recovery">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_recovery" data-weight="10" data-domain="Account">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">5. Verified Account Recovery Methods</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Account</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Secondary recovery phone numbers and backup email addresses are up-to-date. One-time emergency recovery codes are printed or securely stored offline.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_recovery">
+                                    💡 <strong>Action:</strong> Log into primary Google/Apple/Microsoft accounts, remove outdated phone numbers, and save emergency one-time bypass codes in a secure safe.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 6: Safe Browsing & Downloads -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_browser">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_browser" data-weight="10" data-domain="Web">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">6. Safe Browsing &amp; Extension Hygiene</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Web</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Browser uses ad/tracker blockers (e.g. uBlock Origin), HTTPS-First mode, and no unvetted extensions. Zero pirated software, cracked games, or untrusted keygens installed.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_browser">
+                                    💡 <strong>Action:</strong> Audit installed Chrome/Edge/Firefox extensions and remove unused extensions that hold &ldquo;Read and change all data on all websites&rdquo; permissions.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 7: App Permissions & Privacy -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_privacy">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_privacy" data-weight="10" data-domain="Privacy">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">7. Mobile App Permissions &amp; Tracking Limits</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Privacy</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Microphone, camera, location, and contacts permissions are strictly restricted to essential apps only when actively in use. Unused mobile apps are uninstalled.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_privacy">
+                                    💡 <strong>Action:</strong> Open Android/iOS Settings &rarr; Privacy &amp; Security &rarr; Permission Manager and revoke camera/location from social and utility apps.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 8: Device Hardening & Disk Encryption -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_disk">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_disk" data-weight="10" data-domain="Device">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">8. Device Hardening &amp; Full-Disk Encryption</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Device</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Laptops and smartphones have full-disk encryption enabled (BitLocker / FileVault / Android encryption) and lock screens automatically engage within 3 minutes of inactivity.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_disk">
+                                    💡 <strong>Action:</strong> Verify BitLocker or FileVault is active in system settings so device theft does not compromise raw hard drive data.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 9: Phishing & Vishing Defense Protocols -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_social">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_social" data-weight="10" data-domain="Awareness">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">9. Social Engineering &amp; Call Verification Protocols</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Awareness</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    Strict personal policy: Never share OTPs or passwords over the phone. Any urgent call or message demanding immediate wire transfer or card details is independently verified via official numbers.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_social">
+                                    💡 <strong>Action:</strong> Adopt the &ldquo;Hang Up and Call Back&rdquo; protocol whenever receiving unexpected calls claiming to be from banks, police, or family emergencies.
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Item 10: Incident Response Readiness -->
+                        <label class="list-group-item bg-dark text-light border-secondary border-opacity-25 p-3 audit-item d-flex align-items-start gap-3" for="check_incident">
+                            <input class="form-check-input mt-1 audit-checkbox" type="checkbox" id="check_incident" data-weight="10" data-domain="Response">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold text-light">10. Cyber Incident Reporting Readiness</span>
+                                    <span class="badge bg-primary bg-opacity-25 text-info small">Response</span>
+                                </div>
+                                <p class="small text-muted mb-1 mt-1">
+                                    You know how to immediately freeze compromised debit/credit cards, report online financial fraud to the National Cyber Crime Helpline (<strong>1930</strong> or <strong>cybercrime.gov.in</strong>), and log internal enterprise incidents.
+                                </p>
+                                <div class="audit-recom text-warning small d-none" id="recom_check_incident">
+                                    💡 <strong>Action:</strong> Save 1930 (National Cyber Crime Reporting Helpline) and your bank&rsquo;s card-blocking emergency number in your mobile phone contacts.
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score & Recommendation Column -->
+        <div class="col-lg-5">
+            <div class="card bg-dark border-secondary shadow-sm mb-4 sticky-top" style="top: 20px;">
+                <div class="card-header bg-dark border-bottom border-secondary">
+                    <h2 class="h5 text-info mb-0">Hygiene Readiness Score</h2>
+                </div>
+                <div class="card-body text-center p-4">
+                    <!-- Gauge Display -->
+                    <div class="mb-3">
+                        <div class="display-3 fw-bold text-light" id="auditScoreDisplay">0%</div>
+                        <span class="badge bg-secondary px-3 py-2 fs-6 mt-1" id="auditTierBadge">Needs Immediate Attention</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress mb-4 bg-black" style="height: 12px;">
+                        <div class="progress-bar bg-danger" id="auditProgressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between text-muted small mb-4 pb-3 border-bottom border-secondary border-opacity-50">
+                        <span>Items Verified: <strong class="text-light" id="itemsCountDisplay">0 / 10</strong></span>
+                        <span>Points: <strong class="text-light" id="pointsDisplay">0 / 100</strong></span>
+                    </div>
+
+                    <!-- Dynamic Action Summary -->
+                    <div class="text-start">
+                        <h3 class="h6 text-warning mb-2 fw-bold">Priority Recommendations</h3>
+                        <div id="recommendationsSummary" class="small text-muted">
+                            <p class="mb-0">Check off the security controls you currently have implemented to generate your tailored defense posture assessment.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4 pt-2">
+                        <button type="button" class="btn btn-outline-info btn-sm" id="selectAllBtn">Select All (Full Posture)</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="resetAuditBtn">Reset Audit Checklist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".audit-checkbox");
+    const scoreDisplay = document.getElementById("auditScoreDisplay");
+    const tierBadge = document.getElementById("auditTierBadge");
+    const progressBar = document.getElementById("auditProgressBar");
+    const itemsCountDisplay = document.getElementById("itemsCountDisplay");
+    const pointsDisplay = document.getElementById("pointsDisplay");
+    const summaryBox = document.getElementById("recommendationsSummary");
+    const selectAllBtn = document.getElementById("selectAllBtn");
+    const resetAuditBtn = document.getElementById("resetAuditBtn");
+
+    function updateAuditScore() {
+        let totalWeight = 0;
+        let completedWeight = 0;
+        let completedCount = 0;
+        const totalCount = checkboxes.length;
+        const missingItems = [];
+
+        checkboxes.forEach(cb => {
+            const weight = parseInt(cb.getAttribute("data-weight") || "10", 10);
+            totalWeight += weight;
+            const recomBox = document.getElementById("recom_" + cb.id);
+
+            if (cb.checked) {
+                completedWeight += weight;
+                completedCount++;
+                if (recomBox) recomBox.classList.add("d-none");
+            } else {
+                if (recomBox) recomBox.classList.remove("d-none");
+                const labelText = cb.closest(".audit-item").querySelector(".fw-semibold").innerText;
+                missingItems.push(labelText);
+            }
+        });
+
+        const percent = Math.round((completedWeight / totalWeight) * 100);
+        scoreDisplay.innerText = percent + "%";
+        progressBar.style.width = percent + "%";
+        itemsCountDisplay.innerText = `${completedCount} / ${totalCount}`;
+        pointsDisplay.innerText = `${completedWeight} / ${totalWeight}`;
+
+        // Color coding & Tier Badges
+        if (percent >= 90) {
+            progressBar.className = "progress-bar bg-success";
+            tierBadge.className = "badge bg-success px-3 py-2 fs-6 mt-1";
+            tierBadge.innerText = "🛡️ Hardened Security Posture";
+            summaryBox.innerHTML = "<p class='text-success mb-0'><strong>Excellent defense hygiene!</strong> Your multi-layered controls align with modern zero-trust and defense-in-depth security benchmarks.</p>";
+        } else if (percent >= 70) {
+            progressBar.className = "progress-bar bg-info";
+            tierBadge.className = "badge bg-info text-dark px-3 py-2 fs-6 mt-1";
+            tierBadge.innerText = "⚡ Moderate Defensive Posture";
+            summaryBox.innerHTML = `<p class='text-light mb-1'><strong>Good foundation.</strong> Address the remaining ${missingItems.length} control(s) to close exposure vectors:</p><ul class='ps-3 mb-0'>${missingItems.slice(0, 3).map(it => `<li>${it}</li>`).join('')}</ul>`;
+        } else if (percent >= 40) {
+            progressBar.className = "progress-bar bg-warning";
+            tierBadge.className = "badge bg-warning text-dark px-3 py-2 fs-6 mt-1";
+            tierBadge.innerText = "⚠️ Basic / Partial Posture";
+            summaryBox.innerHTML = `<p class='text-warning mb-1'><strong>Key vulnerabilities identified.</strong> High-priority controls missing:</p><ul class='ps-3 mb-0'>${missingItems.slice(0, 4).map(it => `<li>${it}</li>`).join('')}</ul>`;
+        } else {
+            progressBar.className = "progress-bar bg-danger";
+            tierBadge.className = "badge bg-danger px-3 py-2 fs-6 mt-1";
+            tierBadge.innerText = "🚨 High Exposure Risk";
+            summaryBox.innerHTML = "<p class='text-danger mb-0'><strong>Critical security gaps detected.</strong> Please implement Multi-Factor Authentication, a password manager, and offline backups immediately.</p>";
+        }
+
+        // Save state in localStorage for convenience (strictly client-side)
+        try {
+            const state = {};
+            checkboxes.forEach(cb => { state[cb.id] = cb.checked; });
+            localStorage.setItem("voiceshield_audit_state", JSON.stringify(state));
+        } catch(e) {}
+    }
+
+    // Load saved state if present
+    try {
+        const saved = localStorage.getItem("voiceshield_audit_state");
+        if (saved) {
+            const state = JSON.parse(saved);
+            checkboxes.forEach(cb => {
+                if (state[cb.id] !== undefined) {
+                    cb.checked = state[cb.id];
+                }
+            });
+        }
+    } catch(e) {}
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", updateAuditScore);
+    });
+
+    selectAllBtn.addEventListener("click", function() {
+        checkboxes.forEach(cb => { cb.checked = true; });
+        updateAuditScore();
+    });
+
+    resetAuditBtn.addEventListener("click", function() {
+        checkboxes.forEach(cb => { cb.checked = false; });
+        try { localStorage.removeItem("voiceshield_audit_state"); } catch(e) {}
+        updateAuditScore();
+    });
+
+    updateAuditScore();
+});
+</script>
+{% endblock %}

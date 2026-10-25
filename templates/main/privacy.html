@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}Privacy Notice – VoiceShield AI{% endblock %}
+{% block page_title %}🔒 Privacy Notice{% endblock %}
+
+{% block content %}
+<div class="page-header fade-in">
+  <h1>Privacy Notice</h1>
+  <p>How VoiceShield AI handles your data. Last updated: October 2026.</p>
+</div>
+
+<div class="card fade-in privacy-content" style="max-width:780px;margin:0 auto;">
+
+  <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:16px;margin-bottom:24px;">
+    <strong style="color:var(--success);">✅ Core Privacy Commitment</strong>
+    <p style="margin-top:6px;font-size:0.85rem;color:var(--text-secondary);">
+      Audio files you upload are <strong>permanently deleted from the server immediately after analysis</strong> — whether the analysis succeeds or fails. We never share your data with third parties.
+    </p>
+  </div>
+
+  <h2>1. Data We Collect</h2>
+  <ul>
+    <li><strong>Account data:</strong> username, email address, password hash (PBKDF2-SHA256).</li>
+    <li><strong>Incident data:</strong> titles, categories, transcripts, risk scores, acoustic measurements — all linked to your account.</li>
+    <li><strong>Audio files:</strong> uploaded temporarily for transcription and acoustic analysis, then <em>immediately deleted</em>.</li>
+    <li><strong>We do NOT collect:</strong> IP addresses for logging, browser fingerprints, or marketing data.</li>
+  </ul>
+
+  <h2>2. How We Use Your Data</h2>
+  <ul>
+    <li>To transcribe audio locally using the Whisper AI model (offline, not sent to any external API).</li>
+    <li>To analyse transcript text for known scam phrases and compute a risk score.</li>
+    <li>To compute acoustic signal measurements (clipping, spectral flatness, SNR).</li>
+    <li>To display your personal incident history — visible only to you.</li>
+  </ul>
+
+  <h2>3. Audio File Deletion</h2>
+  <p>
+    Audio files are saved temporarily to the <code>uploads/</code> folder only during the analysis pipeline.
+    They are deleted using <code>os.remove()</code> as the final step of every analysis — even if transcription or measurement fails.
+    No audio data is retained in the database; only the transcript text (if successful) is stored.
+  </p>
+
+  <h2>4. Transcription – Local Processing</h2>
+  <p>
+    Speech-to-text is performed by <strong>OpenAI Whisper running locally on this server</strong>.
+    Your audio is <strong>never sent to OpenAI servers</strong> or any external API.
+    If Whisper is unavailable, you will see an "unavailable" status — we will never fabricate a transcript.
+  </p>
+
+  <h2>5. Acoustic Measurements – Disclaimer</h2>
+  <p>
+    Acoustic figures (clipping ratio, spectral flatness, SNR) are <strong>signal quality measurements only</strong>.
+    They <strong>do not determine</strong> whether audio is AI-generated or authentic.
+    Do not use these measurements as legal evidence of voice deepfakes.
+  </p>
+
+  <h2>6. Data Security</h2>
+  <ul>
+    <li>Passwords are hashed with Werkzeug's PBKDF2-SHA256 — never stored in plaintext.</li>
+    <li>Secret keys are loaded from environment variables, not hardcoded.</li>
+    <li>All routes that access incident data verify ownership against the logged-in user (server-side authorisation).</li>
+    <li>File uploads are validated for extension and size (max 50 MB).</li>
+    <li>Filenames are sanitised with <code>werkzeug.utils.secure_filename</code> and prefixed with a UUID.</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+  <ul>
+    <li><strong>Access:</strong> View all your incidents at any time in the History page.</li>
+    <li><strong>Delete:</strong> Delete individual incidents from the History or Detail pages.</li>
+    <li><strong>Export:</strong> Download all your data as CSV or PDF.</li>
+    <li><strong>Account deletion:</strong> Contact the administrator to fully delete your account and all associated data.</li>
+  </ul>
+
+  <h2>8. Indian Law Compliance</h2>
+  <p>
+    This application is designed with the <strong>Digital Personal Data Protection Act 2023 (DPDP Act)</strong> in mind,
+    including purpose limitation, data minimisation, and data subject rights.
+    Cybercrime incidents you record may be shared with law enforcement — please do so at <strong>cybercrime.gov.in</strong>.
+  </p>
+
+  <h2>9. Contact</h2>
+  <p>
+    For privacy concerns, contact the system administrator or visit
+    <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.
+    Cyber Crime Helpline: <strong>1930</strong>.
+  </p>
+
+</div>
+{% endblock %}
