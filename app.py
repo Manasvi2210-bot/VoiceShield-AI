@@ -44,8 +44,10 @@ def create_app(config_class=Config):
     return app
 
 
+# Create Flask application for deployment
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     debug_mode = app.config.get("DEBUG", False)
     host = app.config.get("SERVER_HOST", "127.0.0.1")
     port = app.config.get("SERVER_PORT", 5000)
